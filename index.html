@@ -12,6 +12,7 @@
 <link rel="icon" href="icon.png">
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 <title>EBDAAI</title>
+<title>EBDAAI</title>
 <script>document.documentElement.lang = "ar"; document.documentElement.dir = "rtl"; document.documentElement.classList.add("js");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -389,6 +390,9 @@ section { position: relative; }
 .big-mark i.core { box-shadow: 0 0 34px rgba(191,224,255,.9); }
 footer { padding-block: 40px; border-top: 1px solid var(--line); color: var(--faint); font-size: 13.5px; }
 footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+.credit { display: inline-flex; align-items: center; gap: 6px; color: var(--ice); text-decoration: none; font-family: var(--mono); direction: ltr; }
+.credit:hover { color: var(--fg); text-decoration: underline; }
+.credit svg { width: 14px; height: 14px; }
 
 @media (prefers-reduced-motion: reduce) {
   .grain, .orbit .ring, .node, .update .dot, .scroll-cue i, .typing i, .col, .models .row, .prompt-card .text::after { animation: none; }
@@ -713,7 +717,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   </div>
 </section>
 
-<footer><div class="wrap"><span data-k="foot">© 2026 إبداعي · EBDAAI</span><span style="font-family:var(--mono)">v1.0.51 · Dima Naskh (GPL)</span></div></footer>
+<footer><div class="wrap"><span><span data-k="foot">© 2026 إبداعي · EBDAAI</span> · <span data-k="made">صُنع بواسطة</span> <a class="credit" href="https://www.linkedin.com/in/moathwsh/" target="_blank" rel="noopener">moathwsh<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a></span><span style="font-family:var(--mono)">v1.0.51 · Dima Naskh (GPL)</span></div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -769,7 +773,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     "spec-e": "Requirements", "spec-h": "Before you download.", d1: "System", d1s: "On a Mac: a local server build for Apple Silicon.", d2: "Graphics card", d2s: "Driver 560 or newer, so it runs on CUDA.",
     d3: "Card memory", d3a: "We suggest", v1: "8GB pictures", v2: "16GB video", v3: "24GB+ long HD video", d4: "Disk", d4a: "About 5GB for the engine", d4s: "Each model takes 10 to 50 GB. Keep them on any drive.",
     d5: "Internet", d5a: "Only for downloads and updates", d5s: "Generating happens on your PC.", d6: "Language", d6a: "Arabic and English", d6s: "The whole interface, right to left too.",
-    "fin-h": "Your PC is ready. Start.", "fin-p": "Download EBDAAI, install the engine once, and your first picture is minutes away.", foot: "© 2026 EBDAAI",
+    "fin-h": "Your PC is ready. Start.", "fin-p": "Download EBDAAI, install the engine once, and your first picture is minutes away.", foot: "© 2026 EBDAAI", made: "Made by",
   };
 
   Object.assign(EN, {
