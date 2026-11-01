@@ -1,0 +1,1293 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="إبداعي: استوديو ذكاء اصطناعي يشتغل على جهازك. صور، وفيديو بصوته، وأفلام، وحملات تسويق كاملة، بدون رصيد ولا اشتراك، وملفاتك ما تطلع لأي سيرفر.">
+<meta property="og:title" content="EBDAAI · كرت شاشتك صار استوديو.">
+<meta property="og:description" content="استوديو ذكاء اصطناعي يشتغل على جهازك. بدون رصيد، بدون طابور، بدون سيرفر.">
+<meta property="og:image" content="img/hero_film_hero.webp">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#05060b">
+<link rel="icon" href="icon.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+<title>EBDAAI</title>
+<script>document.documentElement.lang = "ar"; document.documentElement.dir = "rtl"; document.documentElement.classList.add("js");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Dima Naskh (GPL, fonts/GPL.txt) sets every big Arabic word; Latin and digits fall through to Reem Kufi. */
+@font-face { font-family: "Dima Naskh"; src: url("fonts/dima-naskh-arabic.ttf") format("truetype"); font-weight: 400; font-display: swap; unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF, U+200C-200F, U+060C; }
+/* Layout: a journey in pinned scenes. An intro assembles the logo; a WebGL field of cubes (scattered → logo → pictures,
+   pushed by the cursor) opens; then each scroll chapter holds one idea while scroll drives it: the manifesto, a band of
+   moving words, eight looks, one product becoming a campaign, the cast, five programs, the apps, After Effects, the specs,
+   and the logo reassembling at the end. */
+:root {
+  --ink: #05060b;
+  --panel: #0d0f19;
+  --raise: #141729;
+  --line: #1c2033;
+  --fg: #eef3ff;
+  --muted: #8d94ab;
+  --faint: #5a6178;
+  --electric: #3340ff;
+  --sky: #5b9bff;
+  --ice: #bfe0ff;
+  --display: "Dima Naskh", "Reem Kufi", "IBM Plex Sans Arabic", "Segoe UI", system-ui, serif;
+  --kufi: "Reem Kufi", "IBM Plex Sans Arabic", "Segoe UI", system-ui, sans-serif;
+  --body: "IBM Plex Sans Arabic", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --ease: cubic-bezier(.2,.7,.2,1);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--ink); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.75; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 70; background: var(--ink); }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; border-radius: 6px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; font-synthesis: none; line-height: 1.32; margin: 0; text-wrap: balance; }
+[dir="ltr"] h1, [dir="ltr"] h2, [dir="ltr"] h3 { font-family: var(--kufi); font-weight: 700; line-height: 1.12; }
+p { margin: 0; text-wrap: pretty; }
+.wrap { width: 100%; max-width: 1240px; margin-inline: auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.eyebrow { font: 500 12.5px var(--mono); letter-spacing: .1em; color: var(--sky); text-transform: uppercase; display: inline-flex; gap: 10px; align-items: center; }
+.eyebrow::before { content: ""; width: 22px; height: 1px; background: currentColor; }
+.lede { color: var(--muted); font-size: clamp(16px, 1.5vw, 19px); max-width: 56ch; }
+.h2 { font-size: clamp(38px, 5.8vw, 80px); }
+.btn { display: inline-flex; align-items: center; gap: .55em; border-radius: 999px; padding: .9em 1.6em; font: 600 16px/1 var(--body); text-decoration: none; transition: box-shadow .3s var(--ease); will-change: transform; }
+.btn-primary { background: var(--ice); color: var(--ink); box-shadow: 0 0 0 1px rgba(191,224,255,.4), 0 18px 50px -12px rgba(91,155,255,.75); }
+.btn-primary:hover { box-shadow: 0 0 0 1px rgba(191,224,255,.8), 0 26px 70px -10px rgba(91,155,255,.95); }
+.btn-ghost { color: var(--fg); box-shadow: inset 0 0 0 1px var(--line); backdrop-filter: blur(8px); }
+.btn-ghost:hover { box-shadow: inset 0 0 0 1px var(--sky); }
+.btn svg { width: 18px; height: 18px; }
+section { position: relative; }
+
+/* light that breathes behind the page; its colours follow the chapter */
+:root { --a1: #3340ff; --a2: #18c6d6; --a3: #ff2daa; }
+.aurora { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.aurora i { position: absolute; width: 62vmax; height: 62vmax; border-radius: 50%; filter: blur(110px); opacity: .26; background: var(--c); animation: drift 22s ease-in-out infinite alternate; }
+.aurora i:nth-child(1) { --c: var(--a1); top: -28vmax; inset-inline-start: -22vmax; }
+.aurora i:nth-child(2) { --c: var(--a2); bottom: -34vmax; inset-inline-end: -22vmax; animation-duration: 28s; }
+.aurora i:nth-child(3) { --c: var(--a3); top: 32%; inset-inline-start: 38%; width: 38vmax; height: 38vmax; opacity: .14; animation-duration: 34s; }
+@keyframes drift { to { transform: translate(9vmax, 7vmax) scale(1.18); } }
+
+/* the living sentence above the headline */
+.say { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; font-size: clamp(17px, 1.6vw, 21px); color: var(--muted); }
+.chip { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px 0 6px; border-radius: 12px; background: rgba(20,23,41,.85); border: 1px solid var(--line); color: var(--fg); overflow: hidden; box-shadow: 0 10px 30px -12px rgba(51,64,255,.6); }
+.chip.plain { padding-inline: 14px; }
+.chip img { width: 28px; height: 28px; border-radius: 8px; object-fit: cover; }
+.chip .slot { display: inline-block; font-weight: 600; white-space: nowrap; }
+.chip svg { width: 16px; height: 16px; color: var(--sky); flex: none; }
+
+/* a cloud of results around a headline */
+.cloud { height: 100svh; overflow: hidden; }
+.cloud-stage { position: absolute; inset: 0; perspective: 900px; }
+.cloud-cards { position: absolute; inset: 0; transform-style: preserve-3d; }
+.cloud-card { position: absolute; left: 50%; top: 50%; width: var(--w); aspect-ratio: 3 / 4; margin: calc(var(--w) * -2 / 3) 0 0 calc(var(--w) / -2); border-radius: 14px; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0,0,0,.9); will-change: transform; }
+.cloud-card img { width: 100%; height: 100%; object-fit: cover; }
+.cloud-copy { position: relative; z-index: 5; height: 100%; display: grid; place-content: center; text-align: center; justify-items: center; }
+.cloud-copy h2 { font-size: clamp(44px, 7vw, 104px); }
+.rot { position: relative; display: inline-block; color: var(--ice); }
+.rot svg { position: absolute; inset-inline: -4%; bottom: -.12em; width: 108%; height: .32em; overflow: visible; }
+.rot svg path { fill: none; stroke: url(#swoosh); stroke-width: 7; stroke-linecap: round; }
+@media (max-width: 900px) { .cloud { height: auto; padding-block: 110px; } .cloud-stage { position: relative; height: 70vh; } .cloud-copy { position: absolute; inset: 0; } }
+
+/* a live demo of the app */
+.how { padding-block: 100px; }
+.how .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(28px, 4vw, 60px); align-items: center; }
+@media (max-width: 900px) { .how .wrap { grid-template-columns: 1fr; } }
+.mock { position: relative; aspect-ratio: 16 / 10.5; max-width: 100%; border-radius: 22px; background: #0b0d16; border: 1px solid var(--line); box-shadow: 0 60px 140px -50px rgba(51,64,255,.55); overflow: hidden; display: grid; grid-template-rows: 38px minmax(0, 1fr); }
+.mock-bar { display: flex; align-items: center; gap: 8px; padding-inline: 14px; border-bottom: 1px solid var(--line); background: #0e1120; font: 500 11px var(--mono); color: var(--faint); }
+.mock-bar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+.mock-bar .model { margin-inline-start: auto; display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); color: var(--muted); }
+.mock-bar .model b { width: 8px; height: 8px; border-radius: 50%; background: #34d399; }
+.mock-body { position: relative; display: grid; grid-template-columns: 46px minmax(0, 1fr); }
+.mock-tools { display: grid; align-content: start; gap: 10px; padding: 14px 10px; border-inline-end: 1px solid var(--line); }
+.mock-tools i { width: 26px; height: 26px; border-radius: 8px; background: var(--panel); border: 1px solid var(--line); }
+.mock-tools i.on { background: var(--electric); border-color: var(--electric); }
+.mock-canvas { position: relative; display: grid; place-items: center; background-image: radial-gradient(rgba(191,224,255,.06) 1px, transparent 1px); background-size: 18px 18px; }
+.art { position: relative; height: 72%; aspect-ratio: 3 / 4; border-radius: 12px; overflow: hidden; box-shadow: 0 30px 60px -20px rgba(0,0,0,.9); clip-path: inset(50% 50% 50% 50% round 12px); }
+.art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .5s; }
+.art img.on { opacity: 1; }
+.art .sel { position: absolute; inset: 0; border: 2px solid var(--sky); border-radius: 12px; opacity: 0; }
+.variants { position: absolute; inset-inline-end: 16px; top: 16px; display: grid; gap: 8px; }
+.variants img { width: 52px; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 8px; border: 2px solid transparent; opacity: 0; }
+.variants img.on { border-color: var(--ice); }
+.formats { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.fmt { position: absolute; border-radius: 10px; overflow: hidden; box-shadow: 0 20px 50px -14px rgba(0,0,0,.9); border: 1px solid var(--line); opacity: 0; }
+.fmt img { width: 100%; height: 100%; object-fit: cover; }
+.fmt span { position: absolute; inset-inline-start: 6px; bottom: 6px; font: 500 10px var(--mono); background: rgba(5,6,11,.75); padding: 2px 6px; border-radius: 5px; }
+.composer { position: absolute; inset-inline: 16%; bottom: 14px; display: flex; align-items: center; gap: 10px; padding: 10px 10px 10px 14px; border-radius: 14px; background: rgba(20,23,41,.92); border: 1px solid var(--line); box-shadow: 0 20px 50px -14px rgba(0,0,0,.9); font-size: 14px; }
+.composer .typed { flex: 1; min-height: 1.6em; color: var(--fg); }
+.composer .typed::after { content: ""; display: inline-block; width: 2px; height: 1em; background: var(--sky); vertical-align: -2px; margin-inline-start: 2px; animation: caret 1s steps(1) infinite; }
+.composer .go { flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 10px; background: var(--ice); color: var(--ink); font-weight: 700; }
+.how-steps { display: grid; gap: 10px; margin-top: 26px; }
+.how-step { padding: 14px 16px; border-radius: 16px; border: 1px solid var(--line); background: rgba(13,15,25,.6); transition: border-color .4s, background .4s; }
+.how-step h3 { font-size: 26px; line-height: 1.4; display: flex; align-items: center; gap: 10px; color: var(--muted); transition: color .4s; }
+[dir="ltr"] .how-step h3 { font-size: 18px; }
+.how-step h3 b { font: 500 11px var(--mono); color: var(--faint); }
+.how-step p { color: var(--muted); font-size: 14.5px; max-height: 0; overflow: hidden; opacity: 0; transition: max-height .5s var(--ease), opacity .4s; }
+.how-step.on { border-color: rgba(91,155,255,.5); background: rgba(20,23,41,.85); }
+.how-step.on h3 { color: var(--fg); }
+.how-step.on p { max-height: 6em; opacity: 1; margin-top: 4px; }
+
+/* film grain over everything */
+.grain { position: fixed; inset: -50%; z-index: 90; pointer-events: none; opacity: .06; mix-blend-mode: overlay; background-image: var(--noise); animation: grain 1s steps(6) infinite; }
+@keyframes grain { 0% { transform: translate(0, 0); } 20% { transform: translate(-4%, 3%); } 40% { transform: translate(3%, -5%); } 60% { transform: translate(-6%, 2%); } 80% { transform: translate(5%, 5%); } 100% { transform: translate(0, 0); } }
+
+/* cursor */
+.cursor { position: fixed; left: 0; top: 0; z-index: 95; width: 34px; height: 34px; margin: -17px; border-radius: 50%; border: 1px solid rgba(191,224,255,.6); pointer-events: none; transition: width .3s var(--ease), height .3s var(--ease), margin .3s var(--ease), background .3s, border-color .3s; mix-blend-mode: difference; display: none; }
+.cursor.big { width: 74px; height: 74px; margin: -37px; background: rgba(191,224,255,.9); border-color: transparent; }
+.cursor-dot { position: fixed; left: 0; top: 0; z-index: 96; width: 5px; height: 5px; margin: -2.5px; border-radius: 50%; background: var(--ice); pointer-events: none; display: none; }
+@media (pointer: fine) { .cursor, .cursor-dot { display: block; } }
+
+/* intro */
+.intro { position: fixed; inset: 0; z-index: 100; background: var(--ink); display: none; place-items: center; }
+.js .intro { display: grid; }
+.intro .inner { display: grid; justify-items: center; gap: 22px; }
+.intro .mark { width: 96px; height: 96px; gap: 4px; }
+.intro .mark i { transform: scale(0); }
+.intro .name { font: 400 44px/1.3 var(--display); }
+[dir="ltr"] .intro .name { font: 700 34px/1 var(--kufi); }
+.intro .pct { font: 500 12px var(--mono); color: var(--faint); letter-spacing: .2em; font-variant-numeric: tabular-nums; }
+
+/* scroll progress */
+.progress { position: fixed; inset-inline: 0; top: env(safe-area-inset-top, 0px); height: 2px; z-index: 80; background: linear-gradient(90deg, var(--electric), var(--ice)); transform-origin: right; transform: scaleX(0); }
+[dir="ltr"] .progress { transform-origin: left; }
+
+/* nav */
+.nav { position: fixed; inset-inline: 0; top: env(safe-area-inset-top, 0px); z-index: 60; transition: background .4s, border-color .4s; border-bottom: 1px solid transparent; }
+.nav.solid { background: rgba(5,6,11,.7); backdrop-filter: blur(16px); border-color: rgba(28,32,51,.8); }
+.nav .wrap { display: flex; align-items: center; gap: 22px; height: 66px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font: 400 26px/1 var(--display); }
+[dir="ltr"] .brand { font: 700 22px/1 var(--kufi); }
+.brand b { color: var(--sky); font-weight: inherit; }
+.mark { width: 28px; height: 28px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
+.mark i { border-radius: 1.5px; background: var(--electric); opacity: .16; }
+.mark i.on { opacity: 1; }
+.mark i.core { background: var(--ice); opacity: 1; }
+.nav-links { display: flex; gap: 24px; margin-inline-start: auto; font-size: 14.5px; color: var(--muted); }
+.nav-links a { text-decoration: none; transition: color .2s; }
+.nav-links a:hover { color: var(--fg); }
+.lang { border: 1px solid var(--line); background: rgba(5,6,11,.4); color: var(--fg); border-radius: 999px; padding: 6px 12px; font: 600 13px var(--mono); cursor: pointer; }
+.nav .btn { padding: .6em 1.15em; font-size: 14.5px; }
+@media (max-width: 860px) { .nav-links { display: none; } .nav .wrap { gap: 12px; } .nav .lang { margin-inline-start: auto; } }
+
+/* ── 1 · hero ─────────────────────────────────────────── */
+.hero { min-height: min(980px, 100svh); display: flex; align-items: center; overflow: hidden; padding-block: 110px 90px; }
+#field { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.hero::after { content: ""; position: absolute; inset: auto 0 0; height: 220px; background: linear-gradient(transparent, var(--ink)); pointer-events: none; }
+.hero .wrap { position: relative; z-index: 2; pointer-events: none; }
+.hero .copy { max-width: 620px; pointer-events: auto; }
+.hero h1 { font-size: clamp(46px, 5.6vw, 90px); line-height: 1.25; margin-block: 18px 18px; }
+.hero .copy { max-width: min(720px, 52vw); }
+@media (max-width: 900px) { .hero .copy { max-width: none; } }
+.hero h1 .line > span { white-space: nowrap; }
+[dir="ltr"] .hero h1 { line-height: 1; font-size: clamp(50px, 8vw, 112px); }
+.hero h1 .line { display: block; overflow: hidden; padding-block: .04em .1em; }
+.hero h1 .line > span { display: inline-block; }
+.glow { background: linear-gradient(100deg, var(--ice), var(--sky) 45%, var(--electric)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+.specline { margin-top: 24px; font: 500 12.5px/1.8 var(--mono); color: var(--faint); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.specline span::before { content: "■ "; color: var(--electric); }
+.prompt-card { position: absolute; z-index: 3; bottom: 96px; inset-inline-end: max(20px, env(safe-area-inset-right, 0px)); width: min(440px, 40vw); background: rgba(13,15,25,.78); backdrop-filter: blur(14px); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; box-shadow: 0 30px 60px -20px rgba(0,0,0,.85); pointer-events: none; }
+.prompt-card .label { font: 500 11px var(--mono); color: var(--faint); letter-spacing: .1em; display: flex; justify-content: space-between; }
+.prompt-card .text { font-size: 15px; min-height: 2.9em; margin-top: 6px; }
+.prompt-card .text::after { content: ""; display: inline-block; width: 2px; height: 1.05em; background: var(--sky); vertical-align: -3px; margin-inline-start: 2px; animation: caret 1s steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+.prompt-card .meter { display: flex; align-items: center; gap: 12px; margin-top: 8px; font: 500 11.5px var(--mono); color: var(--muted); font-variant-numeric: tabular-nums; }
+.prompt-card .bar { flex: 1; height: 4px; border-radius: 4px; background: var(--line); overflow: hidden; }
+.prompt-card .bar i { display: block; height: 100%; background: linear-gradient(90deg, var(--electric), var(--ice)); transform-origin: right; transform: scaleX(0); transition: transform .3s; }
+[dir="ltr"] .prompt-card .bar i { transform-origin: left; }
+.prompt-card .cost { color: var(--ice); }
+.scroll-cue { position: absolute; z-index: 2; inset-inline-start: 50%; bottom: 26px; translate: 50% 0; font: 500 11px var(--mono); color: var(--faint); letter-spacing: .2em; display: grid; justify-items: center; gap: 8px; }
+[dir="ltr"] .scroll-cue { translate: -50% 0; }
+.scroll-cue i { width: 1px; height: 36px; background: linear-gradient(var(--sky), transparent); animation: cue 2s var(--ease) infinite; transform-origin: top; }
+@keyframes cue { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+@media (max-width: 900px) {
+  .hero { align-items: flex-end; }
+  .hero .copy { background: linear-gradient(transparent, rgba(5,6,11,.88) 16%); padding-top: 40px; }
+  .prompt-card { inset-inline: 20px; width: auto; top: 90px; bottom: auto; }
+}
+
+/* ── 2 · manifesto ────────────────────────────────────── */
+.manifesto { padding-block: 120px 60px; }
+.manifesto .words { font: 400 clamp(54px, 10vw, 150px)/1.28 var(--display); display: grid; }
+[dir="ltr"] .manifesto .words { font: 700 clamp(44px, 8.5vw, 128px)/1.08 var(--kufi); }
+.manifesto .words span { display: block; opacity: .12; }
+.manifesto .words span.last { opacity: .12; }
+.versus-wrap { margin-top: 90px; display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
+@media (max-width: 900px) { .versus-wrap { grid-template-columns: 1fr; } }
+.table-scroll { overflow-x: auto; }
+.versus { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 15.5px; }
+.versus th { font: 500 12.5px var(--mono); color: var(--faint); text-align: start; padding: 0 16px 12px; }
+.versus th.us { color: var(--sky); }
+.versus td { padding: 18px 16px; border-top: 1px solid var(--line); vertical-align: top; }
+.versus td:first-child { color: var(--muted); width: 24%; }
+.versus td.them { color: var(--faint); text-decoration: line-through; text-decoration-color: rgba(255,255,255,.2); }
+.versus td.us { color: var(--fg); font-weight: 600; background: linear-gradient(90deg, transparent, rgba(51,64,255,.08)); }
+
+/* ── band of moving words ─────────────────────────────── */
+.ticker { padding-block: 40px; overflow: hidden; border-block: 1px solid var(--line); }
+.ticker .row { display: flex; gap: .5em; width: max-content; font: 400 clamp(64px, 9vw, 140px)/1.3 var(--display); white-space: nowrap; }
+[dir="ltr"] .ticker .row { font: 700 clamp(54px, 8vw, 120px)/1.1 var(--kufi); }
+.ticker .row span { color: transparent; -webkit-text-stroke: 1.2px rgba(191,224,255,.45); }
+.ticker .row span.f { color: var(--fg); -webkit-text-stroke: 0; }
+.ticker .row span.dot { color: var(--electric); -webkit-text-stroke: 0; }
+
+/* ── 3 · eight looks ──────────────────────────────────── */
+.looks { min-height: 100svh; display: grid; align-items: center; padding-block: 90px; }
+.looks .wrap { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: clamp(24px, 4vw, 60px); align-items: center; }
+@media (max-width: 900px) { .looks .wrap { grid-template-columns: 1fr; } }
+.look-list { list-style: none; margin: 22px 0 0; padding: 0; display: grid; }
+.look-list button { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: 12px; background: none; border: 0; border-top: 1px solid var(--line); color: var(--faint); padding: 4px 0; font: 400 clamp(22px, 2vw, 28px)/1.4 var(--display); cursor: pointer; text-align: start; transition: color .3s, padding .3s var(--ease); }
+[dir="ltr"] .look-list button { font: 600 clamp(17px, 1.6vw, 22px)/1.6 var(--kufi); }
+.look-list button small { font: 500 11px var(--mono); color: var(--faint); }
+.look-list button[aria-pressed="true"] { color: var(--fg); padding-inline-start: 12px; }
+.look-list button[aria-pressed="true"] small { color: var(--sky); }
+.look-frame { position: relative; aspect-ratio: 1200 / 686; max-width: 100%; border-radius: 22px; overflow: hidden; background: var(--panel); box-shadow: 0 60px 140px -50px rgba(51,64,255,.6), 0 0 0 1px var(--line); }
+.look-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; clip-path: inset(0 0 0 100%); transition: clip-path .9s var(--ease); }
+[dir="ltr"] .look-frame img { clip-path: inset(0 100% 0 0); }
+.look-frame img.on, [dir="ltr"] .look-frame img.on { clip-path: inset(0 0 0 0); z-index: 2; }
+.look-frame img.was, [dir="ltr"] .look-frame img.was { clip-path: inset(0 0 0 0); z-index: 1; }
+.look-tag { position: absolute; z-index: 3; inset-inline-start: 18px; bottom: 16px; font: 500 12.5px var(--mono); background: rgba(5,6,11,.7); backdrop-filter: blur(8px); padding: 6px 10px; border-radius: 8px; }
+
+/* ── 4 · one product → a campaign ─────────────────────── */
+.campaign { min-height: 100svh; padding-block: 90px 50px; overflow: hidden; }
+.camp-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; }
+.count { font: 700 clamp(70px, 11vw, 160px)/.85 var(--kufi); color: transparent; -webkit-text-stroke: 1.5px var(--sky); font-variant-numeric: tabular-nums; text-align: end; }
+.count small { display: block; font: 500 13px var(--mono); color: var(--muted); -webkit-text-stroke: 0; margin-top: 10px; }
+@media (max-width: 700px) { .camp-head { grid-template-columns: 1fr; } .count { text-align: start; } }
+.camp-stage { position: relative; height: min(58vh, 580px); margin-top: 30px; perspective: 1600px; }
+.camp-plane { position: absolute; inset: 0; transform-style: preserve-3d; }
+.card { --w: clamp(80px, 10vw, 140px); position: absolute; left: 50%; top: 50%; width: var(--w); aspect-ratio: 3 / 4; margin: calc(var(--w) * -2 / 3) 0 0 calc(var(--w) / -2); border-radius: 12px; overflow: hidden; background: var(--panel); box-shadow: 0 20px 40px -14px rgba(0,0,0,.8); will-change: transform; }
+.card img { width: 100%; height: 100%; object-fit: cover; }
+.card.hero-card { z-index: 30; box-shadow: 0 0 0 2px var(--ice), 0 30px 80px -10px rgba(91,155,255,.6); }
+@media (max-width: 900px) {
+  .camp-stage { height: auto; perspective: none; }
+  .camp-plane { position: static; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .card { position: static; width: auto; margin: 0; transform: none !important; }
+}
+/* the wall that keeps moving */
+.wall { height: 560px; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; padding-inline: 14px; margin-top: 10px; mask-image: linear-gradient(transparent, #000 14%, #000 86%, transparent); }
+.col { display: flex; flex-direction: column; gap: 14px; animation: rise 48s linear infinite; }
+.col:nth-child(even) { animation-direction: reverse; animation-duration: 56s; }
+.col img { border-radius: 14px; aspect-ratio: 3 / 4; width: 100%; object-fit: cover; background: var(--panel); }
+@keyframes rise { to { transform: translateY(-50%); } }
+@media (max-width: 900px) { .wall { grid-template-columns: repeat(3, minmax(0, 1fr)); height: 460px; } .col:nth-child(n+4) { display: none; } }
+
+/* ── 5 · the cast ─────────────────────────────────────── */
+.cast { padding-block: 90px; overflow: hidden; }
+.cast-track { display: flex; gap: 16px; margin-top: 40px; width: max-content; padding-inline: max(20px, calc((100vw - 1240px) / 2 + 20px)); }
+.face { position: relative; width: clamp(200px, 22vw, 300px); aspect-ratio: 3 / 4; border-radius: 20px; overflow: hidden; background: var(--panel); flex: none; }
+.face img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
+.face span { position: absolute; inset: auto 0 0; padding: 30px 16px 14px; font: 400 26px/1.3 var(--display); background: linear-gradient(transparent, rgba(5,6,11,.9)); }
+[dir="ltr"] .face span { font: 700 20px var(--kufi); }
+.face small { display: block; font: 500 11px var(--mono); color: var(--muted); }
+@media (max-width: 900px) { .cast-track { width: auto; overflow-x: auto; scroll-snap-type: x mandatory; padding-inline: 20px; } .face { scroll-snap-align: start; width: 64vw; } .face img { transform: none; } }
+
+/* ── 6 · film ─────────────────────────────────────────── */
+.film { padding-block: 60px 90px; }
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 30px; }
+.steps div { border-top: 1px solid var(--line); padding-top: 10px; color: var(--muted); font-size: 15px; }
+.steps b { display: block; color: var(--fg); font: 400 28px/1.4 var(--display); }
+[dir="ltr"] .steps b { font: 700 20px var(--kufi); }
+.stills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 34px; }
+.still { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4 / 3; max-width: 100%; background: var(--panel); margin: 0; }
+.still img { width: 100%; height: 115%; object-fit: cover; }
+.still figcaption { position: absolute; inset-inline-start: 12px; top: 12px; font: 500 11.5px var(--mono); padding: 4px 9px; border-radius: 6px; background: rgba(5,6,11,.7); }
+@media (max-width: 700px) { .stills { grid-template-columns: repeat(2, minmax(0, 1fr)); } .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ── 7 · five programs ────────────────────────────────── */
+.programs { padding-block: 90px 40px; }
+.stack { position: relative; margin-top: 34px; height: min(66vh, 600px); }
+.panel { position: absolute; inset: 0; border-radius: 28px; overflow: hidden; background: var(--panel); border: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 30px; align-items: center; padding: clamp(24px, 4vw, 56px); box-shadow: 0 -30px 80px -40px rgba(0,0,0,.9); }
+.panel::before { content: ""; position: absolute; inset: -30% auto auto -20%; width: 70%; aspect-ratio: 1; background: radial-gradient(closest-side, var(--glow), transparent); opacity: .28; pointer-events: none; }
+.panel > * { position: relative; }
+.panel .icon { width: 84px; height: 84px; border-radius: 22px; box-shadow: 0 20px 50px -10px var(--glow); }
+.panel h3 { font-size: clamp(36px, 4.2vw, 62px); margin-top: 6px; }
+.panel p { color: var(--muted); font-size: 17px; margin-top: 8px; max-width: 40ch; }
+.panel .shot { border-radius: 16px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), 0 40px 80px -30px rgba(0,0,0,.9); }
+.panel .glyph { font: 700 clamp(120px, 18vw, 260px)/1 var(--kufi); color: transparent; -webkit-text-stroke: 1.5px var(--glow); opacity: .5; text-align: center; direction: ltr; }
+.panel .tag { font: 500 12px var(--mono); color: var(--glow); letter-spacing: .08em; margin-top: 18px; }
+@media (max-width: 900px) {
+  .stack { height: auto; display: grid; gap: 14px; }
+  .panel { position: relative; grid-template-columns: 1fr; transform: none !important; }
+  .panel .glyph { font-size: 90px; text-align: start; }
+}
+
+/* ── 8 · apps + models ────────────────────────────────── */
+.apps { padding-block: 120px 60px; }
+.apps .grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 70px); align-items: center; }
+@media (max-width: 900px) { .apps .grid { grid-template-columns: 1fr; } }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
+.chips span { border: 1px solid var(--line); border-radius: 999px; padding: 7px 15px; font-size: 14.5px; background: var(--panel); }
+.update { margin-top: 28px; display: flex; gap: 14px; align-items: flex-start; padding: 18px; border-radius: 16px; border: 1px dashed rgba(91,155,255,.4); }
+.update .dot { width: 10px; height: 10px; margin-top: 8px; border-radius: 50%; background: #34d399; box-shadow: 0 0 0 6px rgba(52,211,153,.15); flex: none; animation: pulse 2.4s infinite; }
+@keyframes pulse { 50% { box-shadow: 0 0 0 11px rgba(52,211,153,0); } }
+.update p { color: var(--muted); font-size: 15px; }
+.update b { color: var(--fg); }
+.orbit { position: relative; padding: 8%; }
+.orbit .ring { position: absolute; inset: -4%; border-radius: 50%; border: 1px dashed rgba(91,155,255,.22); animation: spin 70s linear infinite; pointer-events: none; }
+.orbit .ring.inner { inset: 6%; animation-duration: 50s; animation-direction: reverse; }
+.node { position: absolute; width: 52px; height: 52px; margin: -26px; border-radius: 15px; background: var(--panel); border: 1px solid var(--line); display: grid; place-items: center; animation: spin 70s linear infinite reverse; }
+.ring.inner .node { animation-duration: 50s; animation-direction: normal; }
+.node span { width: 26px; height: 26px; background: var(--sky); -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.screen { position: relative; z-index: 1; border-radius: 18px; overflow: hidden; box-shadow: 0 0 0 1px var(--line), 0 60px 120px -40px rgba(51,64,255,.55); background: var(--panel); }
+.screen-bar { display: flex; gap: 6px; padding: 10px 14px; background: var(--raise); }
+.screen-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.models { margin-top: 70px; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.models .row { display: flex; gap: 12px; width: max-content; animation: slide 40s linear infinite; }
+[dir="rtl"] .models .row { animation-name: slide-rtl; }
+@keyframes slide { to { transform: translateX(-50%); } }
+@keyframes slide-rtl { to { transform: translateX(50%); } }
+.model { display: flex; align-items: center; gap: 12px; padding: 14px 20px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); font: 500 14px var(--mono); color: var(--muted); white-space: nowrap; }
+.model span.m { width: 26px; height: 26px; background: var(--sky); -webkit-mask: var(--src) center / contain no-repeat; mask: var(--src) center / contain no-repeat; }
+.model b { color: var(--fg); font-weight: 500; }
+
+/* ── 9 · after effects ────────────────────────────────── */
+.ae { padding-block: 60px 100px; }
+.ae .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 70px); align-items: center; }
+@media (max-width: 900px) { .ae .wrap { grid-template-columns: 1fr; } }
+.panel-ae { border-radius: 20px; background: #1c1c1f; border: 1px solid #2c2c31; padding: 18px; font-size: 14.5px; box-shadow: 0 60px 120px -40px rgba(0,0,0,.95); }
+.panel-ae .top { display: flex; justify-content: space-between; font: 500 11.5px var(--mono); color: #8a8a90; margin-bottom: 16px; }
+.msg { padding: 10px 14px; border-radius: 14px; margin-bottom: 10px; max-width: 88%; }
+.msg.me { background: #2c2f4a; margin-inline-start: auto; }
+.msg.bot { background: #262629; color: #d8d8de; }
+.msg.bot b { color: var(--ice); font-weight: 600; }
+.ae-steps { font: 500 12px var(--mono); color: #8a8a90; display: grid; gap: 4px; margin-top: 8px; direction: ltr; text-align: left; }
+.ae-steps span::before { content: "✓ "; color: #34d399; }
+.typing { display: inline-flex; gap: 4px; padding: 12px 14px; background: #262629; border-radius: 14px; margin-bottom: 10px; }
+.typing i { width: 6px; height: 6px; border-radius: 50%; background: #8a8a90; animation: blink 1.2s infinite; }
+.typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes blink { 50% { opacity: .2; } }
+
+/* ── 10 · specs ───────────────────────────────────────── */
+.specs-s { padding-block: 60px 110px; }
+.specs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 40px; border-top: 1px solid var(--line); }
+.spec { display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+.spec:nth-child(odd) { padding-inline-end: 28px; }
+.spec dt { font: 500 12.5px var(--mono); color: var(--faint); padding-top: 4px; }
+.spec dd { margin: 0; font-size: 15.5px; }
+.spec dd small { display: block; color: var(--muted); font-size: 13.5px; }
+.vram { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; font: 500 12px var(--mono); }
+.vram span { padding: 4px 8px; border-radius: 6px; background: var(--panel); border: 1px solid var(--line); }
+@media (max-width: 760px) { .specs { grid-template-columns: 1fr; } .spec:nth-child(odd) { padding-inline-end: 0; } .spec { grid-template-columns: 110px minmax(0, 1fr); } }
+
+/* ── 11 · final ───────────────────────────────────────── */
+.final { text-align: center; overflow: hidden; padding-block: 120px 130px; }
+.final::before { content: ""; position: absolute; inset: 0; background: radial-gradient(50% 60% at 50% 55%, rgba(51,64,255,.4), transparent 70%); pointer-events: none; }
+.final .wrap { position: relative; }
+.final h2 { font-size: clamp(54px, 9vw, 128px); }
+.final .lede { margin: 18px auto 0; }
+.final .cta-row { justify-content: center; }
+.big-mark { width: 150px; height: 150px; margin: 0 auto 30px; gap: 6px; }
+.big-mark i { border-radius: 4px; }
+.big-mark i.on { box-shadow: 0 0 24px rgba(51,64,255,.7); }
+.big-mark i.core { box-shadow: 0 0 34px rgba(191,224,255,.9); }
+footer { padding-block: 40px; border-top: 1px solid var(--line); color: var(--faint); font-size: 13.5px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .grain, .orbit .ring, .node, .update .dot, .scroll-cue i, .typing i, .col, .models .row, .prompt-card .text::after { animation: none; }
+  .look-frame img { transition: none; }
+  .js .intro { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="swoosh" x1="0" x2="1"><stop offset="0" stop-color="#3340ff"/><stop offset=".6" stop-color="#5b9bff"/><stop offset="1" stop-color="#bfe0ff"/></linearGradient></defs></svg>
+<div class="grain" id="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="intro" id="intro" aria-hidden="true">
+  <div class="inner"><div class="mark" data-mark id="introMark"></div><div class="name" data-k="brand2">إبداعي</div><div class="pct" id="introPct">000</div></div>
+</div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" aria-label="الرئيسية">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="EBDAAI"><span class="mark" data-mark></span><span data-k="brand">إبداع<b>ي</b></span></a>
+    <div class="nav-links">
+      <a href="#why" data-k="n1">ليش جهازك</a>
+      <a href="#looks" data-k="n2">وش يسوي</a>
+      <a href="#programs" data-k="n3">البرامج</a>
+      <a href="#specs" data-k="n4">المتطلبات</a>
+    </div>
+    <button class="lang" id="lang" type="button" aria-label="English">EN</button>
+    <a class="btn btn-primary magnetic" href="https://github.com/mowshcashy/ebdaai-releases/releases/latest" target="_blank" rel="noopener" data-k="navcta">حمّل إبداعي</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="copy">
+      <div class="say" id="say" aria-live="polite">
+        <span data-k="say1">خلّ</span>
+        <span class="chip"><img id="sayImg" src="img/av_noura.webp" alt=""><span class="slot" id="sayWho">نورة</span></span>
+        <span data-k="say2">من</span>
+        <span class="chip plain"><span class="slot" id="sayTeam">التسويق</span></span>
+        <span class="slot" id="sayVerb">تسوي</span>
+        <span class="chip plain"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4z"/></svg><span class="slot" id="sayWhat">بوستر رمضان</span></span>
+      </div>
+      <h1><span class="line"><span data-k="h1a">كرت شاشتك</span></span><span class="line"><span class="glow" data-k="h1b">صار استوديو.</span></span></h1>
+      <p class="lede" data-k="lede">صور، وفيديو بصوته، وأفلام، وحملات تسويق كاملة، كلها تطلع من جهازك أنت. ما فيه رصيد يخلص ولا اشتراك شهري، وملفاتك ما تطلع لأي سيرفر.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary magnetic" href="https://github.com/mowshcashy/ebdaai-releases/releases/latest" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+          <span data-k="cta1">حمّل لويندوز</span>
+        </a>
+        <a class="btn btn-ghost magnetic" href="#why" data-k="cta2">ابدأ الرحلة</a>
+      </div>
+      <div class="specline"><span>v1.0.51</span><span>Windows 10 / 11</span><span>NVIDIA RTX</span><span data-k="spec4">عربي بالكامل</span></div>
+    </div>
+  </div>
+  <div class="prompt-card" aria-hidden="true">
+    <div class="label"><span data-k="pc-l">الوصف</span><span id="pcScene">scatter · 0 cubes</span></div>
+    <div class="text" id="pcText"></div>
+    <div class="meter"><span id="pcStep">0/8</span><span class="bar"><i id="pcBar"></i></span><span class="cost" data-k="cost">٠ رصيد</span></div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true"><span>SCROLL</span><i></i></div>
+</header>
+
+<section class="manifesto" id="why">
+  <div class="wrap">
+    <div class="eyebrow" data-k="why-e">ليش على جهازك؟</div>
+    <div class="words" id="words" style="margin-top:20px">
+      <span data-k="w1">ما فيه رصيد.</span>
+      <span data-k="w2">ما فيه طابور.</span>
+      <span data-k="w3">ما فيه سيرفر.</span>
+      <span class="last glow" data-k="w4">بس جهازك.</span>
+    </div>
+    <div class="versus-wrap">
+      <div>
+        <h2 class="h2" style="font-size:clamp(32px,3.8vw,54px)" data-k="why-h">السحابة تحاسبك على كل محاولة.</h2>
+        <p class="lede" style="margin-top:14px" data-k="why-p">في إبداعي المحاولة العاشرة بنفس كلفة الأولى: كهرباء جهازك. جرّب، وعدّل، وولّد مئة نسخة لين تطلع اللقطة اللي في بالك.</p>
+      </div>
+      <div class="table-scroll">
+        <table class="versus" id="versus">
+          <thead><tr><th></th><th data-k="th1">استوديوهات السحابة</th><th class="us" data-k="th2">إبداعي</th></tr></thead>
+          <tbody>
+            <tr><td data-k="r1">كل توليد</td><td class="them" data-k="r1a">ينقص من رصيدك</td><td class="us" data-k="r1b">ما ينحسب عليك</td></tr>
+            <tr><td data-k="r2">ملفاتك</td><td class="them" data-k="r2a">تنرفع لسيرفراتهم</td><td class="us" data-k="r2b">تبقى بجهازك، ومعها خزنة مشفّرة بكلمة مرور</td></tr>
+            <tr><td data-k="r3">الانتظار</td><td class="them" data-k="r3a">طابور مع الكل</td><td class="us" data-k="r3b">كرتك لك لحالك</td></tr>
+            <tr><td data-k="r4">الموديلات</td><td class="them" data-k="r4a">اللي يختارونه لك</td><td class="us" data-k="r4b">أي موديل مفتوح تحطه، وأكثر من ٥٠ تطبيق جاهز</td></tr>
+            <tr><td data-k="r5">بدون إنترنت</td><td class="them" data-k="r5a">يوقف</td><td class="us" data-k="r5b">يكمّل شغله</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cloud" id="cloud">
+  <div class="cloud-stage">
+    <div class="cloud-cards" id="cloudCards"></div>
+    <div class="cloud-copy wrap">
+      <div class="eyebrow" data-k="cloud-e">نتائج حقيقية، من جهاز واحد</div>
+      <h2 style="margin-top:12px"><span class="rot"><span id="rotWord">اكتبه</span><svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path id="swooshPath" d="M4 14 C 50 4, 120 4, 196 10"/></svg></span> <span data-k="cloud-h1">بثواني.</span><br><span data-k="cloud-h2">وعدّله على كيفك.</span></h2>
+      <p class="lede" style="margin-top:16px" data-k="cloud-p">وصف بسطر واحد يطلع صورة، أو فيلم، أو إعلان، أو حركة. وكل نتيجة تقدر تعدّلها لين تصير مثل ما تبي.</p>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="mock" aria-hidden="true">
+      <div class="mock-bar"><i></i><i></i><i></i><span style="margin-inline-start:10px">EBDAAI · Generate</span><span class="model"><b></b>Qwen-Image 2.1</span></div>
+      <div class="mock-body">
+        <div class="mock-tools"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+        <div class="mock-canvas">
+          <div class="art" id="art">
+            <img src="img/luma_mt_poster_ramadan.webp" alt="" class="on">
+            <img src="img/luma_mt_poster_launch.webp" alt="">
+            <img src="img/luma_mt_poster_minimal.webp" alt="">
+            <span class="sel" id="artSel"></span>
+          </div>
+          <div class="variants" id="variants">
+            <img src="img/luma_mt_poster_ramadan.webp" alt="" class="on">
+            <img src="img/luma_mt_poster_launch.webp" alt="">
+            <img src="img/luma_mt_poster_minimal.webp" alt="">
+          </div>
+          <div class="formats" id="formats">
+            <div class="fmt" style="width:21%;aspect-ratio:9/16"><img src="img/luma_mt_poster_story.webp" alt=""><span>9:16 · story</span></div>
+            <div class="fmt" style="width:27%;aspect-ratio:1"><img src="img/luma_mt_poster_ramadan.webp" alt=""><span>1:1 · post</span></div>
+            <div class="fmt" style="width:44%;aspect-ratio:16/9"><img src="img/luma_mt_poster_billboard.webp" alt=""><span>16:9 · banner</span></div>
+          </div>
+          <div class="composer"><span class="typed" id="typed"></span><span class="go">↑</span></div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow" data-k="how-e">كيف يشتغل</div>
+      <h2 class="h2" style="margin-top:10px;font-size:clamp(36px,4.4vw,62px)" data-k="how-h">صِفه. عدّله. انشره بكل مكان.</h2>
+      <div class="how-steps" id="howSteps">
+        <div class="how-step on"><h3><b>01</b><span data-k="hs1">صِفه</span></h3><p data-k="hs1p">اكتب اللي تبيه بكلامك: بوستر رمضان لمنتجك، إعلان، لقطة فيلم. وإبداعي يختار الموديل المناسب على جهازك.</p></div>
+        <div class="how-step"><h3><b>02</b><span data-k="hs2">عدّله</span></h3><p data-k="hs2p">اختر من النسخ، أو قل له وش يتغير، ويعدّل نفس الصورة بدل ما يبدأ من جديد.</p></div>
+        <div class="how-step"><h3><b>03</b><span data-k="hs3">انشره بكل مكان</span></h3><p data-k="hs3p">ستوري، وبوست، وبنر، بكل المقاسات، وكله محفوظ بمعرضك.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="row" id="ticker"></div></div>
+
+<section class="looks" id="looks">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-k="look-e">استوديو الأفلام</div>
+      <h2 class="h2" style="margin-top:10px;font-size:clamp(36px,4.4vw,62px)" data-k="look-h">نفس المشهد. ثمان أساليب.</h2>
+      <p class="lede" style="margin-top:10px;font-size:16px" data-k="look-p">اكتب المشهد مرة، وبدّل الأسلوب بضغطة. القصة والشخصية والكادر يبقون، والشكل يتغير.</p>
+      <ul class="look-list" id="lookList">
+        <li><button type="button" data-look="cinematic" aria-pressed="true"><span data-k="l1">سينمائي</span><small>35mm</small></button></li>
+        <li><button type="button" data-look="anime" aria-pressed="false"><span data-k="l2">أنمي</span><small>cel</small></button></li>
+        <li><button type="button" data-look="comic" aria-pressed="false"><span data-k="l3">كوميكس</span><small>ink</small></button></li>
+        <li><button type="button" data-look="3d" aria-pressed="false"><span data-k="l4">ثلاثي الأبعاد</span><small>render</small></button></li>
+        <li><button type="button" data-look="noir" aria-pressed="false"><span data-k="l5">نوار</span><small>b/w</small></button></li>
+        <li><button type="button" data-look="vintage" aria-pressed="false"><span data-k="l6">فنتج</span><small>1970s</small></button></li>
+        <li><button type="button" data-look="neon" aria-pressed="false"><span data-k="l7">نيون</span><small>pink</small></button></li>
+        <li><button type="button" data-look="handheld" aria-pressed="false"><span data-k="l8">كاميرا يد</span><small>doc</small></button></li>
+      </ul>
+    </div>
+    <div class="look-frame" id="lookFrame">
+      <img src="img/fs_cinematic.webp" alt="" class="on" data-look="cinematic">
+      <img src="img/fs_anime.webp" alt="" data-look="anime">
+      <img src="img/fs_comic.webp" alt="" data-look="comic">
+      <img src="img/fs_3d.webp" alt="" data-look="3d">
+      <img src="img/fs_noir.webp" alt="" data-look="noir">
+      <img src="img/fs_vintage.webp" alt="" data-look="vintage">
+      <img src="img/fs_neon.webp" alt="" data-look="neon">
+      <img src="img/fs_handheld.webp" alt="" data-look="handheld">
+      <span class="look-tag" id="lookTag">style: cinematic · 35mm</span>
+    </div>
+  </div>
+</section>
+
+<section class="campaign" id="campaign">
+  <div class="wrap">
+    <div class="camp-head">
+      <div>
+        <div class="eyebrow" data-k="camp-e">استوديو التسويق</div>
+        <h2 class="h2" style="margin-top:10px;font-size:clamp(36px,4.8vw,68px)" data-k="camp-h">صورة منتج وحدة. حملة كاملة.</h2>
+        <p class="lede" style="margin-top:10px" data-k="camp-p">ارفع صورة منتجك، ويطلع لك بوستر رمضان، ولوحة إعلانات بالشارع، وتغليف، وموديل يمسكه، ومقطع UGC، وصور المتجر. كل اللي تشوفه هنا لمنتج تجريبي اسمه LUMA، صنعناه بإبداعي.</p>
+      </div>
+      <div class="count"><span id="count">24</span><small data-k="count">لقطة لنفس المنتج</small></div>
+    </div>
+    <div class="camp-stage" id="campStage"><div class="camp-plane" id="campPlane"></div></div>
+  </div>
+</section>
+<div class="wall" id="wall" aria-hidden="true"></div>
+
+<section class="cast" id="cast">
+  <div class="wrap">
+    <div class="eyebrow" data-k="cast-e">الموديلات البشرية</div>
+    <h2 class="h2" style="margin-top:10px" data-k="cast-h">ممثلينك موجودين.</h2>
+    <p class="lede" style="margin-top:10px" data-k="cast-p">وجوه جاهزة لإعلاناتك، منها السعودي والخليجي. أو صمّم شخصيتك مرة، وتبقى نفسها بكل لقطة. ولبودكاستك أصوات سعودية طبيعية.</p>
+  </div>
+  <div class="cast-track" id="castTrack"></div>
+</section>
+
+<section class="film">
+  <div class="wrap">
+    <div class="eyebrow" data-k="film-e">من فكرة إلى فيلم</div>
+    <h2 class="h2" style="margin-top:10px" data-k="film-h">اكتب سطر، وخذ فيلم.</h2>
+    <div class="steps">
+      <div data-k="s1"><b>القصة</b>يكتبها معك</div>
+      <div data-k="s2"><b>السيناريو</b>مشهد بمشهد</div>
+      <div data-k="s3"><b>اللقطات</b>بالصوت والحوار</div>
+      <div data-k="s4"><b>المونتاج</b>بالانتقالات</div>
+    </div>
+    <div class="stills">
+      <figure class="still"><img src="img/fg_scifi.webp" alt="" loading="lazy"><figcaption data-k="g1">خيال علمي</figcaption></figure>
+      <figure class="still"><img src="img/fg_drama.webp" alt="" loading="lazy"><figcaption data-k="g2">دراما</figcaption></figure>
+      <figure class="still"><img src="img/fg_action.webp" alt="" loading="lazy"><figcaption data-k="g3">أكشن</figcaption></figure>
+      <figure class="still"><img src="img/fg_thriller.webp" alt="" loading="lazy"><figcaption data-k="g4">تشويق</figcaption></figure>
+      <figure class="still"><img src="img/fg_fantasy.webp" alt="" loading="lazy"><figcaption data-k="g5">فانتازيا</figcaption></figure>
+      <figure class="still"><img src="img/fg_documentary.webp" alt="" loading="lazy"><figcaption data-k="g6">وثائقي</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="eyebrow">EBLAUNCHER</div>
+    <h2 class="h2" style="margin-top:10px" data-k="prog-h">خمس برامج. تثبيت واحد.</h2>
+    <p class="lede" style="margin-top:10px" data-k="prog-p">كل برنامج بنافذته وأيقونته، وكلها تشترك بنفس المحرك والموديلات والمعرض.</p>
+    <div class="stack" id="stack">
+      <article class="panel" style="--glow:#5b9bff">
+        <div><img class="icon" src="img/icon_studio.webp" alt=""><div class="tag">01 · STUDIO</div><h3 data-k="p1">إبداعي</h3><p data-k="p1d">صور، فيديو بصوته، أفلام، تسويق، وأكثر من ٥٠ تطبيق جاهز.</p></div>
+        <div class="shot"><img src="img/ui_studio-home.webp" alt="الشاشة الرئيسية لإبداعي" loading="lazy"></div>
+      </article>
+      <article class="panel" style="--glow:#ff2daa">
+        <div><img class="icon" src="img/icon_effects.webp" alt=""><div class="tag">02 · EFFECTS</div><h3 data-k="p2">إبداعي إفكتس</h3><p data-k="p2d">موشن جرافيك ومؤثرات. تكتب وش تبي، ويبنيه بالتايم لاين طبقة طبقة.</p></div>
+        <div class="glyph">FX</div>
+      </article>
+      <article class="panel" style="--glow:#ffb020">
+        <div><img class="icon" src="img/icon_design.webp" alt=""><div class="tag">03 · DESIGN</div><h3 data-k="p3">إبداعي ديزاين</h3><p data-k="p3d">شعارات وبوسترات فيكتور تقدر تعدّلها، والذكاء جنبك.</p></div>
+        <div class="glyph">Aa</div>
+      </article>
+      <article class="panel" style="--glow:#18c6d6">
+        <div><img class="icon" src="img/icon_uiux.webp" alt=""><div class="tag">04 · UI/UX</div><h3 data-k="p4">إبداعي UI/UX</h3><p data-k="p4d">واجهات تطبيقات ومواقع، من فهم المستخدم لين الكود.</p></div>
+        <div class="glyph">&lt;/&gt;</div>
+      </article>
+      <article class="panel" style="--glow:#bfe0ff">
+        <div><img class="icon" src="img/icon_launcher.webp" alt=""><div class="tag">05 · LAUNCHER</div><h3>EBLAUNCHER</h3><p data-k="p5d">يفتح لك أي برنامج منهم بضغطة، وكل واحد بنافذته.</p></div>
+        <div class="shot"><img src="img/ui_launcher.webp" alt="EBLAUNCHER" loading="lazy"></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="apps">
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <div class="eyebrow" data-k="apps-e">التطبيقات والموديلات</div>
+        <h2 class="h2" style="margin-top:10px;font-size:clamp(36px,4.8vw,68px)" data-k="apps-h">أكثر من ٥٠ تطبيق. وكل جديد يوصلك.</h2>
+        <p class="lede" style="margin-top:10px" data-k="apps-p">تطبيقات من قوالب ComfyUI الرسمية، تحط صورتك أو مقطعك وتسوي الباقي. وأي موديل مفتوح تحطه يشتغل.</p>
+        <div class="chips" id="chips">
+          <span data-k="c1">تقليد الحركة</span><span data-k="c2">تبديل الشخصية</span><span data-k="c3">إزالة الخلفية</span><span data-k="c4">تكبير الفيديو</span><span data-k="c5">إعادة الإضاءة</span><span data-k="c6">صورة تتكلم</span><span data-k="c7">نقل الستايل</span><span data-k="c8">زوايا متعددة</span>
+        </div>
+        <div class="update"><span class="dot"></span><p data-k="upd"><b>يحدّث نفسه.</b> المحرك والقوالب يتحدّثون وقت ما تكون فاضي، ولو التحديث ما ضبط يرجع للنسخة اللي قبله.</p></div>
+      </div>
+      <div class="orbit" id="orbit">
+        <div class="ring" id="ringOuter"></div>
+        <div class="ring inner" id="ringInner"></div>
+        <div class="screen"><div class="screen-bar"><i></i><i></i><i></i></div><img src="img/ui_apps.webp" alt="صفحة التطبيقات في إبداعي" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+  <div class="models" aria-label="Qwen-Image, MiniMax H3, Wan, LTX, FLUX, Hunyuan, SDXL, SAM 3"><div class="row" id="models"></div></div>
+</section>
+
+<section class="ae">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">After Effects · MCP</div>
+      <h2 class="h2" style="margin-top:10px;font-size:clamp(36px,4.8vw,68px)" data-k="ae-h">يشتغل داخل أفتر إفكتس.</h2>
+      <p class="lede" style="margin-top:10px" data-k="ae-p">لوحة إبداعي داخل أفتر إفكتس تشوف التايم لاين واللي حددته. تقول له بالسعودي وش تبي، ويبني الطبقات والحركة. ويتصل مع Claude وغيره عن طريق MCP.</p>
+    </div>
+    <div class="panel-ae" id="aePanel" aria-label="مثال من لوحة أفتر إفكتس">
+      <div class="top"><span>EBDAAI · After Effects 2026</span><span>Comp 1 · 1920×1080</span></div>
+      <div class="msg me" id="ae1" data-k="ae1">سو لها تناسخ تعبي الشاشة، وخلي شكلها شكل بوكس حق ميتنق</div>
+      <div class="typing" id="aeTyping" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="msg bot" id="ae2"><span data-k="ae2">سويت <b>١٢ مربع</b> بشبكة ٤×٣، كل واحد بإطار ميتنق واسم تحته، ويدخلون واحد ورى الثاني.</span>
+        <div class="ae-steps"><span>tiles · style: meeting</span><span>grid 4×3 · gap 24px</span><span>animate: stagger 0.08s</span></div>
+      </div>
+      <div class="msg me" id="ae3" data-k="ae3">حلو. خلي الخلفية كأنها مكتب، وخلي الأخير يتكلم</div>
+    </div>
+  </div>
+</section>
+
+<section class="specs-s" id="specs">
+  <div class="wrap">
+    <div class="eyebrow" data-k="spec-e">المتطلبات</div>
+    <h2 class="h2" style="margin-top:10px" data-k="spec-h">قبل تحمّل.</h2>
+    <dl class="specs">
+      <div class="spec"><dt data-k="d1">النظام</dt><dd>Windows 10 / 11 · 64-bit<small data-k="d1s">وعلى الماك: نسخة سيرفر محلي لأجهزة Apple Silicon.</small></dd></div>
+      <div class="spec"><dt data-k="d2">كرت الشاشة</dt><dd>NVIDIA RTX<small data-k="d2s">بتعريف 560 أو أحدث، عشان يشتغل على CUDA.</small></dd></div>
+      <div class="spec"><dt data-k="d3">ذاكرة الكرت</dt><dd><span data-k="d3a">ننصح بـ</span><div class="vram"><span data-k="v1">8GB صور</span><span data-k="v2">16GB فيديو</span><span data-k="v3">24GB+ فيديو HD طويل</span></div></dd></div>
+      <div class="spec"><dt data-k="d4">المساحة</dt><dd><span data-k="d4a">المحرك حوالي 5GB</span><small data-k="d4s">وكل موديل من ١٠ إلى ٥٠ جيجا حسب حجمه. تقدر تخليها على أي قرص.</small></dd></div>
+      <div class="spec"><dt data-k="d5">الإنترنت</dt><dd><span data-k="d5a">للتحميل والتحديثات بس</span><small data-k="d5s">التوليد نفسه يصير على جهازك.</small></dd></div>
+      <div class="spec"><dt data-k="d6">اللغة</dt><dd><span data-k="d6a">عربي وإنجليزي</span><small data-k="d6s">الواجهة كلها، من اليمين لليسار.</small></dd></div>
+    </dl>
+  </div>
+</section>
+
+<section class="final" id="final">
+  <div class="wrap">
+    <div class="mark big-mark" data-mark="big" id="bigMark"></div>
+    <h2 data-k="fin-h">جهازك جاهز. ابدأ.</h2>
+    <p class="lede" data-k="fin-p">حمّل إبداعي، ثبّت المحرك مرة وحدة، وأول صورة تطلع خلال دقائق.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary magnetic" href="https://github.com/mowshcashy/ebdaai-releases/releases/latest" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+        <span data-k="cta1">حمّل لويندوز</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span data-k="foot">© 2026 إبداعي · EBDAAI</span><span style="font-family:var(--mono)">v1.0.51 · Dima Naskh (GPL)</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const narrow = matchMedia("(max-width: 900px)").matches;
+  const fine = matchMedia("(pointer: fine)").matches;
+  const isRTL = () => document.documentElement.dir === "rtl";
+  const hasGsap = typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined";
+
+  // film grain: a small noise tile drawn once
+  try {
+    const n = document.createElement("canvas"); n.width = n.height = 160;
+    const g = n.getContext("2d"), d = g.createImageData(160, 160);
+    for (let i = 0; i < d.data.length; i += 4) { const v = Math.random() * 255; d.data[i] = d.data[i + 1] = d.data[i + 2] = v; d.data[i + 3] = 255; }
+    g.putImageData(d, 0, 0);
+    document.getElementById("grain").style.setProperty("--noise", `url(${n.toDataURL()})`);
+  } catch {}
+
+  // the logo: a 5×5 starburst (middle row and column, both diagonals, a bright centre)
+  const LOGO = (r, c) => (r === 2 && c === 2 ? "core" : r === 2 || c === 2 || r === c || r + c === 4 ? "on" : "");
+  document.querySelectorAll("[data-mark]").forEach((m) => {
+    for (let i = 0; i < 25; i++) { const t = document.createElement("i"); const cls = LOGO(Math.floor(i / 5), i % 5); if (cls) t.className = cls; m.appendChild(t); }
+  });
+
+  const EN = {
+    brand: "EBDA<b>AI</b>", brand2: "EBDAAI", n1: "Why local", n2: "What it makes", n3: "Programs", n4: "Requirements", navcta: "Get EBDAAI",
+    eyebrow: "An AI studio that runs on your PC", h1a: "Your graphics card", h1b: "is now a studio.",
+    lede: "Pictures, video with sound, films and full marketing campaigns, all made on your own machine. No credits running out, no monthly plan, and your files never leave for anyone's server.",
+    cta1: "Download for Windows", cta2: "Start the journey", spec4: "Arabic first", "pc-l": "Prompt", cost: "0 credits",
+    "why-e": "Why your own PC?", w1: "No credits.", w2: "No queue.", w3: "No server.", w4: "Just your PC.",
+    "why-h": "The cloud charges you for every try.", "why-p": "In EBDAAI the tenth try costs what the first one did: your electricity. Try, tweak and generate a hundred versions until the shot in your head shows up.",
+    th1: "Cloud studios", th2: "EBDAAI", r1: "Every generation", r1a: "Comes off your credits", r1b: "Costs you nothing extra",
+    r2: "Your files", r2a: "Uploaded to their servers", r2b: "Stay on your PC, with a password-locked vault",
+    r3: "Waiting", r3a: "A queue shared with everyone", r3b: "Your card works for you alone",
+    r4: "Models", r4a: "Whatever they pick for you", r4b: "Any open model you add, and 50+ ready apps", r5: "Offline", r5a: "Stops", r5b: "Keeps working",
+    "look-e": "Cinema Studio", "look-h": "One scene. Eight looks.", "look-p": "Write the scene once and switch the style with a click. The story, the character and the framing stay; the look changes.",
+    l1: "Cinematic", l2: "Anime", l3: "Comic", l4: "3D", l5: "Noir", l6: "Vintage", l7: "Neon", l8: "Handheld",
+    "camp-e": "Marketing Studio", "camp-h": "One product photo. A whole campaign.", "camp-p": "Upload your product and get a Ramadan poster, a street billboard, packaging, a model holding it, a UGC clip and store images. Everything here is for LUMA, a sample product we made with EBDAAI.", count: "shots of the same product",
+    "cast-e": "Human models", "cast-h": "Your cast is ready.", "cast-p": "Faces ready for your ads, Saudi and Gulf among them. Or design your own character once and keep the same face in every shot. Your podcast gets natural Saudi voices too.",
+    "film-e": "From an idea to a film", "film-h": "Write a line. Get a film.", s1: "<b>The story</b>written with you", s2: "<b>The script</b>scene by scene", s3: "<b>The shots</b>with sound and dialogue", s4: "<b>The edit</b>with transitions",
+    g1: "Sci-fi", g2: "Drama", g3: "Action", g4: "Thriller", g5: "Fantasy", g6: "Documentary",
+    "prog-h": "Five programs. One install.", "prog-p": "Each program has its own window and icon, and they all share one engine, one set of models and one Gallery.",
+    p1: "EBDAAI", p1d: "Pictures, video with sound, films, marketing and 50+ ready-made apps.", p2: "EBDAAI Effects", p2d: "Motion graphics and VFX. Describe it and it builds the timeline layer by layer.",
+    p3: "EBDAAI Design", p3d: "Editable vector logos and posters, with AI beside you.", p4: "EBDAAI UI/UX", p4d: "App and web interfaces, from understanding users to code.", p5d: "Opens any of them in one click, each in its own window.",
+    "apps-e": "Apps and models", "apps-h": "50+ apps. Everything new comes to you.", "apps-p": "Apps built on the official ComfyUI templates: drop in your picture or clip and it does the rest. Any open model you add runs too.",
+    c1: "Motion transfer", c2: "Character swap", c3: "Remove background", c4: "Video upscale", c5: "Relight", c6: "Talking photo", c7: "Style transfer", c8: "Multiple angles",
+    upd: "<b>It updates itself.</b> The engine and templates update while you're not generating, and if an update doesn't work it goes back to the version before.",
+    "ae-h": "It works inside After Effects.", "ae-p": "The EBDAAI panel in After Effects sees your timeline and your selection. Tell it what you want in plain words and it builds the layers and the motion. It also connects to Claude and other tools over MCP.",
+    ae1: "Copy it until it fills the screen, and make it look like a meeting tile", ae2: "Made <b>12 tiles</b> in a 4×3 grid, each with a meeting frame and a name, coming in one after another.", ae3: "Nice. Make the background an office and let the last one talk",
+    "spec-e": "Requirements", "spec-h": "Before you download.", d1: "System", d1s: "On a Mac: a local server build for Apple Silicon.", d2: "Graphics card", d2s: "Driver 560 or newer, so it runs on CUDA.",
+    d3: "Card memory", d3a: "We suggest", v1: "8GB pictures", v2: "16GB video", v3: "24GB+ long HD video", d4: "Disk", d4a: "About 5GB for the engine", d4s: "Each model takes 10 to 50 GB. Keep them on any drive.",
+    d5: "Internet", d5a: "Only for downloads and updates", d5s: "Generating happens on your PC.", d6: "Language", d6a: "Arabic and English", d6s: "The whole interface, right to left too.",
+    "fin-h": "Your PC is ready. Start.", "fin-p": "Download EBDAAI, install the engine once, and your first picture is minutes away.", foot: "© 2026 EBDAAI",
+  };
+
+  Object.assign(EN, {
+    say1: "Let", say2: "from",
+    "cloud-e": "Real results, from one PC", "cloud-h1": "in seconds.", "cloud-h2": "Then make it yours.",
+    "cloud-p": "One line of description makes a picture, a film, an ad or motion. And every result can be edited until it's exactly what you wanted.",
+    "how-e": "How it works", "how-h": "Describe it. Tweak it. Post it everywhere.",
+    hs1: "Describe it", hs1p: "Say what you want in your own words: a Ramadan poster for your product, an ad, a film shot. EBDAAI picks the right model on your PC.",
+    hs2: "Tweak it", hs2p: "Pick from the versions, or tell it what to change, and it edits the same picture instead of starting over.",
+    hs3: "Post it everywhere", hs3p: "Story, post and banner in every size, all saved in your Gallery.",
+  });
+  // who asks for what, in the living sentence
+  const SAY = [
+    { img: "av_noura", ar: ["نورة", "التسويق", "تسوي", "بوستر رمضان"], en: ["Noura", "Marketing", "make", "a Ramadan poster"] },
+    { img: "av_khalid", ar: ["خالد", "المتجر", "يسوي", "صور المنتجات"], en: ["Khalid", "the Store", "make", "product shots"] },
+    { img: "av_faisal", ar: ["فيصل", "المحتوى", "يسوي", "فيلم قصير"], en: ["Faisal", "Content", "make", "a short film"] },
+    { img: "av_reem", ar: ["ريم", "التصميم", "تسوي", "هوية جديدة"], en: ["Reem", "Design", "make", "a new brand look"] },
+    { img: "av_abdullah", ar: ["عبدالله", "الإعلانات", "يسوي", "إعلان فيديو"], en: ["Abdullah", "Ads", "make", "a video ad"] },
+  ];
+  const ROT = { ar: ["اكتبه", "صمّمه", "صوّره", "حرّكه"], en: ["Write it", "Design it", "Shoot it", "Move it"] };
+
+  // data
+  const LUMA = ["st_main_image", "mt_poster_ramadan", "ps_product_shot", "mt_motion_splash", "mt_model_holding", "mt_poster_billboard", "ad_ugc", "mt_pack_box", "mt_poster_sale", "ps_lifestyle_scene", "mt_motion_hyper", "mt_model_selfie", "mt_poster_launch", "ad_wild_card", "mt_pack_shelf", "st_lifestyle", "mt_poster_story", "ad_product_showcase", "mt_model_editorial", "ps_conceptual_product", "mt_motion_float", "st_aplus_ingredients", "ad_virtual_try_on", "mt_poster_minimal"];
+  const CAST = [["av_khalid", "خالد", "Khalid"], ["av_noura", "نورة", "Noura"], ["av_faisal", "فيصل", "Faisal"], ["av_hessa", "حصة", "Hessa"], ["av_abdullah", "عبدالله", "Abdullah"], ["av_lulwa", "لولوة", "Lulwa"], ["av_omar", "عمر", "Omar"], ["av_reem", "ريم", "Reem"], ["av_nasser", "ناصر", "Nasser"], ["av_jood", "جود", "Jood"], ["av_yousef", "يوسف", "Yousef"], ["av_sara", "سارة", "Sara"]];
+  const MODELS = [["qwen-color", "Qwen-Image", "image · edit"], ["minimax-color", "MiniMax H3", "video + audio"], ["alibaba-color", "Wan 2.2", "video"], ["lightricks", "LTX 2.3", "video"], ["flux", "FLUX", "image"], ["hunyuan-color", "Hunyuan", "video · 3D"], ["stability-color", "SDXL", "image"], ["meta-color", "SAM 3", "segment"]];
+  const SHOTS = [
+    { img: "hero_film_hero", ar: "أب وولده على قارب صيد وقت الفجر، ضباب خفيف، لقطة سينمائية", en: "A father and son on a fishing boat at dawn, light mist, cinematic shot" },
+    { img: "hero_fg_kids", ar: "ولد يطيّر طيارة ورقية فوق جمل في صحراء وردية، أسلوب أفلام الأطفال", en: "A boy flying a kite above a camel in a pink desert, family-film style" },
+    { img: "hero_ad_wild_card", ar: "قارورة سيروم تطير فوق الكثبان والرمل يدور حولها، إعلان", en: "A serum bottle flying over the dunes with sand swirling round it, an ad" },
+    { img: "hero_fs_cinematic", ar: "بنت على سطح سفينة شراعية والهواء يحرّك شيلتها، غروب، 35mm", en: "A girl on a sailing ship's deck, the wind in her shawl, sunset, 35mm" },
+    { img: "hero_fg_music_video", ar: "مغنية على المسرح تحت إضاءة زرقاء ودخان، كليب", en: "A singer on stage under blue light and haze, music video" },
+    { img: "hero_fs_neon", ar: "نفس المشهد، بس بإضاءة نيون وردية وبنفسجية", en: "The same scene, lit in pink and violet neon" },
+  ];
+  const TICKER = { ar: ["صور", "فيديو", "أفلام", "إعلانات", "موشن", "تصميم", "بودكاست", "مانقا", "3D"], en: ["Pictures", "Video", "Films", "Ads", "Motion", "Design", "Podcasts", "Manga", "3D"] };
+
+  // build
+  const plane = document.getElementById("campPlane");
+  LUMA.forEach((n, i) => { const d = document.createElement("div"); d.className = "card" + (i === 0 ? " hero-card" : ""); d.innerHTML = `<img src="img/luma_${n}.webp" alt="">`; plane.appendChild(d); });
+  const wall = document.getElementById("wall");
+  for (let c = 0; c < 6; c++) {
+    const col = document.createElement("div"); col.className = "col"; col.style.animationDelay = `${-c * 7}s`;
+    const mine = LUMA.filter((_, i) => (i + 3) % 6 === c);
+    [...mine, ...mine].forEach((n) => { const im = document.createElement("img"); im.src = `img/luma_${n}.webp`; im.alt = ""; im.loading = "lazy"; col.appendChild(im); });
+    wall.appendChild(col);
+  }
+  const track = document.getElementById("castTrack");
+  CAST.forEach(([f, ar, en]) => {
+    const d = document.createElement("div"); d.className = "face";
+    d.innerHTML = `<img src="img/${f}.webp" alt="" loading="lazy"><span><em style="font-style:normal" data-k="face-${f}">${ar}</em><small>AI MODEL · ${en.toUpperCase()}</small></span>`;
+    track.appendChild(d); EN[`face-${f}`] = en;
+  });
+  const place = (ring, list) => list.forEach(([f, name], i) => {
+    const a = (i / list.length) * Math.PI * 2 + .4;
+    const n = document.createElement("div"); n.className = "node"; n.title = name;
+    n.style.left = `${50 + Math.cos(a) * 50}%`; n.style.top = `${50 + Math.sin(a) * 50}%`;
+    n.innerHTML = `<span style="--src:url(logos/${f}.svg)"></span>`; ring.appendChild(n);
+  });
+  place(document.getElementById("ringOuter"), MODELS.slice(0, 4));
+  place(document.getElementById("ringInner"), MODELS.slice(4));
+  const models = document.getElementById("models");
+  [...MODELS, ...MODELS].forEach(([f, name, kind]) => { const d = document.createElement("div"); d.className = "model"; d.innerHTML = `<span class="m" style="--src:url(logos/${f}.svg)"></span><b>${name}</b>${kind}`; models.appendChild(d); });
+  const tickerRow = document.getElementById("ticker");
+  const fillTicker = () => { const w = TICKER[lang === "en" ? "en" : "ar"]; const once = w.map((x, i) => `<span class="${i % 3 === 0 ? "f" : ""}">${x}</span><span class="dot">✦</span>`).join(""); tickerRow.innerHTML = once + once + once; };
+
+  // language
+  const AR = {};
+  const keyed = [...document.querySelectorAll("[data-k]")];
+  keyed.forEach((el) => { AR[el.dataset.k] ??= el.innerHTML; });
+  let lang = "ar";
+  const listeners = [];
+  const setLang = (l) => {
+    lang = l;
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === "ar" ? "rtl" : "ltr";
+    keyed.forEach((el) => { const v = (l === "en" ? EN : AR)[el.dataset.k]; if (v != null) el.innerHTML = v; });
+    const b = document.getElementById("lang");
+    b.textContent = l === "ar" ? "EN" : "ع"; b.setAttribute("aria-label", l === "ar" ? "English" : "العربية");
+    try { localStorage.setItem("ebdaai_site_lang", l); } catch {}
+    fillTicker();
+    listeners.forEach((fn) => fn());
+    if (hasGsap) ScrollTrigger.refresh();
+  };
+  fillTicker();
+  try { if (localStorage.getItem("ebdaai_site_lang") === "en") setLang("en"); } catch {}
+  document.getElementById("lang").addEventListener("click", () => setLang(lang === "ar" ? "en" : "ar"));
+
+  // the living sentence: who, from where, makes what — one after another
+  const sayEls = ["sayWho", "sayTeam", "sayVerb", "sayWhat"].map((id) => document.getElementById(id));
+  const sayImg = document.getElementById("sayImg");
+  let sayI = 0;
+  const putSay = () => { const s = SAY[sayI % SAY.length], w = s[lang === "en" ? "en" : "ar"]; sayEls.forEach((el, k) => (el.textContent = w[k])); sayImg.src = `img/${s.img}.webp`; };
+  putSay(); listeners.push(putSay);
+  if (!reduce) setInterval(() => {
+    sayI++;
+    if (hasGsap) {
+      gsap.timeline()
+        .to([...sayEls, sayImg], { yPercent: -120, opacity: 0, duration: .35, ease: "power2.in", stagger: .06 })
+        .add(putSay)
+        .fromTo([...sayEls, sayImg], { yPercent: 120, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .55, ease: "expo.out", stagger: .06 });
+    } else putSay();
+  }, 3200);
+
+  // the cloud of results around the headline
+  const CLOUD = ["luma_mt_motion_splash", "fg_scifi", "av_hessa", "luma_mt_poster_billboard", "fs_neon", "luma_ad_ugc", "fg_fantasy", "av_omar", "luma_mt_pack_box", "fs_anime", "luma_mt_model_holding", "fg_action", "av_lulwa", "luma_mt_poster_sale", "fs_comic", "luma_st_lifestyle", "fg_thriller", "av_nasser"];
+  const cloudBox = document.getElementById("cloudCards");
+  const cloudCards = CLOUD.map((n, i) => {
+    const d = document.createElement("div");
+    d.className = "cloud-card";
+    const a = (i / CLOUD.length) * Math.PI * 2 + (i % 2 ? .3 : 0), R = 34 + (i % 3) * 9; // around the words, never on them
+    d.dataset.x = String(Math.cos(a) * R); d.dataset.y = String(Math.sin(a) * R * .62); d.dataset.z = String(-1800 + (i % 6) * 180);
+    d.style.setProperty("--w", `${clamp(110, 170, 110 + (i % 4) * 20)}px`);
+    d.innerHTML = `<img src="img/${n}.webp" alt="" loading="lazy">`;
+    cloudBox.appendChild(d);
+    return d;
+  });
+  function clamp(a, b, v) { return Math.max(a, Math.min(b, v)); }
+  const rotWord = document.getElementById("rotWord");
+  let rotI = -1;
+  const setRot = (i) => { if (i === rotI) return; rotI = i; rotWord.textContent = ROT[lang === "en" ? "en" : "ar"][i]; if (hasGsap && !reduce) gsap.fromTo(rotWord, { yPercent: 40, opacity: 0, filter: "blur(6px)" }, { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: .5, ease: "expo.out" }); };
+  setRot(0); listeners.push(() => { const i = rotI; rotI = -1; setRot(i); });
+
+  // the demo's prompt
+  const DEMO = { ar: "بوستر رمضان لسيروم LUMA، فوانيس ذهبية وتمر، إضاءة دافية", en: "A Ramadan poster for LUMA serum, golden lanterns and dates, warm light" };
+
+  // eight looks
+  const TAGS = { cinematic: "style: cinematic · 35mm", anime: "style: anime · cel shading", comic: "style: comic · ink + halftone", "3d": "style: 3D · soft render", noir: "style: noir · high contrast", vintage: "style: vintage · 1970s film", neon: "style: neon · pink + violet", handheld: "style: handheld · documentary" };
+  const LOOKS = Object.keys(TAGS);
+  const frameEl = document.getElementById("lookFrame");
+  let currentLook = "cinematic";
+  const showLook = (k) => {
+    if (k === currentLook) return;
+    frameEl.querySelectorAll("img").forEach((im) => { im.classList.toggle("was", im.dataset.look === currentLook); im.classList.toggle("on", im.dataset.look === k); });
+    document.querySelectorAll("#lookList button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.look === k)));
+    document.getElementById("lookTag").textContent = TAGS[k];
+    currentLook = k;
+  };
+  document.querySelectorAll("#lookList button").forEach((b) => b.addEventListener("click", () => showLook(b.dataset.look)));
+
+  const nav = document.getElementById("nav");
+  const onScroll = () => nav.classList.toggle("solid", scrollY > 60);
+  addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  // cursor and magnetic buttons
+  if (fine && !reduce) {
+    const ring = document.getElementById("cursor"), dot = document.getElementById("cursorDot");
+    let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+    addEventListener("pointermove", (e) => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px, ${my}px)`; }, { passive: true });
+    (function follow() { rx += (mx - rx) * .16; ry += (my - ry) * .16; ring.style.transform = `translate(${rx}px, ${ry}px)`; requestAnimationFrame(follow); })();
+    document.querySelectorAll("a, button, .card, .face, .still").forEach((el) => { el.addEventListener("pointerenter", () => ring.classList.add("big")); el.addEventListener("pointerleave", () => ring.classList.remove("big")); });
+    document.querySelectorAll(".magnetic").forEach((el) => {
+      el.addEventListener("pointermove", (e) => { const r = el.getBoundingClientRect(); el.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * .3}px, ${(e.clientY - r.top - r.height / 2) * .4}px)`; });
+      el.addEventListener("pointerleave", () => { el.style.transition = "transform .5s cubic-bezier(.2,.7,.2,1), box-shadow .3s"; el.style.transform = ""; setTimeout(() => (el.style.transition = ""), 500); });
+    });
+  }
+
+  // ═════════ the field of cubes (WebGL) ═════════
+  const field = { explode: 0, visible: true, start: null };
+  (function cubes() {
+    const canvas = document.getElementById("field");
+    const pcText = document.getElementById("pcText"), pcStep = document.getElementById("pcStep"), pcBar = document.getElementById("pcBar"), pcScene = document.getElementById("pcScene");
+    const fallback = () => { canvas.style.background = "radial-gradient(45% 50% at 30% 50%, rgba(51,64,255,.35), transparent 70%)"; };
+    if (typeof THREE === "undefined") { fallback(); return; }
+    let renderer;
+    try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: "high-performance" }); } catch { fallback(); return; }
+    const COLS = narrow ? 36 : 64, ROWS = narrow ? 27 : 48, N = COLS * ROWS, GAP = 1.08;
+    renderer.setPixelRatio(Math.min(devicePixelRatio, narrow ? 1.5 : 2));
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(36, 1, 1, 1200);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.78));
+    const key = new THREE.DirectionalLight(0xffffff, 0.5); key.position.set(-30, 40, 80); scene.add(key);
+    const rim = new THREE.PointLight(0x3340ff, 2.4, 260); rim.position.set(60, -20, 40); scene.add(rim);
+    const cursorLight = new THREE.PointLight(0xbfe0ff, 0, 60); scene.add(cursorLight);
+    const mesh = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), new THREE.MeshPhongMaterial({ shininess: 70, specular: 0x262650 }), N);
+    mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+    const group = new THREE.Group(); group.add(mesh); scene.add(group);
+
+    const cur = new Float32Array(N * 3), from = new Float32Array(N * 3), to = new Float32Array(N * 3);
+    const cCur = new Float32Array(N * 3), cFrom = new Float32Array(N * 3), cTo = new Float32Array(N * 3);
+    const sCur = new Float32Array(N), sFrom = new Float32Array(N), sTo = new Float32Array(N);
+    const delay = new Float32Array(N), dir = new Float32Array(N * 3), spin = new Float32Array(N * 3), lift = new Float32Array(N);
+    const gx = (c) => (c - (COLS - 1) / 2) * GAP, gy = (r) => ((ROWS - 1) / 2 - r) * GAP;
+    for (let i = 0; i < N; i++) {
+      const c = i % COLS, r = Math.floor(i / COLS);
+      delay[i] = Math.hypot(c - (COLS - 1) / 2, (r - (ROWS - 1) / 2) * 1.2) / Math.hypot(COLS / 2, ROWS * .6);
+      const v = new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() * .8 + .2).normalize();
+      dir[i * 3] = v.x; dir[i * 3 + 1] = v.y; dir[i * 3 + 2] = v.z;
+      spin[i * 3] = Math.random() * 6; spin[i * 3 + 1] = Math.random() * 6; spin[i * 3 + 2] = Math.random() * 6;
+    }
+    const lin = (hex) => new THREE.Color(hex).convertSRGBToLinear();
+    const BLUE = lin("#3340ff"), SKY = lin("#5b9bff"), ICE = lin("#bfe0ff"), DARK = lin("#10142a");
+    let flat = false; // the cursor only pushes cubes once they lie in the picture plane
+
+    const states = {
+      scatter() {
+        flat = false;
+        for (let i = 0; i < N; i++) {
+          const u = Math.random() * Math.PI * 2, v = Math.acos(2 * Math.random() - 1), R = 30 + Math.random() * 70;
+          to[i * 3] = R * Math.sin(v) * Math.cos(u) * 1.4; to[i * 3 + 1] = R * Math.sin(v) * Math.sin(u) * .8; to[i * 3 + 2] = R * Math.cos(v) * .6 - 20;
+          const col = Math.random() < .12 ? ICE : Math.random() < .5 ? SKY : BLUE;
+          cTo[i * 3] = col.r; cTo[i * 3 + 1] = col.g; cTo[i * 3 + 2] = col.b;
+          sTo[i] = Math.random() < .7 ? .35 + Math.random() * .5 : .1;
+        }
+      },
+      logo() {
+        flat = true;
+        const cw = COLS / 5.6, rh = ROWS / 5.6, ox = (COLS - cw * 5) / 2, oy = (ROWS - rh * 5) / 2;
+        for (let i = 0; i < N; i++) {
+          const c = i % COLS, r = Math.floor(i / COLS);
+          const lc = Math.floor((c - ox) / cw), lr = Math.floor((r - oy) / rh);
+          const inCell = lc >= 0 && lc < 5 && lr >= 0 && lr < 5 && (c - ox) % cw > cw * .16 && (r - oy) % rh > rh * .16;
+          const cls = inCell ? LOGO(lr, lc) : "";
+          to[i * 3] = gx(c); to[i * 3 + 1] = gy(r); to[i * 3 + 2] = cls ? (cls === "core" ? 6 : 3) : -16;
+          const col = cls === "core" ? ICE : cls ? BLUE : DARK;
+          cTo[i * 3] = col.r; cTo[i * 3 + 1] = col.g; cTo[i * 3 + 2] = col.b;
+          sTo[i] = cls ? .95 : .3;
+        }
+      },
+      image(data) {
+        flat = true;
+        for (let i = 0; i < N; i++) {
+          const c = i % COLS, r = Math.floor(i / COLS), p = i * 4;
+          const col = new THREE.Color(data[p] / 255, data[p + 1] / 255, data[p + 2] / 255).convertSRGBToLinear();
+          const lum = (data[p] * .3 + data[p + 1] * .59 + data[p + 2] * .11) / 255;
+          to[i * 3] = gx(c); to[i * 3 + 1] = gy(r); to[i * 3 + 2] = lum * 5;
+          cTo[i * 3] = col.r; cTo[i * 3 + 1] = col.g; cTo[i * 3 + 2] = col.b;
+          sTo[i] = .96;
+        }
+      },
+    };
+
+    const pics = [];
+    const sampler = document.createElement("canvas"); sampler.width = COLS; sampler.height = ROWS;
+    const sctx = sampler.getContext("2d", { willReadFrequently: true });
+    const loaded = SHOTS.map((s, k) => new Promise((res) => { const im = new Image(); im.onload = () => { sctx.drawImage(im, 0, 0, COLS, ROWS); pics[k] = sctx.getImageData(0, 0, COLS, ROWS).data.slice(); res(); }; im.onerror = res; im.src = `img/${s.img}.webp`; }));
+    field.ready = Promise.all(loaded);
+
+    let t0 = 0, dur = 1;
+    const go = (name, arg, seconds) => { from.set(cur); cFrom.set(cCur); sFrom.set(sCur); states[name](arg); t0 = performance.now(); dur = seconds * 1000; };
+    states.scatter(); cur.set(to); cCur.set(cTo); sCur.set(sTo); from.set(to); cFrom.set(cTo); sFrom.set(sTo);
+    const cubesLabel = `${N.toLocaleString("en")} cubes`;
+    pcScene.textContent = `scatter · ${cubesLabel}`;
+
+    const resize = () => {
+      const w = canvas.clientWidth, h = canvas.clientHeight;
+      if (!w || !h) return;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h;
+      const tan = Math.tan((camera.fov * Math.PI) / 360);
+      const share = narrow ? .92 : .46;
+      const dist = Math.max((ROWS * GAP) / (2 * tan * (narrow ? .5 : .78)), (COLS * GAP) / (2 * tan * camera.aspect * share));
+      camera.position.set(0, 0, dist);
+      camera.updateProjectionMatrix();
+      const viewW = 2 * dist * tan * camera.aspect, viewH = 2 * dist * tan;
+      group.position.x = narrow ? 0 : (isRTL() ? -1 : 1) * viewW * .24;
+      group.position.y = narrow ? viewH * .12 : 0;
+    };
+    addEventListener("resize", resize); resize();
+    listeners.push(resize);
+
+    // the cursor, as a point on the picture plane
+    let px = 0, py = 0, tx = 0, ty = 0, has = false;
+    const ndc = new THREE.Vector2(), ray = new THREE.Raycaster(), planeZ = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), hit = new THREE.Vector3(), local = new THREE.Vector3();
+    canvas.parentNode.addEventListener("pointermove", (e) => {
+      const r = canvas.getBoundingClientRect();
+      ndc.set(((e.clientX - r.left) / r.width) * 2 - 1, -((e.clientY - r.top) / r.height) * 2 + 1);
+      tx = e.clientX / innerWidth - .5; ty = e.clientY / innerHeight - .5; has = true;
+    }, { passive: true });
+    canvas.parentNode.addEventListener("pointerleave", () => { has = false; });
+
+    const m = new THREE.Matrix4(), q = new THREE.Quaternion(), e3 = new THREE.Euler(), pos = new THREE.Vector3(), scl = new THREE.Vector3(), col = new THREE.Color();
+    const ease = (x) => (x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+    function draw(now) {
+      const T = Math.min(1, (now - t0) / dur);
+      px += (tx - px) * .05; py += (ty - py) * .05;
+      group.rotation.y = px * .3 + Math.sin(now / 4000) * .05;
+      group.rotation.x = py * .2;
+      group.updateMatrixWorld();
+      // where the cursor touches the picture, in the group's own space
+      let cx = 1e9, cy = 1e9;
+      if (has && flat && fine) {
+        ray.setFromCamera(ndc, camera);
+        const pl = planeZ.clone().applyMatrix4(group.matrixWorld);
+        if (ray.ray.intersectPlane(pl, hit)) { local.copy(hit); group.worldToLocal(local); cx = local.x; cy = local.y; cursorLight.position.copy(hit).add(new THREE.Vector3(0, 0, 14)); }
+      }
+      cursorLight.intensity += ((cx < 1e8 ? 2.2 : 0) - cursorLight.intensity) * .08;
+      const ex = field.explode;
+      for (let i = 0; i < N; i++) {
+        const k = Math.max(0, Math.min(1, T * 1.6 - delay[i] * .6));
+        const e = ease(k), arc = Math.sin(k * Math.PI) * 9;
+        const i3 = i * 3;
+        cur[i3] = from[i3] + (to[i3] - from[i3]) * e;
+        cur[i3 + 1] = from[i3 + 1] + (to[i3 + 1] - from[i3 + 1]) * e;
+        cur[i3 + 2] = from[i3 + 2] + (to[i3 + 2] - from[i3 + 2]) * e + arc;
+        cCur[i3] = cFrom[i3] + (cTo[i3] - cFrom[i3]) * e; cCur[i3 + 1] = cFrom[i3 + 1] + (cTo[i3 + 1] - cFrom[i3 + 1]) * e; cCur[i3 + 2] = cFrom[i3 + 2] + (cTo[i3 + 2] - cFrom[i3 + 2]) * e;
+        sCur[i] = sFrom[i] + (sTo[i] - sFrom[i]) * e;
+        // the cursor's wave: cubes near it rise toward you and turn
+        const dx = cur[i3] - cx, dy = cur[i3 + 1] - cy, d2 = dx * dx + dy * dy;
+        const want = d2 < 130 ? (1 - d2 / 130) : 0;
+        lift[i] += (want - lift[i]) * .12;
+        const L = lift[i];
+        const tumble = (1 - e) * .6 + ex + L * .5;
+        e3.set(spin[i3] * tumble + (1 - e) * now * .0005, spin[i3 + 1] * tumble, spin[i3 + 2] * tumble);
+        q.setFromEuler(e3);
+        pos.set(cur[i3] + dir[i3] * ex * 90, cur[i3 + 1] + dir[i3 + 1] * ex * 90, cur[i3 + 2] + L * 9 + dir[i3 + 2] * ex * 160);
+        const s = sCur[i] * (1 - ex * .35) * (1 + L * .25); scl.set(s, s, s);
+        m.compose(pos, q, scl);
+        mesh.setMatrixAt(i, m);
+        mesh.setColorAt(i, col.setRGB(cCur[i3] + L * .25, cCur[i3 + 1] + L * .3, cCur[i3 + 2] + L * .45));
+      }
+      mesh.instanceMatrix.needsUpdate = true;
+      if (mesh.instanceColor) mesh.instanceColor.needsUpdate = true;
+      renderer.render(scene, camera);
+    }
+    const loop = (now) => { requestAnimationFrame(loop); if (field.visible) draw(now); };
+
+    // the prompt card types the picture's description, counts the steps, then the cubes paint it
+    let timers = [];
+    const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+    let shot = 0;
+    const step = (k) => { pcStep.textContent = `${k}/8`; pcBar.style.transform = `scaleX(${k / 8})`; };
+    const cycle = () => {
+      const s = SHOTS[shot % SHOTS.length], data = pics[shot % SHOTS.length], text = s[lang === "en" ? "en" : "ar"];
+      if (!data) { later(cycle, 300); return; }
+      pcText.textContent = ""; step(0); pcScene.textContent = `prompt · ${cubesLabel}`;
+      let i = 0;
+      const type = () => {
+        pcText.textContent = text.slice(0, i);
+        if (i++ < text.length) later(type, 24);
+        else {
+          let k = 0;
+          const tick = () => { step(++k); pcScene.textContent = `render · ${k}/8`; if (k < 8) later(tick, 130); else { go("image", data, 2.8); pcScene.textContent = `done · ${cubesLabel}`; shot++; later(cycle, 5600); } };
+          later(tick, 200);
+        }
+      };
+      later(type, 300);
+    };
+    listeners.push(() => { /* a language switch types the next prompt in the new language */ });
+
+    if (reduce) {
+      field.ready.then(() => { states.image(pics[0]); cur.set(to); cCur.set(cTo); sCur.set(sTo); from.set(to); cFrom.set(cTo); sFrom.set(sTo); t0 = 0; dur = 1; draw(performance.now()); pcText.textContent = SHOTS[0][lang === "en" ? "en" : "ar"]; step(8); });
+      return;
+    }
+    requestAnimationFrame(loop);
+    // the opening, started when the intro curtain lifts
+    field.start = () => {
+      later(() => { go("logo", null, 2.6); pcScene.textContent = `logo · ${cubesLabel}`; }, 300);
+      later(cycle, 3400);
+    };
+  })();
+
+  // ═════════ the intro: the logo assembles, the curtain lifts ═════════
+  const intro = document.getElementById("intro");
+  const startField = () => field.start && field.start();
+  if (!hasGsap || reduce) { intro.style.display = "none"; startField(); if (!hasGsap) return; }
+  else {
+    const pct = document.getElementById("introPct");
+    const counter = { v: 0 };
+    const tl = gsap.timeline();
+    tl.to("#introMark i", { scale: 1, duration: .5, ease: "back.out(2.2)", stagger: { each: .03, from: "center" } })
+      .from("#intro .name", { y: 20, opacity: 0, duration: .6, ease: "power3.out" }, "-=.3")
+      .to(counter, { v: 100, duration: 1.1, ease: "power2.inOut", onUpdate: () => (pct.textContent = String(Math.round(counter.v)).padStart(3, "0")) }, 0);
+    Promise.race([Promise.all([field.ready || Promise.resolve(), document.fonts?.ready]), new Promise((r) => setTimeout(r, 2600))]).then(() => {
+      tl.then(() => {
+        gsap.timeline({ onComplete: () => { intro.style.display = "none"; } })
+          .to("#intro .inner", { scale: .9, opacity: 0, duration: .4, ease: "power2.in" })
+          .to(intro, { clipPath: "inset(0 0 100% 0)", duration: .9, ease: "expo.inOut" }, "-=.1")
+          .add(startField, "-=.6")
+          .from(".hero h1 .line > span", { yPercent: 110, duration: 1.3, ease: "expo.out", stagger: .12 }, "-=.5")
+          .from(".hero .say, .hero .lede, .hero .cta-row, .hero .specline, .prompt-card", { y: 24, opacity: 0, duration: 1, ease: "power3.out", stagger: .08 }, "-=1.1");
+      });
+    });
+  }
+
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to("#progress", { scaleX: 1, ease: "none", scrollTrigger: { start: 0, end: "max", scrub: .3 } });
+
+  const mm = gsap.matchMedia();
+  mm.add({ motion: "(prefers-reduced-motion: no-preference)", wide: "(min-width: 901px)" }, (ctx) => {
+    const { motion, wide } = ctx.conditions;
+    if (!motion) {
+      // still: everything in its finished place
+      gsap.set("#words span", { opacity: 1 });
+      cloudCards.forEach((c) => gsap.set(c, { x: (+c.dataset.x * innerWidth) / 100, y: (+c.dataset.y * innerHeight) / 100, opacity: .5, scale: .7 }));
+      gsap.set("#art", { clipPath: "none" }); gsap.set("#variants img", { opacity: 1 });
+      document.getElementById("typed").textContent = DEMO[lang === "en" ? "en" : "ar"];
+      return;
+    }
+
+    // leaving the opening: the cubes burst toward the camera, the words lift away
+    ScrollTrigger.create({ trigger: ".hero", start: "top top", end: "bottom top", scrub: .6, onUpdate: (self) => { field.explode = self.progress * 1.5; field.visible = self.progress < .995; } });
+    gsap.to(".hero .copy, .prompt-card", { y: -140, opacity: 0, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "65% top", scrub: true } });
+
+    // the manifesto
+    const tl = gsap.timeline({ scrollTrigger: { trigger: "#words", start: "top 78%", end: "bottom 40%", scrub: .5 } });
+    gsap.utils.toArray("#words span").forEach((w, i) => tl.fromTo(w, { opacity: .12, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 1, ease: "none" }, i * .9));
+    gsap.from("#versus tbody tr", { y: 30, opacity: 0, duration: .8, ease: "power3.out", stagger: .08, scrollTrigger: { trigger: "#versus", start: "top 85%" } });
+
+    // the light changes colour with each chapter
+    const LIGHT = [["#top", "#3340ff", "#18c6d6", "#ff2daa"], ["#cloud", "#5b3bff", "#ff6a3d", "#18c6d6"], ["#how", "#3340ff", "#ffb020", "#5b9bff"], ["#looks", "#ff6a3d", "#7a2bff", "#ffb020"], ["#campaign", "#ffb020", "#ff2daa", "#3340ff"], ["#cast", "#18c6d6", "#3340ff", "#ff6a3d"], ["#programs", "#ff2daa", "#ffb020", "#18c6d6"], ["#final", "#3340ff", "#bfe0ff", "#5b9bff"]];
+    LIGHT.forEach(([sel, a1, a2, a3]) => ScrollTrigger.create({ trigger: sel, start: "top 60%", end: "bottom 40%", onToggle: (self) => self.isActive && gsap.to(document.documentElement, { "--a1": a1, "--a2": a2, "--a3": a3, duration: 1.6, ease: "power2.out", overwrite: true }) }));
+
+    // the cloud: results fly in from far away and past you while the word changes
+    if (wide) {
+      const ct = gsap.timeline({ scrollTrigger: { trigger: "#cloud", start: "top top", end: () => "+=" + innerHeight * 2.2, pin: true, scrub: .8, onUpdate: (self) => setRot(Math.min(3, Math.floor(self.progress * 4))) } });
+      cloudCards.forEach((c, i) => {
+        const x = +c.dataset.x, y = +c.dataset.y, z = +c.dataset.z;
+        gsap.set(c, { x: (x * innerWidth) / 100, y: (y * innerHeight) / 100, z, opacity: 0, rotateY: x * -.6, rotateX: y * .5 });
+        ct.to(c, { z: z + 2300, opacity: 1, ease: "none", duration: 1 }, 0)
+          .to(c, { opacity: 0, ease: "none", duration: .15 }, .85);
+      });
+      ct.fromTo(".cloud-copy", { scale: .92 }, { scale: 1.04, ease: "none", duration: 1 }, 0);
+      gsap.fromTo("#swooshPath", { strokeDasharray: 220, strokeDashoffset: 220 }, { strokeDashoffset: 0, duration: 1.2, ease: "power3.inOut", scrollTrigger: { trigger: "#cloud", start: "top 60%" } });
+    } else {
+      cloudCards.forEach((c) => gsap.set(c, { x: (+c.dataset.x * 1.3 * innerWidth) / 100, y: (+c.dataset.y * .8 * innerHeight) / 100, opacity: .55, scale: .6 }));
+    }
+
+    // the demo: the description types, the poster appears, versions, then every size
+    const typed = document.getElementById("typed"), steps = gsap.utils.toArray("#howSteps .how-step");
+    const artImgs = gsap.utils.toArray("#art img"), vars = gsap.utils.toArray("#variants img"), fmts = gsap.utils.toArray("#formats .fmt");
+    const setStep = (k) => steps.forEach((s, i) => s.classList.toggle("on", i === k));
+    const pickVar = (k) => { artImgs.forEach((im, i) => im.classList.toggle("on", i === k)); vars.forEach((im, i) => im.classList.toggle("on", i === k)); };
+    const demo = { t: 0 };
+    const paintDemo = () => {
+      const p = demo.t, text = DEMO[lang === "en" ? "en" : "ar"];
+      typed.textContent = text.slice(0, Math.round(text.length * Math.min(1, p / .25)));
+      setStep(p < .38 ? 0 : p < .7 ? 1 : 2);
+      if (p >= .38 && p < .7) pickVar(Math.min(2, Math.floor((p - .42) / .09) < 0 ? 0 : Math.floor((p - .42) / .09)));
+      else if (p < .38) pickVar(0);
+    };
+    listeners.push(paintDemo);
+    const dt = gsap.timeline({ scrollTrigger: { trigger: "#how", start: "top top", end: () => "+=" + innerHeight * (wide ? 2.6 : 1.6), pin: wide, scrub: .6 } });
+    dt.to(demo, { t: 1, ease: "none", duration: 1, onUpdate: paintDemo }, 0)
+      .to("#art", { clipPath: "inset(0% 0% 0% 0% round 12px)", ease: "expo.out", duration: .14 }, .26)
+      .to("#artSel", { opacity: 1, duration: .04 }, .4)
+      .to(vars, { opacity: 1, x: 0, stagger: .03, duration: .06 }, .4)
+      .to("#art", { scale: .82, opacity: .25, duration: .1 }, .72)
+      .to("#variants", { opacity: 0, duration: .06 }, .72)
+      .fromTo(fmts, { opacity: 0, scale: .6, x: 0, y: 30 }, { opacity: 1, scale: 1, x: (i) => (isRTL() ? -1 : 1) * [-150, 20, 170][i] * (innerWidth / 1440), y: (i) => [-10, 40, -30][i], stagger: .04, ease: "back.out(1.6)", duration: .14 }, .74);
+    paintDemo();
+
+    // the band of words: moves with the scroll, faster the faster you scroll
+    const row = document.getElementById("ticker");
+    const tick = gsap.to(row, { xPercent: () => (isRTL() ? 33.33 : -33.33), ease: "none", duration: 26, repeat: -1 });
+    ScrollTrigger.create({ trigger: ".ticker", start: "top bottom", end: "bottom top", onUpdate: (self) => { const v = Math.min(6, 1 + Math.abs(self.getVelocity()) / 400); gsap.to(tick, { timeScale: v * (self.direction || 1), duration: .3, overwrite: true }); gsap.to(tick, { timeScale: 1, duration: 1.2, delay: .3 }); } });
+    gsap.fromTo(row, { skewX: 0 }, { skewX: () => (isRTL() ? 6 : -6), ease: "none", scrollTrigger: { trigger: ".ticker", start: "top bottom", end: "bottom top", scrub: true } });
+
+    // eight looks
+    if (wide) {
+      ScrollTrigger.create({ trigger: "#looks", start: "top top", end: () => "+=" + innerHeight * 2.4, pin: true, scrub: true, onUpdate: (self) => showLook(LOOKS[Math.min(LOOKS.length - 1, Math.floor(self.progress * LOOKS.length))]) });
+      gsap.fromTo("#lookFrame", { scale: .9, rotateX: 10, transformPerspective: 1400 }, { scale: 1, rotateX: 0, ease: "none", scrollTrigger: { trigger: "#looks", start: "top bottom", end: "top top", scrub: true } });
+    }
+
+    // one product photo → 24 shots fly into a wall
+    const cards = gsap.utils.toArray("#campPlane .card");
+    const countEl = document.getElementById("count");
+    if (wide) {
+      const stage = document.getElementById("campStage");
+      const spot = (i) => { const W = stage.clientWidth, H = stage.clientHeight, cols = 8, rows = 3; const c = i % cols, r = Math.floor(i / cols), cw = W / cols, ch = H / rows; return { x: (isRTL() ? -1 : 1) * ((c + .5) * cw - W / 2), y: (r + .5) * ch - H / 2, z: -Math.abs(c - (cols - 1) / 2) * 34, ry: (c - (cols - 1) / 2) * -5 }; };
+      countEl.textContent = "1";
+      gsap.set(cards, { x: 0, y: 0, z: (i) => -i * 2, rotateY: 0, rotate: (i) => (i ? ((i % 2 ? 1 : -1) * (2 + (i % 5) * 1.6)) : 0), scale: (i) => (i ? .92 : 1.3) });
+      gsap.timeline({ scrollTrigger: { trigger: "#campaign", start: "top top", end: () => "+=" + innerHeight * 1.8, pin: true, scrub: .8, invalidateOnRefresh: true, onUpdate: (self) => { countEl.textContent = String(Math.max(1, Math.min(24, Math.round(self.progress * 30)))); } } })
+        .to(cards, { x: (i) => spot(i).x, y: (i) => spot(i).y, z: (i) => spot(i).z, rotateY: (i) => spot(i).ry, rotate: 0, scale: 1, ease: "power3.inOut", duration: 1, stagger: { each: .022 } })
+        .to("#campPlane", { rotateX: 12, ease: "none", duration: .35 }, ">-.25");
+    } else {
+      ScrollTrigger.create({ trigger: "#campaign", start: "top 70%", once: true, onEnter: () => { const o = { v: 1 }; gsap.to(o, { v: 24, duration: 1.6, ease: "power2.out", onUpdate: () => (countEl.textContent = String(Math.round(o.v))) }); } });
+    }
+    gsap.fromTo("#wall", { scale: .94, opacity: .4 }, { scale: 1, opacity: 1, ease: "none", scrollTrigger: { trigger: "#wall", start: "top bottom", end: "top 40%", scrub: true } });
+
+    // the cast walks past sideways, leaning into the scroll
+    if (wide) {
+      const castTrack = document.getElementById("castTrack");
+      const dist = () => Math.max(0, castTrack.scrollWidth - innerWidth);
+      const walk = gsap.to(castTrack, { x: () => (isRTL() ? dist() : -dist()), ease: "none", scrollTrigger: { trigger: "#cast", start: "top top", end: () => "+=" + dist(), pin: true, scrub: .6, invalidateOnRefresh: true, onUpdate: (self) => gsap.to(".face", { skewX: gsap.utils.clamp(-8, 8, self.getVelocity() / -300), duration: .4, overwrite: true }) } });
+      gsap.utils.toArray(".face img").forEach((im) => gsap.to(im, { scale: 1, ease: "none", scrollTrigger: { trigger: im.parentNode, containerAnimation: walk, start: "left right", end: "right left", scrub: true } }));
+    }
+
+    // film stills open like a shutter, with depth
+    gsap.utils.toArray(".still").forEach((s, i) => {
+      gsap.from(s, { clipPath: "inset(48% 48% 48% 48% round 16px)", duration: 1.2, ease: "expo.out", delay: (i % 3) * .08, scrollTrigger: { trigger: s, start: "top 90%" } });
+      gsap.fromTo(s.querySelector("img"), { yPercent: -10 }, { yPercent: 0, ease: "none", scrollTrigger: { trigger: s, start: "top bottom", end: "bottom top", scrub: true } });
+    });
+    gsap.from(".steps div", { y: 20, opacity: 0, stagger: .1, duration: .7, ease: "power3.out", scrollTrigger: { trigger: ".steps", start: "top 88%" } });
+
+    // the five programs stack up
+    if (wide) {
+      const panels = gsap.utils.toArray("#stack .panel");
+      gsap.set(panels, { yPercent: (i) => (i ? 118 : 0), zIndex: (i) => i + 1 });
+      const st = gsap.timeline({ scrollTrigger: { trigger: "#programs", start: "top top", end: () => "+=" + innerHeight * 3, pin: true, scrub: .7 } });
+      panels.slice(1).forEach((p, i) => { st.to(p, { yPercent: 0, ease: "power2.inOut", duration: 1 }, i).to(panels[i], { scale: .9, opacity: .35, ease: "power2.inOut", duration: 1 }, i); });
+    }
+
+    // apps
+    gsap.from("#chips span", { y: 18, opacity: 0, stagger: .05, duration: .6, ease: "back.out(2)", scrollTrigger: { trigger: "#chips", start: "top 90%" } });
+    gsap.from("#orbit .screen", { rotateY: isRTL() ? 18 : -18, rotateX: 8, scale: .86, opacity: 0, transformPerspective: 1400, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: "#orbit", start: "top 80%" } });
+    gsap.from("#orbit .ring", { scale: .5, opacity: 0, duration: 1.6, ease: "expo.out", stagger: .1, scrollTrigger: { trigger: "#orbit", start: "top 80%" } });
+
+    // the After Effects chat
+    gsap.timeline({ scrollTrigger: { trigger: "#aePanel", start: "top 78%" } })
+      .from("#ae1", { y: 16, opacity: 0, duration: .5, ease: "power3.out" })
+      .from("#aeTyping", { opacity: 0, duration: .3 }, "+=.2")
+      .to("#aeTyping", { opacity: 0, height: 0, paddingTop: 0, paddingBottom: 0, marginBottom: 0, duration: .3 }, "+=1.1")
+      .from("#ae2", { y: 16, opacity: 0, duration: .55, ease: "power3.out" })
+      .from("#ae2 .ae-steps span", { x: -12, opacity: 0, stagger: .18, duration: .35 })
+      .from("#ae3", { y: 16, opacity: 0, duration: .5, ease: "power3.out" }, "+=.5");
+
+    gsap.from(".spec", { y: 20, opacity: 0, stagger: .06, duration: .6, ease: "power3.out", scrollTrigger: { trigger: ".specs", start: "top 88%" } });
+
+    // the end
+    gsap.from("#bigMark i", { x: () => gsap.utils.random(-420, 420), y: () => gsap.utils.random(-280, 280), rotate: () => gsap.utils.random(-180, 180), opacity: 0, duration: 1.5, ease: "expo.out", stagger: { each: .025, from: "center" }, scrollTrigger: { trigger: "#final", start: "top 72%" } });
+    gsap.from(".final h2, .final .lede, .final .cta-row", { y: 30, opacity: 0, stagger: .1, duration: .9, ease: "power3.out", delay: .5, scrollTrigger: { trigger: "#final", start: "top 72%" } });
+
+    gsap.utils.toArray("section .h2").forEach((h) => gsap.from(h, { y: 50, opacity: 0, filter: "blur(8px)", duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: h, start: "top 90%" } }));
+  });
+
+  document.fonts?.ready.then(() => ScrollTrigger.refresh());
+  addEventListener("load", () => ScrollTrigger.refresh());
+})();
+</script>
+</body>
+</html>
