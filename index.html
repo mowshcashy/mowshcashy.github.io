@@ -176,6 +176,19 @@ section { position: relative; }
 .nav .btn { padding: .6em 1.15em; font-size: 14.5px; }
 @media (max-width: 860px) { .nav-links { display: none; } .nav .wrap { gap: 12px; } .nav .lang { margin-inline-start: auto; } }
 
+/* side rails, after Linearity: two hairlines on the edges of the content column, a "+" where each
+   section starts, and a beam of light running along them that speeds up while you scroll */
+.rails { position: absolute; inset-inline: 0; top: 0; pointer-events: none; z-index: 55; }
+.rail { position: absolute; top: 0; bottom: 0; width: 1px; left: max(10px, calc(50% - 644px)); background: linear-gradient(to bottom, transparent, rgba(130,160,255,.22) 3%, rgba(130,160,255,.22) 97%, transparent); }
+.rail.r { left: auto; right: max(10px, calc(50% - 644px)); }
+.rail s { position: absolute; left: -5px; width: 11px; height: 11px; margin-top: -5px; text-decoration: none; }
+.rail s::before, .rail s::after { content: ""; position: absolute; background: rgba(191,224,255,.7); }
+.rail s::before { left: 5px; top: 0; width: 1px; height: 11px; }
+.rail s::after { top: 5px; left: 0; height: 1px; width: 11px; }
+.rail b { position: absolute; left: -1px; top: 0; width: 3px; height: 260px; border-radius: 3px; background: linear-gradient(to bottom, transparent, rgba(91,155,255,.15) 15%, #5b9bff 62%, #ffffff 94%, transparent); box-shadow: 0 0 18px 2px rgba(91,155,255,.7), 0 0 4px rgba(191,224,255,.9); will-change: transform; }
+@media (max-width: 900px) { .rail b { height: 140px; } .rail s { display: none; } }
+@media (prefers-reduced-motion: reduce) { .rail b { display: none; } }
+
 /* a one-time note on phones */
 .pc-hint { position: fixed; z-index: 80; inset-inline: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 14px; align-items: center; padding: 16px; border-radius: 20px; background: rgba(13,15,25,.92); backdrop-filter: blur(18px); border: 1px solid var(--line); box-shadow: 0 30px 60px -20px rgba(0,0,0,.9); transform: translateY(140%); opacity: 0; transition: transform .6s var(--ease), opacity .4s; }
 .pc-hint.show { transform: none; opacity: 1; }
@@ -874,6 +887,41 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   fillTicker();
   try { if (localStorage.getItem("ebdaai_site_lang") === "en") setLang("en"); } catch {}
   document.getElementById("lang").addEventListener("click", () => setLang(lang === "ar" ? "en" : "ar"));
+
+  // Side rails: hairlines down the content column's edges, a "+" at each section, beams that run along.
+  (() => {
+    const rails = document.createElement("div");
+    rails.className = "rails"; rails.setAttribute("aria-hidden", "true");
+    rails.innerHTML = '<i class="rail l"><b></b></i><i class="rail r"><b></b></i>';
+    document.body.appendChild(rails);
+    const lines = [...rails.querySelectorAll(".rail")], beams = [...rails.querySelectorAll("b")];
+    const place = () => {
+      rails.style.height = `${document.documentElement.scrollHeight}px`;
+      rails.querySelectorAll("s").forEach((x) => x.remove());
+      const tops = [...document.querySelectorAll("header.hero, section, body > footer")].filter((el) => !el.parentElement.closest("section")) // pinned ones sit in a pin-spacer
+        .map((el) => Math.round(el.getBoundingClientRect().top + scrollY)).filter((y, i, a) => y > 40 && a.indexOf(y) === i);
+      for (const line of lines) for (const y of tops) { const m = document.createElement("s"); m.style.top = `${y}px`; line.appendChild(m); }
+    };
+    place();
+    addEventListener("load", place);
+    new ResizeObserver(() => requestAnimationFrame(place)).observe(document.body);
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let phase = 0, last = performance.now(), lastY = scrollY, speed = 0;
+    const run = (now) => {
+      requestAnimationFrame(run);
+      const dt = Math.min(64, now - last); last = now;
+      const dy = Math.abs(scrollY - lastY); lastY = scrollY;
+      speed += (dy / Math.max(dt, 1) - speed) * .1; // px per ms, eased
+      phase = (phase + dt * (1 / 9000 + speed / 2600)) % 1;
+      const span = innerHeight + 440;
+      beams.forEach((b, k) => {
+        const f = (phase + k * .5) % 1;
+        const y = scrollY - 220 + (k ? 1 - f : f) * span; // the left beam runs down, the right one up
+        b.style.transform = `translateY(${y}px)`;
+      });
+    };
+    requestAnimationFrame(run);
+  })();
 
   // Phones: once, a note that the full experience is on a computer.
   (() => {
