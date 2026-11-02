@@ -176,8 +176,16 @@ section { position: relative; }
 .nav .btn { padding: .6em 1.15em; font-size: 14.5px; }
 @media (max-width: 860px) { .nav-links { display: none; } .nav .wrap { gap: 12px; } .nav .lang { margin-inline-start: auto; } }
 
+/* a one-time note on phones */
+.pc-hint { position: fixed; z-index: 80; inset-inline: 14px; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); display: flex; gap: 14px; align-items: center; padding: 16px; border-radius: 20px; background: rgba(13,15,25,.92); backdrop-filter: blur(18px); border: 1px solid var(--line); box-shadow: 0 30px 60px -20px rgba(0,0,0,.9); transform: translateY(140%); opacity: 0; transition: transform .6s var(--ease), opacity .4s; }
+.pc-hint.show { transform: none; opacity: 1; }
+.pc-hint .ico { flex: none; width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; background: linear-gradient(135deg, rgba(51,64,255,.35), rgba(91,155,255,.12)); color: var(--ice); }
+.pc-hint b { display: block; font-size: 15px; line-height: 1.5; }
+.pc-hint p { margin: 2px 0 0; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.pc-hint button { flex: none; border: 0; border-radius: 999px; padding: .6em 1.1em; font: 600 13.5px var(--body); background: var(--ice); color: var(--ink); cursor: pointer; }
+
 /* ── 1 · hero ─────────────────────────────────────────── */
-.hero { min-height: min(980px, 100svh); display: flex; align-items: center; overflow: hidden; padding-block: 110px 90px; }
+.hero { min-height: 100svh; display: flex; align-items: center; overflow: hidden; padding-block: 110px 90px; }
 #field { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .hero::after { content: ""; position: absolute; inset: auto 0 0; height: 220px; background: linear-gradient(transparent, var(--ink)); pointer-events: none; }
 .hero .wrap { position: relative; z-index: 2; pointer-events: none; }
@@ -719,6 +727,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   </div>
 </section>
 
+<div class="pc-hint" id="pcHint" role="dialog" aria-labelledby="pcHintTitle" hidden>
+  <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></span>
+  <span style="flex:1;min-width:0"><b id="pcHintTitle" data-k="pch-t">أحلى على الكمبيوتر</b><p data-k="pch-p">الموقع يشتغل على الجوال، بس الحركة والتجربة كاملة تبان أحسن على شاشة كمبيوتر.</p></span>
+  <button type="button" id="pcHintOk" data-k="pch-b">تمام</button>
+</div>
 <footer><div class="wrap"><span><span data-k="foot">© 2026 إبداعي · EBDAAI</span> · <span data-k="made">صُنع بواسطة</span> <a class="credit" href="https://www.linkedin.com/in/moathwsh/" target="_blank" rel="noopener">moathwsh<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a></span><span style="font-family:var(--mono)">v1.0.53</span></div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -775,7 +788,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     "spec-e": "Requirements", "spec-h": "Before you download.", d1: "System", d1s: "On a Mac: a local server build for Apple Silicon.", d2: "Graphics card", d2s: "Driver 560 or newer, so it runs on CUDA.",
     d3: "Card memory", d3a: "We suggest", v1: "8GB pictures", v2: "16GB video", v3: "24GB+ long HD video", d4: "Disk", d4a: "About 5GB for the engine", d4s: "Each model takes 10 to 50 GB. Keep them on any drive.",
     d5: "Internet", d5a: "Only for downloads and updates", d5s: "Generating happens on your PC.", d6: "Language", d6a: "Arabic and English", d6s: "The whole interface, right to left too.",
-    "fin-h": "Your PC is ready. Start.", "fin-p": "Download EBDAAI, install the engine once, and your first picture is minutes away.", foot: "© 2026 EBDAAI", made: "Made by",
+    "pch-t": "Best on a computer", "pch-p": "The site works on your phone, but the motion and the full experience look best on a computer screen.", "pch-b": "Got it", "fin-h": "Your PC is ready. Start.", "fin-p": "Download EBDAAI, install the engine once, and your first picture is minutes away.", foot: "© 2026 EBDAAI", made: "Made by",
   };
 
   Object.assign(EN, {
@@ -861,6 +874,17 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   fillTicker();
   try { if (localStorage.getItem("ebdaai_site_lang") === "en") setLang("en"); } catch {}
   document.getElementById("lang").addEventListener("click", () => setLang(lang === "ar" ? "en" : "ar"));
+
+  // Phones: once, a note that the full experience is on a computer.
+  (() => {
+    const hint = document.getElementById("pcHint");
+    let seen = false;
+    try { seen = localStorage.getItem("ebdaai_site_pc_hint") === "1"; } catch {}
+    if (seen || !matchMedia("(max-width: 900px) and (pointer: coarse)").matches) return;
+    const close = () => { hint.classList.remove("show"); setTimeout(() => { hint.hidden = true; }, 600); try { localStorage.setItem("ebdaai_site_pc_hint", "1"); } catch {} };
+    document.getElementById("pcHintOk").addEventListener("click", close);
+    setTimeout(() => { hint.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => hint.classList.add("show"))); }, 1800);
+  })();
 
   // the living sentence: who, from where, makes what — one after another
   const sayEls = ["sayWho", "sayTeam", "sayVerb", "sayWhat"].map((id) => document.getElementById(id));
@@ -957,6 +981,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     const cCur = new Float32Array(N * 3), cFrom = new Float32Array(N * 3), cTo = new Float32Array(N * 3);
     const sCur = new Float32Array(N), sFrom = new Float32Array(N), sTo = new Float32Array(N);
     const delay = new Float32Array(N), dir = new Float32Array(N * 3), spin = new Float32Array(N * 3), lift = new Float32Array(N);
+    // How near each cube sits to the picture's edge (0 inside, 1 at the rim): there the cubes shrink and
+    // drift apart, so the picture dissolves into the dark instead of ending on a hard line.
+    const edge = new Float32Array(N), drift = new Float32Array(N * 3);
     const gx = (c) => (c - (COLS - 1) / 2) * GAP, gy = (r) => ((ROWS - 1) / 2 - r) * GAP;
     for (let i = 0; i < N; i++) {
       const c = i % COLS, r = Math.floor(i / COLS);
@@ -964,7 +991,13 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       const v = new THREE.Vector3(Math.random() - .5, Math.random() - .5, Math.random() * .8 + .2).normalize();
       dir[i * 3] = v.x; dir[i * 3 + 1] = v.y; dir[i * 3 + 2] = v.z;
       spin[i * 3] = Math.random() * 6; spin[i * 3 + 1] = Math.random() * 6; spin[i * 3 + 2] = Math.random() * 6;
+      const nx = (c - (COLS - 1) / 2) / (COLS / 2), ny = (r - (ROWS - 1) / 2) / (ROWS / 2);
+      const d = Math.pow(Math.pow(Math.abs(nx), 3.2) + Math.pow(Math.abs(ny), 3.2), 1 / 3.2);
+      const k = Math.min(1, Math.max(0, (d - .56) / .44) + (Math.random() - .5) * .18);
+      edge[i] = Math.max(0, k * k * (3 - 2 * k));
+      drift[i * 3] = nx * (1.5 + Math.random() * 3); drift[i * 3 + 1] = ny * (1.5 + Math.random() * 3); drift[i * 3 + 2] = (Math.random() - .6) * 10;
     }
+    let flatMix = 0; // eases toward 1 while the cubes lie in the picture plane
     const lin = (hex) => new THREE.Color(hex).convertSRGBToLinear();
     const BLUE = lin("#3340ff"), SKY = lin("#5b9bff"), ICE = lin("#bfe0ff"), DARK = lin("#10142a");
     let flat = false; // the cursor only pushes cubes once they lie in the picture plane
@@ -1063,6 +1096,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       }
       cursorLight.intensity += ((cx < 1e8 ? 2.2 : 0) - cursorLight.intensity) * .08;
       const ex = field.explode;
+      flatMix += ((flat ? 1 : 0) - flatMix) * .04;
       for (let i = 0; i < N; i++) {
         const k = Math.max(0, Math.min(1, T * 1.6 - delay[i] * .6));
         const e = ease(k), arc = Math.sin(k * Math.PI) * 9;
@@ -1080,8 +1114,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         const tumble = (1 - e) * .6 + ex + L * .5;
         e3.set(spin[i3] * tumble + (1 - e) * now * .0005, spin[i3 + 1] * tumble, spin[i3 + 2] * tumble);
         q.setFromEuler(e3);
-        pos.set(cur[i3] + dir[i3] * ex * 90, cur[i3 + 1] + dir[i3 + 1] * ex * 90, cur[i3 + 2] + L * 9 + dir[i3 + 2] * ex * 160);
-        const s = sCur[i] * (1 - ex * .35) * (1 + L * .25); scl.set(s, s, s);
+        const fe = edge[i] * flatMix;
+        pos.set(cur[i3] + dir[i3] * ex * 90 + drift[i3] * fe, cur[i3 + 1] + dir[i3 + 1] * ex * 90 + drift[i3 + 1] * fe, cur[i3 + 2] + L * 9 + dir[i3 + 2] * ex * 160 + drift[i3 + 2] * fe);
+        const s = sCur[i] * (1 - ex * .35) * (1 + L * .25) * (1 - fe * .88); scl.set(s, s, s);
         m.compose(pos, q, scl);
         mesh.setMatrixAt(i, m);
         mesh.setColorAt(i, col.setRGB(cCur[i3] + L * .25, cCur[i3 + 1] + L * .3, cCur[i3 + 2] + L * .45));
