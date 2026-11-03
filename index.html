@@ -174,7 +174,16 @@ section { position: relative; }
 .nav-links a:hover { color: var(--fg); }
 .lang { border: 1px solid var(--line); background: rgba(5,6,11,.4); color: var(--fg); border-radius: 999px; padding: 6px 12px; font: 600 13px var(--mono); cursor: pointer; }
 .nav .btn { padding: .6em 1.15em; font-size: 14.5px; }
-@media (max-width: 860px) { .nav-links { display: none; } .nav .wrap { gap: 12px; } .nav .lang { margin-inline-start: auto; } }
+/* the three programs, each with its own page */
+.prog-links { display: flex; align-items: center; gap: 4px; padding: 4px; border-radius: 999px; border: 1px solid var(--line); background: rgba(5,6,11,.35); }
+.prog-links a { display: inline-flex; align-items: center; gap: 7px; padding: 4px 11px 4px 5px; border-radius: 999px; text-decoration: none; font-size: 13.5px; color: var(--muted); transition: color .2s, background .2s; }
+[dir="ltr"] .prog-links a { padding: 4px 5px 4px 11px; }
+.prog-links a img { width: 24px; height: 24px; border-radius: 7px; }
+.prog-links a:hover { color: var(--fg); background: rgba(255,255,255,.05); }
+@media (max-width: 1180px) { .nav-links { display: none; } .prog-links { margin-inline-start: auto; } }
+@media (max-width: 720px) { .prog-links a span { display: none; } .prog-links a { padding: 4px; } .nav .wrap { gap: 10px; } .nav .btn { display: none; } }
+.panel .more { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; color: var(--glow); font-size: 15px; text-decoration: none; }
+.panel .more:hover { text-decoration: underline; }
 
 /* arcs, after Linearity: two thick strokes framing a section's heading, partly off the screen,
    that the scroll draws in — the right one first, then the left — and that stay */
@@ -444,6 +453,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
       <a href="#programs" data-k="n3">البرامج</a>
       <a href="#specs" data-k="n4">المتطلبات</a>
     </div>
+    <div class="prog-links" aria-label="البرامج">
+      <a href="design.html"><img src="img/icon_design.webp" alt=""><span data-k="nav-design">ديزاين</span></a>
+      <a href="uiux.html"><img src="img/icon_uiux.webp" alt=""><span data-k="nav-uiux">UI/UX</span></a>
+      <a href="effects.html"><img src="img/icon_effects.webp" alt=""><span data-k="nav-effects">إفكتس</span></a>
+    </div>
     <button class="lang" id="lang" type="button" aria-label="English">EN</button>
     <a class="btn btn-primary magnetic" href="https://github.com/mowshcashy/ebdaai-releases/releases/latest" target="_blank" rel="noopener" data-k="navcta">حمّل إبداعي</a>
   </div>
@@ -652,15 +666,15 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
         <div class="shot"><img src="img/ui_studio-home.webp" alt="الشاشة الرئيسية لإبداعي" loading="lazy"></div>
       </article>
       <article class="panel" style="--glow:#ff2daa">
-        <div><img class="icon" src="img/icon_effects.webp" alt=""><div class="tag">02 · EFFECTS</div><h3 data-k="p2">إبداعي إفكتس</h3><p data-k="p2d">موشن جرافيك ومؤثرات. تكتب وش تبي، ويبنيه بالتايم لاين طبقة طبقة.</p></div>
+        <div><img class="icon" src="img/icon_effects.webp" alt=""><div class="tag">02 · EFFECTS</div><h3 data-k="p2">إبداعي إفكتس</h3><p data-k="p2d">موشن جرافيك ومؤثرات. تكتب وش تبي، ويبنيه بالتايم لاين طبقة طبقة.</p><a class="more" href="effects.html" data-k="more">اكتشفه ←</a></div>
         <div class="glyph">FX</div>
       </article>
       <article class="panel" style="--glow:#ffb020">
-        <div><img class="icon" src="img/icon_design.webp" alt=""><div class="tag">03 · DESIGN</div><h3 data-k="p3">إبداعي ديزاين</h3><p data-k="p3d">شعارات وبوسترات فيكتور تقدر تعدّلها، والذكاء جنبك.</p></div>
+        <div><img class="icon" src="img/icon_design.webp" alt=""><div class="tag">03 · DESIGN</div><h3 data-k="p3">إبداعي ديزاين</h3><p data-k="p3d">شعارات وبوسترات فيكتور تقدر تعدّلها، والذكاء جنبك.</p><a class="more" href="design.html" data-k="more">اكتشفه ←</a></div>
         <div class="glyph">Aa</div>
       </article>
       <article class="panel" style="--glow:#18c6d6">
-        <div><img class="icon" src="img/icon_uiux.webp" alt=""><div class="tag">04 · UI/UX</div><h3 data-k="p4">إبداعي UI/UX</h3><p data-k="p4d">واجهات تطبيقات ومواقع، من فهم المستخدم لين الكود.</p></div>
+        <div><img class="icon" src="img/icon_uiux.webp" alt=""><div class="tag">04 · UI/UX</div><h3 data-k="p4">إبداعي UI/UX</h3><p data-k="p4d">من فكرة لتطبيق حقيقي يشتغل: خطة، وايرفريم، وتطبيق بقاعدة بيانات.</p><a class="more" href="uiux.html" data-k="more">اكتشفه ←</a></div>
         <div class="glyph">&lt;/&gt;</div>
       </article>
       <article class="panel" style="--glow:#bfe0ff">
@@ -748,7 +762,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
   <span style="flex:1;min-width:0"><b id="pcHintTitle" data-k="pch-t">أحلى على الكمبيوتر</b><p data-k="pch-p">الموقع يشتغل على الجوال، بس الحركة والتجربة كاملة تبان أحسن على شاشة كمبيوتر.</p></span>
   <button type="button" id="pcHintOk" data-k="pch-b">تمام</button>
 </div>
-<footer><div class="wrap"><span><span data-k="foot">© 2026 إبداعي · EBDAAI</span> · <span data-k="made">صُنع بواسطة</span> <a class="credit" href="https://www.linkedin.com/in/moathwsh/" target="_blank" rel="noopener">moathwsh<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a></span><span style="font-family:var(--mono)">v1.0.53</span></div></footer>
+<footer><div class="wrap"><span><span data-k="foot">© 2026 إبداعي · EBDAAI</span> · <span data-k="made">صُنع بواسطة</span> <a class="credit" href="https://www.linkedin.com/in/moathwsh/" target="_blank" rel="noopener">moathwsh<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a></span><span style="font-family:var(--mono)">v1.0.56</span></div></footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -795,7 +809,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; g
     g1: "Sci-fi", g2: "Drama", g3: "Action", g4: "Thriller", g5: "Fantasy", g6: "Documentary",
     "prog-h": "Five programs. One install.", "prog-p": "Each program has its own window and icon, and they all share one engine, one set of models and one Gallery.",
     p1: "EBDAAI", p1d: "Pictures, video with sound, films, marketing and 50+ ready-made apps.", p2: "EBDAAI Effects", p2d: "Motion graphics and VFX. Describe it and it builds the timeline layer by layer.",
-    p3: "EBDAAI Design", p3d: "Editable vector logos and posters, with AI beside you.", p4: "EBDAAI UI/UX", p4d: "App and web interfaces, from understanding users to code.", p5d: "Opens any of them in one click, each in its own window.",
+    p3: "EBDAAI Design", p3d: "Editable vector logos and posters, with AI beside you.", p4: "EBDAAI UI/UX", p4d: "From an idea to a real, working app: a plan, wireframes, and an app with a database.", more: "Explore it →", "nav-design": "Design", "nav-uiux": "UI/UX", "nav-effects": "Effects", p5d: "Opens any of them in one click, each in its own window.",
     "apps-e": "Apps and models", "apps-h": "50+ apps. Everything new comes to you.", "apps-p": "Apps built on the official ComfyUI templates: drop in your picture or clip and it does the rest. Any open model you add runs too.",
     c1: "Motion transfer", c2: "Character swap", c3: "Remove background", c4: "Video upscale", c5: "Relight", c6: "Talking photo", c7: "Style transfer", c8: "Multiple angles",
     upd: "<b>It updates itself.</b> The engine and templates update while you're not generating, and if an update doesn't work it goes back to the version before.",

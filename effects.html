@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="js" data-program="effects">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="إبداعي إفكتس: محرر موشن جرافيك ومؤثرات على جهازك. تكتب وش تبي، ويبنيه بالتايم لاين طبقة طبقة، وتعدّل بالكلام أو بيدك.">
+<meta property="og:title" content="EBDAAI Effects · اكتبها. وتتحرك.">
+<meta property="og:description" content="موشن جرافيك بالكلام، بعمق أفتر إفكتس، على جهازك.">
+<meta property="og:image" content="img/icon_effects.webp">
+<meta name="theme-color" content="#05060b">
+<link rel="icon" href="img/icon_effects.webp">
+<title>EBDAAI Effects</title>
+<script>document.documentElement.lang = "ar"; document.documentElement.dir = "rtl"; document.documentElement.classList.add("js");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="assets/program.css">
+<style>
+/* ── 1 · the opening: your scroll is the timeline ── */
+.reel { position: relative; height: 100svh; overflow: hidden; }
+.reel-copy { position: absolute; z-index: 5; top: 50%; translate: 0 -50%; inset-inline-start: max(20px, calc((100vw - 1240px) / 2 + 20px)); width: min(520px, 40vw); }
+.reel-copy .badge { display: inline-flex; align-items: center; gap: 12px; }
+.reel-copy .badge img { width: 54px; height: 54px; border-radius: 16px; box-shadow: 0 18px 44px -10px var(--acc); }
+.reel-copy h1 { font-size: clamp(42px, 4.7vw, 80px); line-height: 1.25; margin-block: 20px 18px; }
+.reel-copy h1 .line { display: block; overflow: hidden; padding-block: .04em .1em; }
+.reel-copy h1 .line > span { display: inline-block; white-space: nowrap; }
+[dir="ltr"] .reel-copy h1 { font-size: clamp(40px, 5vw, 82px); line-height: 1.04; }
+[dir="ltr"] .reel-copy h1 .line > span { white-space: normal; }
+.reel-copy .meta { margin-top: 22px; font: 500 12.5px/1.8 var(--mono); color: var(--faint); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.reel-copy .meta span::before { content: "■ "; color: var(--acc); }
+.reel-win { position: absolute; z-index: 4; top: 50%; left: max(20px, calc((100vw - 1240px) / 2 + 20px)); width: min(680px, 50vw); translate: 0 -50%; }
+[dir="ltr"] .reel-win { left: auto; right: max(20px, calc((100vw - 1240px) / 2 + 20px)); }
+.reel-win .win { grid-template-rows: 38px auto auto; }
+.reel-win .tc { color: var(--acc3); font-variant-numeric: tabular-nums; }
+.rv { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: radial-gradient(70% 80% at 50% 55%, #1a0f2e, #07060d 75%); }
+.rv .safe { position: absolute; inset: 9% 7%; border: 1px dashed rgba(255,255,255,.07); border-radius: 6px; }
+.rv .disc { position: absolute; left: 50%; top: 50%; width: 30%; aspect-ratio: 1; margin: -15% 0 0 -15%; border-radius: 50%; background: radial-gradient(closest-side, var(--acc2), transparent); opacity: .5; }
+.rv .word { position: absolute; left: 50%; top: 50%; translate: -50% -50%; font: 400 clamp(40px, 6vw, 96px)/1.2 var(--display); white-space: nowrap; color: #fff; opacity: 0; text-shadow: 0 0 40px color-mix(in srgb, var(--acc) 60%, transparent); }
+[dir="ltr"] .rv .word { font: 700 clamp(34px, 5vw, 80px)/1 var(--kufi); }
+.rv .word.g { background: linear-gradient(100deg, var(--acc3), var(--acc) 50%, var(--acc2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.rv .shape { position: absolute; left: 50%; top: 50%; width: 9%; aspect-ratio: 1; margin: -4.5% 0 0 -4.5%; opacity: 0; }
+.rv .shape svg { width: 100%; height: 100%; overflow: visible; }
+.rv .ring { position: absolute; left: 50%; top: 50%; width: 40%; aspect-ratio: 1; margin: -20% 0 0 -20%; border-radius: 50%; border: 3px solid var(--acc); opacity: 0; }
+.rv .logo { position: absolute; left: 50%; top: 50%; translate: -50% -50%; display: grid; justify-items: center; gap: 10px; opacity: 0; }
+.rv .logo img { width: 22%; min-width: 70px; border-radius: 22%; box-shadow: 0 0 60px var(--acc); }
+.rv .logo span { font: 400 clamp(26px, 3.2vw, 52px)/1.2 var(--display); white-space: nowrap; }
+[dir="ltr"] .rv .logo span { font: 700 clamp(22px, 2.6vw, 40px)/1 var(--kufi); }
+.rv .spark { position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; margin: -3.5px; border-radius: 50%; background: var(--acc3); box-shadow: 0 0 14px var(--acc); opacity: 0; }
+.tl2 { border-top: 1px solid var(--line); background: #0a0c15; padding: 8px 0 12px; direction: ltr; font: 500 10.5px var(--mono); color: var(--faint); position: relative; }
+.tl2 .ruler, .tl2 .row { display: grid; grid-template-columns: 96px minmax(0, 1fr); padding-inline: 12px; }
+.tl2 .ruler { margin-bottom: 4px; } .tl2 .ruler .ticks { display: flex; justify-content: space-between; }
+.tl2 .row { height: 24px; align-items: center; }
+.tl2 .name { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.tl2 .name i { width: 7px; height: 7px; border-radius: 2px; background: var(--c); }
+.tl2 .track { position: relative; height: 100%; }
+.tl2 .bar { position: absolute; top: 5px; bottom: 5px; border-radius: 6px; background: color-mix(in srgb, var(--c) 22%, transparent); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 55%, transparent); }
+.tl2 .key { position: absolute; top: 50%; width: 9px; height: 9px; margin: -4.5px; transform: rotate(45deg); background: var(--ink); border: 1.5px solid var(--c); transition: background .2s, box-shadow .2s; }
+.tl2 .key.hit { background: var(--c); box-shadow: 0 0 10px var(--c); }
+.tl2 .head { position: absolute; top: 2px; bottom: 6px; left: 108px; width: 1.5px; background: var(--acc3); box-shadow: 0 0 10px var(--acc); pointer-events: none; }
+.tl2 .head::before { content: ""; position: absolute; top: -3px; left: -4.5px; width: 10px; height: 10px; border-radius: 2px; background: var(--acc3); }
+.reel .cue { position: absolute; z-index: 5; bottom: 22px; left: 50%; translate: -50% 0; font: 500 11px var(--mono); color: var(--faint); letter-spacing: .2em; display: grid; justify-items: center; gap: 8px; }
+.reel .cue i { width: 1px; height: 34px; background: linear-gradient(var(--acc), transparent); animation: cue 2s var(--ease) infinite; transform-origin: top; }
+@keyframes cue { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+.reel .label { position: absolute; z-index: 5; top: 86px; left: 50%; translate: -50% 0; font: 500 12px var(--mono); letter-spacing: .14em; color: var(--acc); opacity: 0; white-space: nowrap; }
+@media (max-width: 960px) {
+  .reel { height: auto; padding-block: 100px 50px; }
+  .reel-copy { position: relative; top: auto; translate: none; inset: auto; width: auto; padding-inline: 20px; }
+  .reel-win { position: relative; top: auto; left: auto; right: auto; translate: none; width: auto; margin: 36px 20px 0; }
+  .reel .cue, .reel .label { display: none; }
+}
+
+/* ── the assistant at work (the pinned scene) ── */
+.build { aspect-ratio: 16 / 11; }
+.build-body { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); min-height: 0; }
+.chat { border-inline-end: 1px solid var(--line); padding: 14px; display: grid; align-content: start; gap: 10px; font-size: 13.5px; overflow: hidden; }
+.msg { padding: 9px 12px; border-radius: 14px; max-width: 94%; }
+.msg.me { background: #2a1d3f; margin-inline-start: auto; }
+.msg.bot { background: #181a27; color: #d8d8e4; }
+.plan { font: 500 11.5px var(--mono); display: grid; gap: 5px; direction: ltr; text-align: left; color: var(--muted); }
+.plan span::before { content: "○ "; color: var(--faint); }
+.plan span.in::before { content: "✓ "; color: #34d399; }
+.layers { padding: 14px; display: grid; align-content: start; gap: 8px; background: #0a0c15; }
+.layer { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); font-size: 13px; }
+.layer i { width: 22px; height: 22px; border-radius: 6px; background: color-mix(in srgb, var(--c) 30%, transparent); box-shadow: inset 0 0 0 1px var(--c); }
+.layer small { font: 500 10.5px var(--mono); color: var(--faint); direction: ltr; }
+.check { margin-top: 6px; display: flex; align-items: center; gap: 10px; padding: 10px; border-radius: 12px; border: 1px dashed color-mix(in srgb, var(--acc) 50%, transparent); font-size: 13px; color: var(--acc3); }
+.check .frame { width: 54px; aspect-ratio: 16 / 9; border-radius: 6px; background: radial-gradient(circle at 50% 55%, var(--acc), #1a0f2e 70%); flex: none; }
+
+/* ── 2 · a wall of presets, all playing ── */
+.wall-s { padding-block: 100px 70px; }
+.pgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 40px; }
+@media (max-width: 960px) { .pgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.tile { position: relative; aspect-ratio: 4 / 3; border-radius: 20px; overflow: hidden; background: radial-gradient(80% 90% at 50% 60%, #170d2a, #08070e); border: 1px solid var(--line); display: grid; place-items: center; transition: border-color .3s, transform .4s var(--ease); }
+.tile:hover { border-color: color-mix(in srgb, var(--acc) 55%, transparent); transform: translateY(-4px); }
+.tile .nm { position: absolute; inset-inline-start: 12px; bottom: 10px; font-size: 13.5px; color: var(--muted); }
+.tile .ix { position: absolute; inset-inline-end: 12px; top: 10px; font: 500 10.5px var(--mono); color: var(--faint); }
+.tile .tx { font: 400 clamp(26px, 2.6vw, 40px)/1.2 var(--display); color: #fff; white-space: nowrap; }
+[dir="ltr"] .tile .tx { font: 700 clamp(20px, 2vw, 30px)/1 var(--kufi); }
+.p-slam .tx { animation: slam 2.4s cubic-bezier(.2, 1.6, .4, 1) infinite; }
+@keyframes slam { 0%, 8% { transform: translateY(120%) scale(.8); opacity: 0; } 30%, 80% { transform: none; opacity: 1; } 100% { transform: translateY(-40%); opacity: 0; } }
+.p-glow .tx { animation: glow 2.4s ease-in-out infinite; }
+@keyframes glow { 0%, 100% { text-shadow: 0 0 0 transparent; color: #c9b6ff; } 50% { text-shadow: 0 0 26px var(--acc), 0 0 60px var(--acc2); color: #fff; } }
+.p-glitch .tx { position: relative; animation: gl 1.8s steps(1) infinite; }
+.p-glitch .tx::before, .p-glitch .tx::after { content: attr(data-t); position: absolute; inset: 0; }
+.p-glitch .tx::before { color: #00e5ff; transform: translate(-3px, 0); clip-path: inset(0 0 55% 0); mix-blend-mode: screen; animation: gl1 1.8s steps(1) infinite; }
+.p-glitch .tx::after { color: var(--acc); transform: translate(3px, 0); clip-path: inset(50% 0 0 0); mix-blend-mode: screen; animation: gl2 1.8s steps(1) infinite; }
+@keyframes gl { 0%, 60%, 100% { transform: none; } 62% { transform: translate(4px, -2px) skewX(8deg); } 66% { transform: translate(-3px, 1px); } }
+@keyframes gl1 { 0%, 58% { clip-path: inset(0 0 100% 0); } 60% { clip-path: inset(10% 0 55% 0); } 66% { clip-path: inset(40% 0 30% 0); } 70% { clip-path: inset(0 0 100% 0); } }
+@keyframes gl2 { 0%, 58% { clip-path: inset(100% 0 0 0); } 62% { clip-path: inset(55% 0 10% 0); } 68% { clip-path: inset(20% 0 60% 0); } 72% { clip-path: inset(100% 0 0 0); } }
+.p-type .tx { overflow: hidden; border-inline-end: 2px solid var(--acc); animation: type 3s steps(10) infinite, blinkC .7s steps(1) infinite; max-width: 0; }
+@keyframes type { 0%, 10% { max-width: 0; } 60%, 90% { max-width: 8em; } 100% { max-width: 0; } }
+@keyframes blinkC { 50% { border-color: transparent; } }
+.p-blob .blob { width: 44%; aspect-ratio: 1; background: linear-gradient(135deg, var(--acc), var(--acc2)); animation: blob 5s ease-in-out infinite; filter: drop-shadow(0 0 24px color-mix(in srgb, var(--acc) 60%, transparent)); }
+@keyframes blob { 0%, 100% { border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%; transform: rotate(0); } 33% { border-radius: 70% 30% 46% 54% / 30% 39% 61% 70%; } 66% { border-radius: 30% 70% 62% 38% / 64% 30% 70% 36%; transform: rotate(120deg); } }
+.p-bounce .ball { width: 16%; aspect-ratio: 1; border-radius: 50%; background: var(--acc3); box-shadow: 0 0 24px var(--acc); animation: bounce 1.4s cubic-bezier(.3, 0, .7, 1) infinite alternate; }
+.p-bounce .shadow { position: absolute; bottom: 22%; width: 18%; height: 6px; border-radius: 50%; background: rgba(0,0,0,.6); animation: sh 1.4s cubic-bezier(.3, 0, .7, 1) infinite alternate; }
+@keyframes bounce { from { transform: translateY(-80%) scaleY(1); } 92% { transform: translateY(70%) scaleY(1); } to { transform: translateY(78%) scale(1.15, .8); } }
+@keyframes sh { from { transform: scale(.5); opacity: .3; } to { transform: scale(1.1); opacity: .9; } }
+.p-burst .core { width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 0 24px var(--acc); }
+.p-burst i { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px; margin: -3px; border-radius: 50%; background: var(--acc3); animation: burst 1.8s ease-out infinite; }
+@keyframes burst { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--x), var(--y)) scale(.2); opacity: 0; } }
+.p-flip { perspective: 600px; }
+.p-flip .card3 { width: 34%; aspect-ratio: 3 / 4; border-radius: 12px; background: linear-gradient(135deg, var(--acc2), var(--acc)); animation: flip 3s cubic-bezier(.6, 0, .2, 1) infinite; box-shadow: 0 20px 40px -10px rgba(0,0,0,.8); display: grid; place-items: center; font: 700 20px var(--kufi); color: #fff; }
+@keyframes flip { 0%, 20% { transform: rotateY(0); } 50%, 70% { transform: rotateY(180deg); } 100% { transform: rotateY(360deg); } }
+
+/* ── 3 · say it, and it moves ── */
+.sayit { padding-block: 90px; }
+.sayit .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 70px); align-items: center; }
+@media (max-width: 960px) { .sayit .wrap { grid-template-columns: 1fr; } }
+.asks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.asks button { border: 1px solid var(--line); background: var(--panel); color: var(--muted); border-radius: 999px; padding: 9px 16px; font: 500 15px var(--body); cursor: pointer; transition: color .2s, border-color .2s; }
+.asks button[aria-pressed="true"] { color: var(--fg); border-color: color-mix(in srgb, var(--acc) 60%, transparent); background: color-mix(in srgb, var(--acc) 12%, transparent); }
+.stage2 { border-radius: 22px; background: #0b0d16; border: 1px solid var(--line); box-shadow: 0 60px 140px -50px color-mix(in srgb, var(--acc) 55%, transparent); overflow: hidden; display: grid; grid-template-rows: minmax(0, 1fr) auto; }
+.lane { position: relative; height: 200px; background-image: radial-gradient(rgba(191,224,255,.06) 1px, transparent 1px); background-size: 18px 18px; }
+.lane .track2 { position: absolute; left: 8%; right: 8%; top: 50%; height: 1px; background: linear-gradient(90deg, transparent, var(--line), transparent); }
+.lane .puck { position: absolute; left: 8%; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 14px; background: linear-gradient(135deg, var(--acc), var(--acc2)); box-shadow: 0 0 30px color-mix(in srgb, var(--acc) 70%, transparent); }
+.lane .ghost { position: absolute; top: 50%; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 14px; border: 1px dashed rgba(255,255,255,.15); }
+.below { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: 14px; padding: 14px; border-top: 1px solid var(--line); background: #0a0c15; }
+.below svg { width: 100%; height: 110px; overflow: visible; }
+.below .grid line { stroke: rgba(255,255,255,.05); }
+.below .crv { fill: none; stroke: var(--acc); stroke-width: 2.5; }
+.code { font: 500 12.5px/1.8 var(--mono); color: #b9c0d6; direction: ltr; text-align: left; white-space: pre-wrap; }
+.code b { color: var(--acc3); font-weight: 500; }
+.code i { color: var(--faint); font-style: normal; }
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" id="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="intro" id="intro" aria-hidden="true"><div class="inner"><img src="img/icon_effects.webp" alt=""><div class="name" data-k="intro">إبداعي إفكتس</div><div class="pct" id="introPct">000</div></div></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" aria-label="الرئيسية">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="EBDAAI"><span class="mark" data-mark></span><span data-k="brand">إبداع<b>ي</b></span></a>
+    <div class="nav-links">
+      <a href="index.html#why" data-k="n1">ليش جهازك</a>
+      <a href="index.html#looks" data-k="n2">وش يسوي</a>
+      <a href="index.html#programs" data-k="n3">البرامج</a>
+      <a href="index.html#specs" data-k="n4">المتطلبات</a>
+    </div>
+    <div class="prog-links" aria-label="البرامج">
+      <a href="design.html"><img src="img/icon_design.webp" alt=""><span data-k="nav-design">ديزاين</span></a>
+      <a href="uiux.html"><img src="img/icon_uiux.webp" alt=""><span data-k="nav-uiux">UI/UX</span></a>
+      <a href="effects.html" aria-current="page"><img src="img/icon_effects.webp" alt=""><span data-k="nav-effects">إفكتس</span></a>
+    </div>
+    <button class="lang" id="lang" type="button" aria-label="English">EN</button>
+    <a class="btn btn-primary magnetic" href="https://github.com/mowshcashy/ebdaai-releases/releases/latest" target="_blank" rel="noopener" data-k="navcta">حمّل إبداعي</a>
+  </div>
+</nav>
+
+<main>
+<section class="reel cine" id="top" aria-label="سكرولك هو التايم لاين">
+  <div class="reel-copy copy">
+    <div class="badge" data-hero><img src="img/icon_effects.webp" alt=""><span class="eyebrow" data-k="eyebrow">EBDAAI EFFECTS · 02</span></div>
+    <h1><span class="line"><span data-k="h1a">اكتبها.</span></span><span class="line"><span class="glow" data-k="h1b">وتتحرك.</span></span></h1>
+    <p class="lede" data-hero data-k="lede">موشن جرافيك ومؤثرات على جهازك. تقول وش تبي، ويبنيه بالتايم لاين طبقة طبقة قدامك. وبعدها تعدّل بالكلام، أو بيدك مثل أي محرر.</p>
+    <div class="cta-row" data-hero>
+      <a class="btn btn-primary magnetic" href="https://github.com/mowshcashy/ebdaai-releases/releases/latest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg><span data-k="cta1">حمّل لويندوز</span></a>
+      <a class="btn btn-ghost" href="#presets" data-k="cta2">شوف القوالب</a>
+    </div>
+    <div class="meta" data-hero><span data-k="m1">تايم لاين وكومبات</span><span data-k="m2">محرر منحنيات</span><span data-k="m3">رندر MP4</span></div>
+  </div>
+  <div class="reel-win" id="reelWin" data-hero>
+    <div class="win" role="img" aria-label="كومب موشن ينلعب مع السكرول: كلمات تدخل، أشكال تدور، وشعار يطلع">
+      <div class="win-bar"><i></i><i></i><i></i><span class="title">launch-reel · 1920×1080 · <span class="tc" id="tc">0:00</span></span><span class="pill"><b></b>30 fps</span></div>
+      <div class="rv" id="rv">
+        <div class="safe"></div><div class="disc" id="disc"></div>
+        <div class="word" id="w1" data-k="rw1">اكتب</div>
+        <div class="word" id="w2" data-k="rw2">وشوفها</div>
+        <div class="word g" id="w3" data-k="rw3">تتحرك.</div>
+        <div class="shape" id="s1"><svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="18" fill="#ff2daa"/></svg></div>
+        <div class="shape" id="s2"><svg viewBox="0 0 40 40"><rect x="3" y="3" width="34" height="34" rx="9" fill="#7a2bff"/></svg></div>
+        <div class="shape" id="s3"><svg viewBox="0 0 40 40"><path d="M20 3 L37 35 H3 Z" fill="#ffc2e6" stroke-linejoin="round"/></svg></div>
+        <div class="ring" id="ring"></div>
+        <div class="logo" id="rlogo"><img src="img/icon_effects.webp" alt=""><span data-k="rlogo">إبداعي إفكتس</span></div>
+      </div>
+      <div class="tl2" id="tl2">
+        <div class="ruler"><span>0:00</span><span class="ticks"><span>0s</span><span>1s</span><span>2s</span><span>3s</span><span>4s</span></span></div>
+        <div class="row" style="--c:#ffffff"><span class="name"><i></i>Words</span><span class="track"><span class="bar" style="left:0;right:40%"></span><span class="key" data-t=".02"></span><span class="key" data-t=".16"></span><span class="key" data-t=".25"></span><span class="key" data-t=".38"></span><span class="key" data-t=".5"></span><span class="key" data-t=".62"></span></span></div>
+        <div class="row" style="--c:#ff2daa"><span class="name"><i></i>Shapes</span><span class="track"><span class="bar" style="left:22%;right:22%"></span><span class="key" data-t=".24"></span><span class="key" data-t=".5"></span><span class="key" data-t=".74"></span></span></div>
+        <div class="row" style="--c:#7a2bff"><span class="name"><i></i>Ring</span><span class="track"><span class="bar" style="left:74%;right:6%"></span><span class="key" data-t=".76"></span><span class="key" data-t=".9"></span></span></div>
+        <div class="row" style="--c:#ffc2e6"><span class="name"><i></i>Logo</span><span class="track"><span class="bar" style="left:77%;right:0"></span><span class="key" data-t=".78"></span><span class="key" data-t=".88"></span></span></div>
+        <span class="head" id="head"></span>
+      </div>
+    </div>
+  </div>
+  <div class="label" id="reelLabel" data-k="reellabel">السكرول هو التايم لاين</div>
+  <div class="cue" aria-hidden="true"><span>SCROLL</span><i></i></div>
+</section>
+
+<section class="manifesto arcs-host" id="why">
+  <svg class="arc r" viewBox="0 0 878 780" aria-hidden="true"><defs><linearGradient id="arcFxR" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#7a2bff"/><stop offset="1" stop-color="#ff2daa"/></linearGradient></defs><path stroke="url(#arcFxR)" d="M832.012 732.188C635.636 750.492 203.309 638.682 45.0117 45.0111"/></svg>
+  <svg class="arc l" viewBox="0 0 878 780" aria-hidden="true"><defs><linearGradient id="arcFxL" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff2daa"/><stop offset="1" stop-color="#7a2bff"/></linearGradient></defs><path stroke="url(#arcFxL)" d="M832.004 45.0059C794.251 302.86 583.997 800.189 45.0039 726.672"/></svg>
+  <div class="wrap">
+    <div class="eyebrow" data-k="why-e">ليش إفكتس؟</div>
+    <div class="words">
+      <span data-k="w1">ما تحتاج تحفظ</span>
+      <span data-k="w2">مية قائمة.</span>
+      <span class="acc" data-k="w3">قول وش تبي،</span>
+      <span data-k="w4">وشوفه ينبني.</span>
+    </div>
+  </div>
+</section>
+
+<section class="wall-s" id="presets">
+  <div class="wrap">
+    <div class="eyebrow" data-k="p-e">قوالب جاهزة، كلها شغّالة</div>
+    <h2 class="h2" style="margin-top:10px" data-k="p-h">ابدأ من حركة. وخلها لك.</h2>
+    <p class="lede" style="margin-top:10px" data-k="p-p">كل قالب طبقات وكي فريمز حقيقية بالتايم لاين. تحطه، تغيّر النص والألوان، أو تقول للمساعد «خله أسرع» أو «بلون علامتي».</p>
+    <div class="pgrid">
+      <div class="tile p-slam"><span class="ix">01</span><span class="tx" data-k="t1x">دخول قوي</span><span class="nm" data-k="t1">دخول بقوة</span></div>
+      <div class="tile p-glow"><span class="ix">02</span><span class="tx" data-k="t2x">توهّج</span><span class="nm" data-k="t2">نبض وتوهج</span></div>
+      <div class="tile p-glitch"><span class="ix">03</span><span class="tx" id="glitchTx" data-t="قليتش" data-k="t3x">قليتش</span><span class="nm" data-k="t3">قليتش</span></div>
+      <div class="tile p-type"><span class="ix">04</span><span class="tx" data-k="t4x">اكتب لي…</span><span class="nm" data-k="t4">آلة كاتبة</span></div>
+      <div class="tile p-blob"><span class="ix">05</span><span class="blob"></span><span class="nm" data-k="t5">شكل سائل</span></div>
+      <div class="tile p-bounce"><span class="ix">06</span><span class="ball"></span><span class="shadow"></span><span class="nm" data-k="t6">ارتداد</span></div>
+      <div class="tile p-burst"><span class="ix">07</span><span class="core"></span><i style="--x:-70px;--y:-40px"></i><i style="--x:60px;--y:-50px"></i><i style="--x:-50px;--y:50px"></i><i style="--x:70px;--y:36px"></i><i style="--x:0;--y:-70px"></i><i style="--x:0;--y:66px"></i><i style="--x:-80px;--y:4px"></i><i style="--x:84px;--y:-6px"></i><span class="nm" data-k="t7">انفجار شرار</span></div>
+      <div class="tile p-flip"><span class="ix">08</span><span class="card3">FX</span><span class="nm" data-k="t8">قلب ثلاثي</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sayit" id="sayit">
+  <div class="wrap">
+    <div data-reveal>
+      <div class="eyebrow" data-k="si-e">بالكلام</div>
+      <h2 class="h2" style="margin-top:10px" data-k="si-h">قلها. وتتحرك كذا.</h2>
+      <p class="lede" style="margin-top:12px" data-k="si-p">ما تحتاج تعرف اسم الإيزنق. قول وش تحس، وهو يختار المنحنى ويكتب الإكسبريشن. جرّب:</p>
+      <div class="asks" id="asks">
+        <button type="button" aria-pressed="true" data-ease="back.out(2.4)" data-k="a1">ادخل بقوة وهدّي</button>
+        <button type="button" aria-pressed="false" data-ease="bounce.out" data-k="a2">ارتد مثل الكورة</button>
+        <button type="button" aria-pressed="false" data-ease="elastic.out(1,0.35)" data-k="a3">مطاطي</button>
+        <button type="button" aria-pressed="false" data-ease="power4.inOut" data-k="a4">سينمائي ثقيل</button>
+        <button type="button" aria-pressed="false" data-ease="steps(6)" data-k="a5">ستوب موشن</button>
+        <button type="button" aria-pressed="false" data-ease="wiggle" data-k="a6">اهتز مع الصوت</button>
+      </div>
+    </div>
+    <div class="stage2" data-reveal aria-hidden="true">
+      <div class="lane"><span class="track2"></span><span class="ghost" style="left:8%"></span><span class="ghost" style="left:92%"></span><span class="puck" id="puck"></span></div>
+      <div class="below">
+        <svg viewBox="0 0 180 110" preserveAspectRatio="none"><g class="grid"><line x1="0" y1="10" x2="180" y2="10"/><line x1="0" y1="100" x2="180" y2="100"/><line x1="90" y1="0" x2="90" y2="110"/></g><path class="crv" id="crv"/></svg>
+        <div class="code" id="code"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="row" id="ticker"></div></div>
+
+<section class="scene" id="build" data-scene>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" data-k="b-e">المساعد</div>
+      <h2 class="h2" style="margin-top:10px" data-k="b-h">تشوفه يبني. خطوة خطوة.</h2>
+      <div class="steps">
+        <div class="step"><h3><b>01</b><span data-k="s1">تقول وش تبي</span></h3><p data-k="s1d">بجملة، وتقدر ترفق صور وتشير لها. «/» يطلع لك كل المهارات الجاهزة.</p></div>
+        <div class="step"><h3><b>02</b><span data-k="s2">يقرأ الكومب ويخطط</span></h3><p data-k="s2d">يشوف وش عندك بالكومب، ويلقى المهارة المناسبة أو يكتب وحدة جديدة، ويرتب الخطوات.</p></div>
+        <div class="step"><h3><b>03</b><span data-k="s3">يبني طبقة طبقة</span></h3><p data-k="s3d">كل خطوة تنفذ قدامك على التايم لاين: طبقات، كي فريمز، إيزنق، وحركة.</p></div>
+        <div class="step"><h3><b>04</b><span data-k="s4">يشيك ويصلّح</span></h3><p data-k="s4d">يطلّع فريم من النتيجة ويقارنه باللي طلبته، ويصلّح اللي ناقص. والجواب كله ⌘Z واحد.</p></div>
+      </div>
+    </div>
+    <div class="win build" aria-hidden="true">
+      <div class="win-bar"><i></i><i></i><i></i><span class="title">Motion assistant</span></div>
+      <div class="build-body">
+        <div class="chat">
+          <div class="msg me" data-at="0" data-k="c1">سو انترو لشعاري: يطلع من تحت، يتوهج، وحوله شرار خفيف</div>
+          <div class="msg bot" data-at="1"><span data-k="c2">الخطة:</span>
+            <div class="plan" style="margin-top:6px"><span data-at="2">logo · rise 0→1s, easeOutExpo</span><span data-at="2">glow · pulse at 1.2s</span><span data-at="2">sparks · 12, burst</span><span data-at="3">check frame @ 2s</span></div>
+          </div>
+          <div class="msg bot" data-at="3" data-k="c3">شيكت الفريم عند ثانيتين: التوهج قوي شوي، خففته ٢٠٪.</div>
+        </div>
+        <div class="layers">
+          <div class="layer" data-at="2" style="--c:#ff2daa"><i></i><span>Logo</span><small>3 keys</small></div>
+          <div class="layer" data-at="2" style="--c:#7a2bff"><i></i><span>Glow</span><small>2 keys</small></div>
+          <div class="layer" data-at="2" style="--c:#ffc2e6"><i></i><span>Sparks ×12</span><small>burst</small></div>
+          <div class="layer" data-at="1" style="--c:#5b9bff"><i></i><span>Background</span><small>gradient</small></div>
+          <div class="check" data-at="3"><span class="frame"></span><span data-k="c4">فريم ٢ث: مطابق للطلب ✓</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="feats" id="feats">
+  <div class="wrap">
+    <div class="eyebrow" data-k="f-e">بعمق أفتر إفكتس</div>
+    <h2 class="h2" style="margin-top:10px" data-k="f-h">محرر كامل. مو لعبة.</h2>
+    <p class="lede" style="margin-top:10px" data-k="f-p">كل اللي يسويه المساعد، تقدر تمسكه بيدك وتعدّله.</p>
+    <div class="feat-grid">
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M3 20h18M8 20v-4m8 4v-4"/></svg></span><h3 data-k="f1">كومبات وبريكومب</h3><p data-k="f1d">مشروع فيه أكثر من كومب بتبويبات، وكومب داخل كومب، وإعدادات لكل واحد.</p><div class="k">comps · precomps · settings</div></article>
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M3 20C8 20 9 4 21 4"/><circle cx="7" cy="14" r="1.5"/><circle cx="17" cy="6" r="1.5"/></svg></span><h3 data-k="f2">محرر المنحنيات</h3><p data-k="f2d">منحنى القيمة ومنحنى السرعة، ومقابض الإيزنق، عشان الحركة تطلع ناعمة مثل ما تبي.</p><div class="k">value graph · speed graph · easing</div></article>
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 12h10M4 7h16M4 17h7"/><path d="M17 15l3 2-3 2z"/></svg></span><h3 data-k="f3">التحكم بالسرعة</h3><p data-k="f3d">تمدّ الطبقة، تسرّع الحركة، تحدد منطقة العمل، وتضيف موشن بلر.</p><div class="k">stretch · speed · work area · motion blur</div></article>
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3l2.2 5.6L20 11l-5.8 2.4L12 19l-2.2-5.6L4 11l5.8-2.4z"/></svg></span><h3 data-k="f4">يولّد داخل الكومب</h3><p data-k="f4d">صورة، أو كليب، أو تعليق صوتي سعودي، تطلع على طول طبقة جاهزة بمكانها.</p><div class="k">image · clip · voice-over</div></article>
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M8 6l-5 6 5 6M16 6l5 6-5 6"/></svg></span><h3 data-k="f5">إكسبريشن بالكلام</h3><p data-k="f5d">«خله يهتز مع الصوت» أو «يلف بدون توقف»، يكتب لك الإكسبريشن ويحطه.</p><div class="k">expressions · wiggle · loop</div></article>
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 4h14v16H5z"/><path d="M9 9h6M9 13h6M9 17h3"/></svg></span><h3 data-k="f6">رندر للمعرض</h3><p data-k="f6d">MP4 جاهز بالمعرض، تحطه بحملة أو فيلم ببرنامج ثاني، أو تكمّل عليه.</p><div class="k">MP4 · gallery · reuse</div></article>
+    </div>
+  </div>
+</section>
+
+<section class="split" id="ae">
+  <div class="wrap">
+    <div data-reveal>
+      <div class="eyebrow" data-k="ae-e">وإذا عندك أفتر إفكتس</div>
+      <h2 class="h2" style="margin-top:10px" data-k="ae-h">نفس المساعد. داخل أفتر إفكتس.</h2>
+      <p class="lede" style="margin-top:12px" data-k="ae-p">إبداعي يجي معه لوحة لأفتر إفكتس فيها نفس المساعد: يقرأ الكومب، يخطط، وينفذ، وكل جواب ⌘Z واحد. ويولّد الصور والفيديو والصوت من جهازك على طول للمشروع.</p>
+    </div>
+    <div data-reveal>
+      <div class="chips" style="margin-top:0"><span data-k="ch1">طبقات وشيبات</span><span data-k="ch2">نصوص ومتحرك</span><span data-k="ch3">ترانزشن</span><span data-k="ch4">تعليق صوتي</span><span data-k="ch5">صورة لطبقة</span><span data-k="ch6">كمّل اللقطة</span><span data-k="ch7">سكربت جاهز</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="others" id="others">
+  <div class="wrap">
+    <div class="eyebrow" data-k="o-e">نفس المحرك، برامج ثانية</div>
+    <div class="row">
+      <a class="other" href="design.html" style="--og:#ffb020"><img src="img/icon_design.webp" alt=""><span><b data-k="o1">إبداعي ديزاين</b><small data-k="o1d">شعارات وبوسترات فيكتور</small></span><span class="go" aria-hidden="true">→</span></a>
+      <a class="other" href="uiux.html" style="--og:#18c6d6"><img src="img/icon_uiux.webp" alt=""><span><b data-k="o2">إبداعي UI/UX</b><small data-k="o2d">من فكرة لتطبيق يشتغل</small></span><span class="go" aria-hidden="true">→</span></a>
+      <a class="other" href="index.html" style="--og:#5b9bff"><img src="img/icon_studio.webp" alt=""><span><b data-k="o3">إبداعي</b><small data-k="o3d">صور، فيديو، أفلام، تسويق</small></span><span class="go" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="final arcs-host" id="final">
+  <svg class="arc r" viewBox="0 0 878 780" aria-hidden="true"><defs><linearGradient id="arcFxFR" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#7a2bff"/><stop offset="1" stop-color="#ff2daa"/></linearGradient></defs><path stroke="url(#arcFxFR)" d="M832.012 732.188C635.636 750.492 203.309 638.682 45.0117 45.0111"/></svg>
+  <svg class="arc l" viewBox="0 0 878 780" aria-hidden="true"><defs><linearGradient id="arcFxFL" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff2daa"/><stop offset="1" stop-color="#7a2bff"/></linearGradient></defs><path stroke="url(#arcFxFL)" d="M832.004 45.0059C794.251 302.86 583.997 800.189 45.0039 726.672"/></svg>
+  <div class="wrap">
+    <img class="big-icon" src="img/icon_effects.webp" alt="" data-reveal>
+    <h2 data-reveal data-k="fin-h">حرّك أي فكرة.</h2>
+    <p class="lede" data-reveal data-k="fin-p">إفكتس يجي مع إبداعي، بنفس التثبيت ونفس الموديلات اللي على جهازك.</p>
+    <div class="cta-row" data-reveal><a class="btn btn-primary magnetic" href="https://github.com/mowshcashy/ebdaai-releases/releases/latest" target="_blank" rel="noopener" data-k="navcta">حمّل إبداعي</a></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span><span data-k="foot">© 2026 إبداعي · EBDAAI</span> · <span data-k="made">صُنع بواسطة</span> <a class="credit" href="https://www.linkedin.com/in/moathwsh/" target="_blank" rel="noopener">moathwsh<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a></span><span style="font-family:var(--mono)">v1.0.56</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+// Effects — what's special here:
+//  · the opening: a real motion graphic in a comp, and the scroll is its timeline: the playhead runs, the keys
+//    light as it passes them, the timecode counts (on phones it simply plays);
+//  · a wall of presets, all playing; and "say it": a phrase picks the easing, you watch it, its curve and its code.
+const SPARKS = 12;
+const rtl = () => document.documentElement.dir === "rtl";
+const rv = document.getElementById("rv");
+for (let i = 0; i < SPARKS; i++) { const s = document.createElement("span"); s.className = "spark"; rv.appendChild(s); }
+
+// the comp's own animation, four seconds long; the page decides who drives it
+const reel = (() => {
+  if (typeof gsap === "undefined") return null;
+  const mo = gsap.timeline({ paused: true });
+  const orbit = (el, r, a0, from, to) => { const o = { a: a0 }; mo.to(o, { a: a0 + Math.PI * 2, duration: to - from, ease: "none", onUpdate: () => gsap.set(el, { x: Math.cos(o.a) * r * rv.clientWidth, y: Math.sin(o.a) * r * .6 * rv.clientWidth }) }, from); };
+  mo.set({}, {}, 4)
+    .fromTo("#disc", { scale: .3, opacity: 0 }, { scale: 1.6, opacity: .55, duration: 1, ease: "power2.out" }, 0)
+    .fromTo("#w1", { opacity: 0, y: 90, rotate: -10, scale: .8 }, { opacity: 1, y: 0, rotate: 0, scale: 1, duration: .55, ease: "back.out(2.2)" }, .05)
+    .to("#w1", { opacity: 0, y: -60, filter: "blur(10px)", duration: .35, ease: "power2.in" }, .65)
+    .fromTo("#w2", { opacity: 0, scale: 1.8, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: .5, ease: "expo.out" }, 1.0)
+    .to("#w2", { opacity: 0, x: () => (rtl() ? 160 : -160), skewX: -20, duration: .35, ease: "power3.in" }, 1.55)
+    .fromTo("#w3", { opacity: 0, x: () => (rtl() ? -200 : 200), skewX: 24 }, { opacity: 1, x: 0, skewX: 0, duration: .55, ease: "elastic.out(1,0.5)" }, 1.95)
+    .to("#w3", { opacity: 0, scale: .6, duration: .3, ease: "power2.in" }, 2.85)
+    .fromTo(["#s1", "#s2", "#s3"], { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: .35, stagger: .08, ease: "back.out(3)" }, 1.0);
+  orbit("#s1", .26, 0, 1.0, 3.0); orbit("#s2", .3, 2.1, 1.0, 3.0); orbit("#s3", .22, 4.2, 1.0, 3.0);
+  mo.to(["#s1", "#s2", "#s3"], { rotate: 360, duration: 2, ease: "none" }, 1.0)
+    .to("#s1 circle", { attr: { fill: "#ffc2e6" }, duration: .6 }, 1.8).to("#s2 rect", { attr: { fill: "#ff2daa", rx: 20 }, duration: .6 }, 1.8)
+    .to(["#s1", "#s2", "#s3"], { x: 0, y: 0, scale: 0, opacity: 0, duration: .3, ease: "power3.in" }, 3.0)
+    .fromTo("#ring", { scale: .2, opacity: 0 }, { scale: 1.7, opacity: 1, duration: .25, ease: "power2.out" }, 3.05).to("#ring", { opacity: 0, duration: .45 }, 3.3)
+    .fromTo("#rlogo", { opacity: 0, scale: .6, filter: "blur(12px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: .5, ease: "back.out(1.8)" }, 3.1)
+    .fromTo(".spark", { x: 0, y: 0, opacity: 0, scale: 1 }, { x: (i) => Math.cos((i / SPARKS) * Math.PI * 2) * rv.clientWidth * .3, y: (i) => Math.sin((i / SPARKS) * Math.PI * 2) * rv.clientWidth * .18, opacity: 1, scale: .3, duration: .7, ease: "power3.out", stagger: .01 }, 3.1)
+    .to(".spark", { opacity: 0, duration: .3 }, 3.6);
+  // the timeline under it follows: the playhead, the keys it has passed, the timecode
+  const head = document.getElementById("head"), keys = [...document.querySelectorAll(".tl2 .key")], tc = document.getElementById("tc");
+  const track = document.querySelector(".tl2 .track");
+  keys.forEach((k) => (k.style.left = `${+k.dataset.t * 100}%`));
+  mo.eventCallback("onUpdate", () => {
+    const p = mo.progress(), t = p * 4;
+    head.style.transform = `translateX(${p * track.clientWidth}px)`;
+    keys.forEach((k) => k.classList.toggle("hit", +k.dataset.t <= p + .001));
+    tc.textContent = `${Math.floor(t)}:${String(Math.floor((t % 1) * 30)).padStart(2, "0")}`;
+  });
+  return mo;
+})();
+
+// "say it": a phrase → an ease; the puck runs it, the curve shows it, the code says it
+const CODE = {
+  "back.out(2.4)": ['<b>position</b> 0 → 100%', '<i>// ادخل بقوة وهدّي</i>', 'ease: <b>easeOutBack</b>(2.4)', 'duration: 0.8s'],
+  "bounce.out": ['<b>position.y</b> drop', '<i>// ارتد مثل الكورة</i>', 'ease: <b>easeOutBounce</b>', 'duration: 1.0s'],
+  "elastic.out(1,0.35)": ['<b>scale</b> 0 → 1', '<i>// مطاطي</i>', 'ease: <b>easeOutElastic</b>(1, 0.35)', 'duration: 1.2s'],
+  "power4.inOut": ['<b>camera.x</b> push in', '<i>// سينمائي ثقيل</i>', 'ease: <b>easeInOutQuart</b>', 'duration: 1.4s'],
+  "steps(6)": ['<b>position</b> 0 → 100%', '<i>// ستوب موشن</i>', 'ease: <b>steps</b>(6)', 'frameRate: 12'],
+  wiggle: ['<b>position</b>', '<i>// اهتز مع الصوت</i>', 'expression:', '<b>wiggle</b>(8, audio.amp * 40)'],
+};
+const easeFn = (name) => (name === "wiggle" ? (t) => t + Math.sin(t * 40) * .06 * (1 - t) : gsap.parseEase(name));
+let sayTween;
+const play = (name) => {
+  const f = easeFn(name);
+  let d = "";
+  for (let i = 0; i <= 60; i++) { const t = i / 60, y = f(t); d += `${i ? "L" : "M"}${(t * 180).toFixed(1)} ${(100 - y * 90).toFixed(1)}`; }
+  document.getElementById("crv").setAttribute("d", d);
+  document.getElementById("code").innerHTML = CODE[name].join("\n");
+  const puck = document.getElementById("puck"), lane = puck.parentNode;
+  sayTween?.kill();
+  const dist = () => lane.clientWidth * .84 * (rtl() ? 1 : 1);
+  if (prog.reduce) { gsap.set(puck, { x: dist() }); return; }
+  gsap.set(puck, { x: 0, y: 0, rotate: 0 });
+  if (name === "wiggle") sayTween = gsap.to(puck, { x: () => dist() / 2, duration: 1.2, ease: "none", repeat: -1, yoyo: true, onUpdate() { gsap.set(puck, { y: Math.sin(this.time() * 40) * 14 }); } });
+  else sayTween = gsap.fromTo(puck, { x: 0 }, { x: dist, duration: name === "power4.inOut" ? 1.4 : 1, ease: name, repeat: -1, repeatDelay: .7, yoyo: true });
+};
+document.querySelectorAll("#asks button").forEach((b) => b.addEventListener("click", () => { document.querySelectorAll("#asks button").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); play(b.dataset.ease); }));
+
+window.PROGRAM = {
+  en: {
+    intro: "EBDAAI Effects", eyebrow: "EBDAAI EFFECTS · 02", h1a: "Write it.", h1b: "Watch it move.",
+    lede: "Motion graphics and effects on your own PC. Say what you want and it builds it on the timeline, layer by layer, right in front of you. Then change it in words, or by hand like any editor.",
+    cta1: "Download for Windows", cta2: "See the presets", m1: "Timeline & comps", m2: "Graph editor", m3: "MP4 render",
+    rw1: "Write it", rw2: "watch it", rw3: "move.", rlogo: "EBDAAI Effects", reellabel: "YOUR SCROLL IS THE TIMELINE",
+    "why-e": "Why Effects?", w1: "No hundred menus", w2: "to memorise.", w3: "Say what you want,", w4: "and watch it build.",
+    "p-e": "Ready-made presets, all playing", "p-h": "Start from a motion. Make it yours.", "p-p": "Every preset is real layers and keyframes on the timeline. Drop it in, change the words and colours, or tell the assistant “faster” or “in my brand colours”.",
+    t1x: "Slam in", t1: "Slam in", t2x: "Glow", t2: "Pulse & glow", t3x: "Glitch", t3: "Glitch", t4x: "Type it…", t4: "Typewriter", t5: "Liquid shape", t6: "Bounce", t7: "Spark burst", t8: "3D flip",
+    "si-e": "In words", "si-h": "Say it. It moves like that.", "si-p": "You don't need the easing's name. Say how it should feel; it picks the curve and writes the expression. Try:",
+    a1: "Come in hard, then settle", a2: "Bounce like a ball", a3: "Springy", a4: "Heavy and cinematic", a5: "Stop-motion", a6: "Shake with the sound",
+    "b-e": "The assistant", "b-h": "You watch it build. Step by step.",
+    s1: "You say what you want", s1d: "In one sentence — attach pictures and point at them. “/” lists every ready-made skill.",
+    s2: "It reads the comp and plans", s2d: "It looks at what's in your comp, finds the right skill or writes a new one, and orders the steps.",
+    s3: "It builds layer by layer", s3d: "Each step runs on the timeline in front of you: layers, keyframes, easing and motion.",
+    s4: "It checks and fixes", s4d: "It takes a frame of the result, compares it with what you asked, and fixes what's missing. The whole answer is one ⌘Z.",
+    c1: "Make an intro for my logo: it rises from below, glows, with light sparks around it", c2: "The plan:", c3: "I checked the frame at 2s: the glow was a little strong, I eased it 20%.", c4: "Frame 2s: matches the request ✓",
+    "f-e": "With the depth of After Effects", "f-h": "A real editor. Not a toy.", "f-p": "Everything the assistant makes, you can grab and change by hand.",
+    f1: "Comps & precomps", f1d: "A project of comps in tabs, comps inside comps, and settings for each.",
+    f2: "Graph editor", f2d: "Value and speed graphs with easing handles, so motion feels exactly how you want.",
+    f3: "Speed control", f3d: "Stretch a layer, speed an animation, set the work area, add motion blur.",
+    f4: "Generates into the comp", f4d: "A picture, a clip or a Saudi voice-over lands straight in the comp as a layer.",
+    f5: "Expressions in words", f5d: "“Shake it with the sound” or “spin forever” — it writes the expression and applies it.",
+    f6: "Render to the Gallery", f6d: "An MP4 ready in the Gallery, to drop into a campaign or a film in another program, or to keep working on.",
+    "ae-e": "And if you have After Effects", "ae-h": "The same assistant. Inside After Effects.", "ae-p": "EBDAAI comes with an After Effects panel with the same assistant: it reads the comp, plans and runs it, and every answer is one ⌘Z. It generates pictures, video and voice on your PC straight into the project.",
+    ch1: "Layers & shapes", ch2: "Text & motion", ch3: "Transitions", ch4: "Voice-over", ch5: "Picture to layer", ch6: "Continue the shot", ch7: "Ready scripts",
+    "o-e": "Same engine, other programs", o1: "EBDAAI Design", o1d: "Vector logos and posters", o2: "EBDAAI UI/UX", o2d: "From an idea to a working app", o3: "EBDAAI", o3d: "Pictures, video, films, marketing",
+    "fin-h": "Move any idea.", "fin-p": "Effects comes with EBDAAI — one install, the same models on your PC.",
+  },
+  ticker: { ar: ["انترو", "ترانزشن", "تايبوجرافي", "لوقو", "إعلان", "ستوري", "شرح", "موشن"], en: ["Intro", "Transition", "Typography", "Logo", "Ad", "Story", "Explainer", "Motion"] },
+  light: [["#top", "#7a2bff", "#ff2daa", "#3340ff"], ["#why", "#ff2daa", "#7a2bff", "#ffb020"], ["#presets", "#7a2bff", "#ff2daa", "#18c6d6"], ["#sayit", "#ff2daa", "#3340ff", "#7a2bff"], ["#build", "#7a2bff", "#18c6d6", "#ff2daa"], ["#final", "#ff2daa", "#7a2bff", "#bfe0ff"]],
+  motion({ wide }) {
+    if (!reel) return;
+    if (!wide) { reel.repeat(-1).play(); return; }
+    // the window steps to the middle and grows; then the scroll plays the comp
+    const tl = gsap.timeline({ scrollTrigger: { trigger: "#top", start: "top top", end: () => "+=" + innerHeight * 3, pin: true, scrub: .6 } });
+    tl.to(".reel-copy", { opacity: 0, x: () => (rtl() ? 120 : -120), duration: .5 }, 0)
+      .to(".reel .cue", { opacity: 0, duration: .2 }, 0)
+      .to("#reelWin", { left: () => (innerWidth - Math.min(1100, innerWidth * .82)) / 2, right: "auto", width: () => Math.min(1100, innerWidth * .82), top: "54%", duration: .7, ease: "power2.inOut" }, .1)
+      .to("#reelLabel", { opacity: 1, duration: .3 }, .5)
+      .fromTo(reel, { progress: 0 }, { progress: 1, duration: 4, ease: "none", immediateRender: false }, .8)
+      .to("#reelLabel", { opacity: 0, duration: .3 }, 4.4);
+    // before the scroll starts it, the comp rests on its poster frame: the logo, lit
+    reel.progress(.97);
+  },
+  still() { if (reel) reel.progress(.82); },
+  ready() {
+    play("back.out(2.4)");
+    prog.onLang(() => { const t = document.getElementById("glitchTx"); t.dataset.t = t.textContent; });
+  },
+};
+</script>
+<script src="assets/program.js"></script>
+</body>
+</html>

@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="ar" dir="rtl" class="js" data-program="uiux">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="إبداعي UI/UX: من فكرة لتطبيق حقيقي يشتغل. يصقل خطتك معك، يرسم الشاشات، ويبني تطبيق بقاعدة بيانات وتسجيل دخول، ويجرّب كل زر قبل ما يقول جاهز.">
+<meta property="og:title" content="EBDAAI UI/UX · من فكرة. لتطبيق يشتغل.">
+<meta property="og:description" content="خطة، وايرفريم، وتطبيق حقيقي بقاعدة بيانات، على جهازك.">
+<meta property="og:image" content="img/icon_uiux.webp">
+<meta name="theme-color" content="#05060b">
+<link rel="icon" href="img/icon_uiux.webp">
+<title>EBDAAI UI/UX</title>
+<script>document.documentElement.lang = "ar"; document.documentElement.dir = "rtl"; document.documentElement.classList.add("js");</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Baloo+Bhaijaan+2:wght@600;700&family=Changa:wght@700&display=swap">
+<link rel="stylesheet" href="assets/program.css">
+<style>
+/* ── 1 · the opening: an idea becomes a plan, the plan becomes screens, the screens become an app ── */
+.cine { position: relative; height: 100svh; overflow: hidden; }
+.cine-copy { position: absolute; z-index: 5; top: 50%; translate: 0 -50%; inset-inline-start: max(20px, calc((100vw - 1240px) / 2 + 20px)); width: min(560px, 44vw); }
+.cine-copy .badge { display: inline-flex; align-items: center; gap: 12px; }
+.cine-copy .badge img { width: 54px; height: 54px; border-radius: 16px; box-shadow: 0 18px 44px -10px var(--acc); }
+.cine-copy h1 { font-size: clamp(42px, 4.7vw, 80px); line-height: 1.25; margin-block: 20px 18px; }
+.cine-copy h1 .line { display: block; overflow: hidden; padding-block: .04em .1em; }
+.cine-copy h1 .line > span { display: inline-block; white-space: nowrap; }
+[dir="ltr"] .cine-copy h1 { font-size: clamp(40px, 5vw, 82px); line-height: 1.04; }
+[dir="ltr"] .cine-copy h1 .line > span { white-space: normal; }
+.cine-copy .meta { margin-top: 22px; font: 500 12.5px/1.8 var(--mono); color: var(--faint); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+.cine-copy .meta span::before { content: "■ "; color: var(--acc); }
+.cue { position: absolute; z-index: 5; bottom: 22px; left: 50%; translate: -50% 0; font: 500 11px var(--mono); color: var(--faint); letter-spacing: .2em; display: grid; justify-items: center; gap: 8px; }
+.cue i { width: 1px; height: 34px; background: linear-gradient(var(--acc), transparent); animation: cue 2s var(--ease) infinite; transform-origin: top; }
+@keyframes cue { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
+/* the idea, as it's said */
+.idea { position: absolute; z-index: 4; left: 50%; top: 50%; width: min(560px, 80vw); translate: -50% -50%; padding: 22px 24px; border-radius: 22px; background: rgba(13,15,25,.9); border: 1px solid var(--line); box-shadow: 0 40px 100px -30px color-mix(in srgb, var(--acc) 60%, transparent); opacity: 0; }
+.idea .who { display: flex; align-items: center; gap: 10px; font: 500 11.5px var(--mono); color: var(--faint); }
+.idea .who b { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--acc), var(--acc2)); }
+.idea .say { font: 400 clamp(22px, 2.2vw, 30px)/1.6 var(--display); margin-top: 10px; min-height: 3.2em; }
+[dir="ltr"] .idea .say { font: 600 clamp(18px, 1.7vw, 24px)/1.5 var(--kufi); }
+/* the plan's cards */
+.pcard { position: absolute; z-index: 3; left: 50%; top: 50%; width: 190px; padding: 12px 14px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); box-shadow: 0 24px 60px -20px rgba(0,0,0,.9); font-size: 13px; opacity: 0; }
+.pcard b { display: block; font: 500 10.5px var(--mono); color: var(--acc); letter-spacing: .08em; margin-bottom: 6px; }
+.pcard .row { display: flex; flex-wrap: wrap; gap: 4px; }
+.pcard .row i { font-style: normal; padding: 2px 8px; border-radius: 999px; background: var(--raise); border: 1px solid var(--line); font-size: 12px; }
+/* the screens, on a tilted table */
+.table { position: absolute; z-index: 2; inset: 0; perspective: 1400px; pointer-events: none; }
+.plane { position: absolute; left: 50%; top: 52%; width: min(1100px, 92vw); translate: -50% -50%; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; transform-style: preserve-3d; }
+.scr { position: relative; aspect-ratio: 10 / 16; border-radius: 14px; overflow: hidden; box-shadow: 0 30px 60px -24px rgba(0,0,0,.9); opacity: 0; }
+.scr > div { position: absolute; inset: 0; padding: 9px; display: grid; align-content: start; gap: 6px; font-size: 9.5px; }
+.scr .wf { background: #f2f2f2; }
+.scr .wf i { display: block; border-radius: 4px; background: #dedede; }
+.scr .cl { background: #0f2a2e; color: #eafcff; opacity: 0; }
+.scr .cl .top { display: flex; justify-content: space-between; align-items: center; padding: 5px 7px; border-radius: 6px; background: #12363b; font-weight: 600; }
+.scr .cl .top em { font-style: normal; color: #5ee6f0; }
+.scr .cl .card { border-radius: 7px; background: #f4fbfc; color: #0f2a2e; padding: 6px; display: grid; gap: 3px; }
+.scr .cl .card i { height: 22px; border-radius: 5px; background: linear-gradient(135deg, #18c6d6, #3340ff); }
+.scr .cl .pill { justify-self: start; padding: 3px 9px; border-radius: 6px; background: #18c6d6; color: #062024; font-weight: 700; }
+.scr .cl .line { height: 6px; border-radius: 3px; background: #1e4a50; }
+.scr .cl .slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; }
+.scr .cl .slots span { padding: 3px 0; text-align: center; border-radius: 5px; background: #12363b; }
+.scr .cl .slots span.t { opacity: .35; text-decoration: line-through; }
+.scr .cl .slots span.s { background: #18c6d6; color: #062024; font-weight: 700; }
+.scr .ok { position: absolute; z-index: 2; top: 6px; inset-inline-end: 6px; width: 18px; height: 18px; border-radius: 50%; background: #34d399; color: #04130c; font: 700 11px/18px var(--mono); text-align: center; opacity: 0; transform: scale(0); }
+.scr .nm { position: absolute; z-index: 2; inset-inline: 0; bottom: 0; padding: 14px 8px 6px; font: 500 9px var(--mono); color: rgba(255,255,255,.7); background: linear-gradient(transparent, rgba(0,0,0,.55)); direction: ltr; text-align: center; }
+.tally { position: absolute; z-index: 5; inset-inline-end: max(20px, calc((100vw - 1240px) / 2 + 20px)); bottom: 28px; text-align: end; opacity: 0; }
+.tally b { display: block; font: 700 clamp(48px, 6vw, 86px)/1 var(--kufi); color: transparent; -webkit-text-stroke: 1.5px var(--acc); font-variant-numeric: tabular-nums; }
+.tally span { font: 500 12px var(--mono); color: var(--muted); }
+@media (max-width: 960px) {
+  .cine { height: auto; padding-block: 100px 40px; }
+  .cine-copy { position: relative; top: auto; translate: none; inset: auto; width: auto; padding-inline: 20px; }
+  .idea, .pcard, .tally, .cue { display: none; }
+  .table { position: relative; perspective: none; margin-top: 40px; }
+  .plane { position: relative; left: auto; top: auto; translate: none; width: auto; padding-inline: 20px; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .scr { opacity: 1; } .scr .cl { opacity: 1; } .scr .ok { opacity: 1; transform: none; }
+}
+
+/* ── 2 · try it: a real little app, on this page ── */
+.try { padding-block: 110px; }
+.try .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 70px); align-items: center; }
+@media (max-width: 960px) { .try .wrap { grid-template-columns: 1fr; } }
+.device { border-radius: 26px; background: #0f2a2e; color: #eafcff; border: 1px solid #1d4a50; box-shadow: 0 60px 140px -50px rgba(24,198,214,.6); overflow: hidden; }
+.device .bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 16px; background: #12363b; }
+.device .bar b { color: #5ee6f0; font-size: 17px; }
+.roles { display: flex; padding: 3px; border-radius: 999px; background: #0b2124; }
+.roles button { border: 0; background: none; color: #9cc9cd; font: 600 12.5px var(--body); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+.roles button[aria-pressed="true"] { background: #18c6d6; color: #062024; }
+.device .body { padding: 18px; display: grid; gap: 16px; min-height: 420px; align-content: start; }
+.device h3 { font: 600 16px var(--body); }
+[dir="ltr"] .device h3 { font: 600 16px var(--body); }
+.device .lbl { font: 500 11px var(--mono); color: #7fb3b8; letter-spacing: .06em; margin-bottom: 8px; }
+.opts { display: flex; flex-wrap: wrap; gap: 8px; }
+.opts button { border: 1px solid #1d4a50; background: #12363b; color: #eafcff; border-radius: 12px; padding: 9px 13px; font: 500 14px var(--body); cursor: pointer; transition: background .2s, border-color .2s, transform .2s; }
+.opts button small { display: block; font: 500 11px var(--mono); color: #7fb3b8; }
+.opts button[aria-pressed="true"] { background: #18c6d6; border-color: #18c6d6; color: #062024; }
+.opts button[aria-pressed="true"] small { color: #0b4a50; }
+.opts button:disabled { opacity: .35; text-decoration: line-through; cursor: not-allowed; }
+.opts button:not(:disabled):hover { transform: translateY(-2px); }
+.book { justify-self: start; border: 0; border-radius: 12px; padding: 11px 20px; font: 700 15px var(--body); background: #18c6d6; color: #062024; cursor: pointer; }
+.book:disabled { opacity: .4; cursor: not-allowed; }
+.note { font-size: 13.5px; color: #9cc9cd; }
+.toast { padding: 12px 14px; border-radius: 14px; background: #10423f; border: 1px solid #2c8a7f; color: #c9fff4; font-size: 14px; }
+.list { display: grid; gap: 8px; }
+.list .it { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 11px 13px; border-radius: 14px; background: #12363b; font-size: 14px; }
+.list .it small { color: #9cc9cd; }
+.badge-s { font: 600 11.5px var(--body); padding: 3px 9px; border-radius: 999px; background: #3a3413; color: #ffe08a; }
+.badge-s.ok { background: #10423f; color: #9dfbe4; }
+.list .it button { border: 0; border-radius: 10px; padding: 7px 12px; font: 700 13px var(--body); background: #18c6d6; color: #062024; cursor: pointer; }
+.empty { padding: 26px; border-radius: 14px; border: 1px dashed #2a5a60; color: #9cc9cd; text-align: center; font-size: 14px; }
+.try .proof { margin-top: 26px; display: grid; gap: 8px; font-size: 14.5px; color: var(--muted); }
+.try .proof span::before { content: "✓ "; color: #34d399; }
+
+/* ── 3 · numbers ── */
+.nums { padding-block: 40px 90px; }
+.nums .row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+@media (max-width: 860px) { .nums .row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.num { padding: 28px 18px 10px 0; border-bottom: 1px solid var(--line); }
+[dir="rtl"] .num { padding: 28px 0 10px 18px; }
+.num b { display: block; font: 700 clamp(54px, 6.4vw, 96px)/1 var(--kufi); color: transparent; -webkit-text-stroke: 1.5px var(--acc); font-variant-numeric: tabular-nums; direction: ltr; text-align: start; }
+[dir="rtl"] .num b { text-align: end; }
+.num b small { font-size: .42em; -webkit-text-stroke: 1px var(--acc); }
+.num > span { display: block; margin-top: 10px; color: var(--muted); font-size: 15px; }
+.num em { display: block; font: 500 11px var(--mono); color: var(--faint); font-style: normal; margin-top: 4px; }
+
+/* ── 4 · the checks, as they run ── */
+.checks { padding-block: 90px; }
+.checks .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 70px); align-items: center; }
+@media (max-width: 960px) { .checks .wrap { grid-template-columns: 1fr; } }
+.term { border-radius: 20px; background: #06080f; border: 1px solid var(--line); box-shadow: 0 60px 120px -40px rgba(0,0,0,.95); overflow: hidden; }
+.term .head { display: flex; gap: 6px; padding: 12px 14px; background: #0b0e19; border-bottom: 1px solid var(--line); }
+.term .head i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.term pre { margin: 0; padding: 16px 18px; height: 360px; overflow: hidden; font: 500 12.5px/1.75 var(--mono); color: #9aa3bd; direction: ltr; text-align: left; white-space: pre-wrap; }
+.term pre .ok { color: #34d399; } .term pre .fix { color: #ffb020; } .term pre .h { color: var(--acc3); }
+.bars { display: grid; gap: 14px; margin-top: 26px; }
+.bars div { display: grid; gap: 6px; font-size: 14.5px; }
+.bars div span { display: flex; justify-content: space-between; color: var(--muted); }
+.bars div span b { color: var(--fg); font-family: var(--mono); font-weight: 500; }
+.bars i { display: block; height: 6px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.bars i::after { content: ""; display: block; height: 100%; width: var(--w, 0%); background: linear-gradient(90deg, var(--acc2), var(--acc)); transition: width 1.4s var(--ease); }
+
+/* ── 5 · one screen, three identities ── */
+.morph { padding-block: 100px; }
+.morph .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 70px); align-items: center; }
+@media (max-width: 960px) { .morph .wrap { grid-template-columns: 1fr; } }
+.skin { --bg: #fbf3ea; --ink2: #2e2a4f; --card: #fffaf4; --accent: #f2994a; --on: #3a1e05; --r: 22px; --f: "Baloo Bhaijaan 2", var(--body); --sub: #7d7896;
+  border-radius: 28px; background: var(--bg); color: var(--ink2); padding: 22px; display: grid; gap: 14px; box-shadow: 0 60px 140px -50px rgba(0,0,0,.9); transition: background .8s var(--ease), color .8s var(--ease); }
+.skin * { transition: background .8s var(--ease), color .8s var(--ease), border-radius .8s var(--ease); }
+.skin .t { font: 700 clamp(26px, 2.6vw, 36px)/1.2 var(--f); }
+.skin .sub { color: var(--sub); font-size: 14px; }
+.skin .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.skin .cards div { border-radius: var(--r); background: var(--card); padding: 12px; display: grid; gap: 6px; font-size: 13.5px; }
+.skin .cards div i { height: 52px; border-radius: calc(var(--r) * .7); background: var(--accent); opacity: .85; }
+.skin .go { justify-self: start; border-radius: var(--r); background: var(--accent); color: var(--on); padding: 10px 18px; font: 700 14.5px var(--f); }
+.skin-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.skin-tags button { border: 1px solid var(--line); background: var(--panel); color: var(--muted); border-radius: 999px; padding: 8px 15px; font: 500 14px var(--body); cursor: pointer; }
+.skin-tags button[aria-pressed="true"] { color: var(--fg); border-color: color-mix(in srgb, var(--acc) 55%, transparent); }
+.skin-spec { margin-top: 18px; font: 500 12px/1.9 var(--mono); color: var(--faint); direction: ltr; text-align: start; }
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="grain" id="grain" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"></div>
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="intro" id="intro" aria-hidden="true"><div class="inner"><img src="img/icon_uiux.webp" alt=""><div class="name" data-k="intro">إبداعي UI/UX</div><div class="pct" id="introPct">000</div></div></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" aria-label="الرئيسية">
+  <div class="wrap">
+    <a class="brand" href="index.html" aria-label="EBDAAI"><span class="mark" data-mark></span><span data-k="brand">إبداع<b>ي</b></span></a>
+    <div class="nav-links">
+      <a href="index.html#why" data-k="n1">ليش جهازك</a>
+      <a href="index.html#looks" data-k="n2">وش يسوي</a>
+      <a href="index.html#programs" data-k="n3">البرامج</a>
+      <a href="index.html#specs" data-k="n4">المتطلبات</a>
+    </div>
+    <div class="prog-links" aria-label="البرامج">
+      <a href="design.html"><img src="img/icon_design.webp" alt=""><span data-k="nav-design">ديزاين</span></a>
+      <a href="uiux.html" aria-current="page"><img src="img/icon_uiux.webp" alt=""><span data-k="nav-uiux">UI/UX</span></a>
+      <a href="effects.html"><img src="img/icon_effects.webp" alt=""><span data-k="nav-effects">إفكتس</span></a>
+    </div>
+    <button class="lang" id="lang" type="button" aria-label="English">EN</button>
+    <a class="btn btn-primary magnetic" href="https://github.com/mowshcashy/ebdaai-releases/releases/latest" target="_blank" rel="noopener" data-k="navcta">حمّل إبداعي</a>
+  </div>
+</nav>
+
+<main>
+<section class="cine" id="top" aria-label="من فكرة لتطبيق">
+  <div class="cine-copy copy">
+    <div class="badge" data-hero><img src="img/icon_uiux.webp" alt=""><span class="eyebrow" data-k="eyebrow">EBDAAI UI/UX · 04</span></div>
+    <h1><span class="line"><span data-k="h1a">من فكرة.</span></span><span class="line"><span class="glow" data-k="h1b">لتطبيق يشتغل.</span></span></h1>
+    <p class="lede" data-hero data-k="lede">تقول فكرتك ومستخدمينك، ويصقلها معك في خطة. يرسم كل الشاشات، ويبني تطبيق حقيقي فيه قاعدة بيانات وتسجيل دخول وأدوار. وما يقول «جاهز» قبل ما يجرّب كل زر بنفسه.</p>
+    <div class="cta-row" data-hero>
+      <a class="btn btn-primary magnetic" href="https://github.com/mowshcashy/ebdaai-releases/releases/latest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg><span data-k="cta1">حمّل لويندوز</span></a>
+      <a class="btn btn-ghost" href="#try" data-k="cta2">جرّب تطبيق بناه</a>
+    </div>
+    <div class="meta" data-hero><span>Next.js · SQLite</span><span data-k="m2">تسجيل دخول وأدوار</span><span data-k="m3">ويب وجوال</span></div>
+  </div>
+  <div class="idea" id="idea" aria-hidden="true">
+    <div class="who"><b></b><span data-k="who">أنت · الخطة</span></div>
+    <div class="say" id="ideaSay"></div>
+  </div>
+  <div id="pcards" aria-hidden="true">
+    <div class="pcard"><b data-k="pc1">IDEA</b><span data-k="pc1d">حجز موعد بالصالون بدون اتصالات</span></div>
+    <div class="pcard"><b data-k="pc2">USERS</b><div class="row"><i data-k="u1">زبونة</i><i data-k="u2">خبيرة</i><i data-k="u3">مديرة</i></div></div>
+    <div class="pcard"><b data-k="pc3">FEATURES</b><div class="row"><i data-k="ft1">حجز</i><i data-k="ft2">أوقات فاضية</i><i data-k="ft3">تأكيد</i><i data-k="ft4">تذكير</i></div></div>
+    <div class="pcard"><b data-k="pc4">PAGES</b><div class="row"><i data-k="pg1">الخدمات</i><i data-k="pg2">احجزي</i><i data-k="pg3">مواعيدي</i><i data-k="pg4">اللوحة</i></div></div>
+    <div class="pcard"><b data-k="pc5">DATA</b><div class="row" style="direction:ltr"><i>Booking</i><i>Service</i><i>Expert</i><i>Slot</i></div></div>
+    <div class="pcard"><b data-k="pc6">DIRECTION</b><span data-k="pc6d">هادي وأنيق، تركوازي</span></div>
+  </div>
+  <div class="table" aria-hidden="true"><div class="plane" id="plane"></div></div>
+  <div class="tally" id="tally" aria-hidden="true"><b id="tallyN">0/12</b><span data-k="tally">صفحة · انبنت وانفحصت</span></div>
+  <div class="cue" aria-hidden="true"><span>SCROLL</span><i></i></div>
+</section>
+
+<section class="manifesto arcs-host" id="why">
+  <svg class="arc r" viewBox="0 0 878 780" aria-hidden="true"><defs><linearGradient id="arcUxR" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3340ff"/><stop offset="1" stop-color="#18c6d6"/></linearGradient></defs><path stroke="url(#arcUxR)" d="M832.012 732.188C635.636 750.492 203.309 638.682 45.0117 45.0111"/></svg>
+  <svg class="arc l" viewBox="0 0 878 780" aria-hidden="true"><defs><linearGradient id="arcUxL" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#18c6d6"/><stop offset="1" stop-color="#3340ff"/></linearGradient></defs><path stroke="url(#arcUxL)" d="M832.004 45.0059C794.251 302.86 583.997 800.189 45.0039 726.672"/></svg>
+  <div class="wrap">
+    <div class="eyebrow" data-k="why-e">ليش UI/UX؟</div>
+    <div class="words">
+      <span data-k="w1">مو صور</span>
+      <span data-k="w2">تعرضها.</span>
+      <span class="acc" data-k="w3">تطبيق حقيقي</span>
+      <span data-k="w4">الناس يستخدمونه.</span>
+    </div>
+  </div>
+</section>
+
+<section class="try" id="try">
+  <div class="wrap">
+    <div data-reveal>
+      <div class="eyebrow" data-k="try-e">جرّبه بنفسك</div>
+      <h2 class="h2" style="margin-top:10px" data-k="try-h">هذا مو تصميم. هذا يشتغل.</h2>
+      <p class="lede" style="margin-top:12px" data-k="try-p">مثل التطبيقات اللي يبنيها: احجزي موعد كزبونة، وبعدها بدّلي للمديرة وأكّدي الحجز. الأوقات المحجوزة مقفلة، والحجز يوصل للوحة على طول.</p>
+      <div class="proof"><span data-k="pr1">ما تقدر تحجز وقت محجوز، لا من الواجهة ولا من السيرفر</span><span data-k="pr2">كل دور يشوف اللي يخصه بس</span><span data-k="pr3">كل هذا انفحص بنفسه قبل ما يقول جاهز</span></div>
+    </div>
+    <div class="device" data-reveal>
+      <div class="bar"><b data-k="appname">صالوني</b><div class="roles" role="group" aria-label="الدور"><button type="button" aria-pressed="true" data-role="client" data-k="r1">زبونة</button><button type="button" aria-pressed="false" data-role="admin" data-k="r2">المديرة</button></div></div>
+      <div class="body" id="appBody" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="nums" id="nums">
+  <div class="wrap">
+    <div class="eyebrow" data-k="n-e">من تجارب حقيقية</div>
+    <div class="row" style="margin-top:22px">
+      <div class="num"><b><span data-count="46">0</span></b><span data-k="n1t">صفحة بخطة وحدة</span><em data-k="n1e">٤ أدوار · مراجعة «ما فات شي»</em></div>
+      <div class="num"><b><span data-count="72">0</span><small data-k="sec">ث</small></b><span data-k="n2t">لوايرفريم كل الصفحات</span><em data-k="n2e">كانت ٢٨ دقيقة لـ١٢ صفحة</em></div>
+      <div class="num"><b><span data-count="17">0</span><small data-k="min">د</small></b><span data-k="n3t">لتطبيق بـ٣٢ صفحة</span><em data-k="n3e">بكل الفحوصات · بدون تصليح</em></div>
+      <div class="num"><b><span data-count="26">0</span>/26</b><span data-k="n4t">فحص أزرار ونماذج</span><em data-k="n4e">مثل ما يستخدمه الشخص</em></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true"><div class="row" id="ticker"></div></div>
+
+<section class="checks" id="checks">
+  <div class="wrap">
+    <div data-reveal>
+      <div class="eyebrow" data-k="c-e">ما يقول جاهز قبل ما يتأكد</div>
+      <h2 class="h2" style="margin-top:10px" data-k="c-h">يفحص. يصلّح. يعيد.</h2>
+      <p class="lede" style="margin-top:12px" data-k="c-p">كل صفحة تنفحص أول ما تنكتب، وبعدها التطبيق كله: الأنواع، والبناء، وكل صفحة بكل دور، وكل زر ونموذج. ولو فيه شي غلط، يصلّحه ويعيد الفحص.</p>
+      <div class="bars" id="bars">
+        <div><span><span data-k="bar1">كل صفحة لحالها</span><b>32/32</b></span><i style="--t:100%"></i></div>
+        <div><span><span data-k="bar2">زيارة كل صفحة بكل دور</span><b>33/33</b></span><i style="--t:100%"></i></div>
+        <div><span><span data-k="bar3">الأزرار والنماذج</span><b>26/26</b></span><i style="--t:100%"></i></div>
+      </div>
+    </div>
+    <div class="term" data-reveal aria-hidden="true"><div class="head"><i></i><i></i><i></i></div><pre id="term"></pre></div>
+  </div>
+</section>
+
+<section class="morph" id="looks">
+  <div class="wrap">
+    <div data-reveal>
+      <div class="eyebrow" data-k="l-e">هوية لكل تطبيق</div>
+      <h2 class="h2" style="margin-top:10px" data-k="l-h">ولا تطبيقين نفس الشكل.</h2>
+      <p class="lede" style="margin-top:12px" data-k="l-p">قبل البناء يسوي هوية بصرية من موضوع تطبيقك: ألوان، وخطوط، وزوايا، وتنقل، وعنصر يميّزه. نفس الشاشة، بثلاث هويات طلعت من تجاربنا.</p>
+      <div class="skin-tags" id="skinTags"><button type="button" aria-pressed="true" data-k="sk1">عيادة أطفال</button><button type="button" aria-pressed="false" data-k="sk2">ورشة سيارات</button><button type="button" aria-pressed="false" data-k="sk3">مكتبة حي</button></div>
+      <div class="skin-spec" id="skinSpec"></div>
+    </div>
+    <div class="skin" id="skin" data-reveal aria-hidden="true">
+      <span class="sub" id="skinSub"></span>
+      <span class="t" id="skinT"></span>
+      <div class="cards"><div><i></i><span id="sk-a"></span></div><div><i></i><span id="sk-b"></span></div><div><i></i><span id="sk-c"></span></div></div>
+      <span class="go" id="skinGo"></span>
+    </div>
+  </div>
+</section>
+
+<section class="feats" id="feats">
+  <div class="wrap">
+    <div class="eyebrow" data-k="f-e">أكثر من شاشات</div>
+    <h2 class="h2" style="margin-top:10px" data-k="f-h">يسوي اللي يسويه فريق.</h2>
+    <p class="lede" style="margin-top:10px" data-k="f-p">باحث ومصمم ومبرمج ومختبر، في برنامج واحد على جهازك.</p>
+    <div class="feat-grid">
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 5h16v10H8l-4 4z"/></svg></span><h3 data-k="f1">الخطة بالشات</h3><p data-k="f1d">يرتب كلامك في بطاقات، ويتحداك بلطف لو فيه شي زايد أو ناقص، ويراجع الخطة على كل اللي قلته.</p><div class="k">plan · challenge · audit</div></article>
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 15l4-4 4 4 3-3 5 5"/></svg></span><h3 data-k="f2">الصور والشعار</h3><p data-k="f2d">ترفع شعارك وصور مرجعية، وبعد البناء يعد أماكن الصور ويسألك: يسويها، ولا ترفعها أنت؟</p><div class="k">logo · references · pictures</div></article>
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span><h3 data-k="f3">عدّل بالكلام</h3><p data-k="f3d">«أضف فلتر بالتاريخ». يعدّل الكود، والجداول تتغير بترحيل يحافظ على البيانات، وينعاد كل الفحص.</p><div class="k">change · migrate · re-check</div></article>
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg></span><h3 data-k="f4">أعد تصميم تطبيق موجود</h3><p data-k="f4d">من رابطه، أو لقطات منه، أو مجلد كوده. يطلّع خطته مع اللي يحتاج يتحسّن.</p><div class="k">link · screenshots · code</div></article>
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg></span><h3 data-k="f5">تطبيق جوال</h3><p data-k="f5d">Expo على نفس بيانات تطبيق الويب. تشوفه داخل البرنامج، وتفتحه بجوالك من Expo Go.</p><div class="k">Expo · same data</div></article>
+      <article class="feat"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></svg></span><h3 data-k="f6">انشره بضغطة</h3><p data-k="f6d">على Vercel وTurso بحساباتك أنت، بقاعدة فاضية فيها حساب مدير لك. والنسخ الجاية تحافظ على البيانات.</p><div class="k">Vercel · Turso</div></article>
+    </div>
+  </div>
+</section>
+
+<section class="others" id="others">
+  <div class="wrap">
+    <div class="eyebrow" data-k="o-e">نفس المحرك، برامج ثانية</div>
+    <div class="row">
+      <a class="other" href="design.html" style="--og:#ffb020"><img src="img/icon_design.webp" alt=""><span><b data-k="o1">إبداعي ديزاين</b><small data-k="o1d">شعار تطبيقك، فيكتور</small></span><span class="go" aria-hidden="true">→</span></a>
+      <a class="other" href="effects.html" style="--og:#ff2daa"><img src="img/icon_effects.webp" alt=""><span><b data-k="o2">إبداعي إفكتس</b><small data-k="o2d">فيديو الإطلاق، بالكلام</small></span><span class="go" aria-hidden="true">→</span></a>
+      <a class="other" href="index.html" style="--og:#5b9bff"><img src="img/icon_studio.webp" alt=""><span><b data-k="o3">إبداعي</b><small data-k="o3d">صور، فيديو، أفلام، تسويق</small></span><span class="go" aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="final arcs-host" id="final">
+  <svg class="arc r" viewBox="0 0 878 780" aria-hidden="true"><defs><linearGradient id="arcUxFR" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#3340ff"/><stop offset="1" stop-color="#18c6d6"/></linearGradient></defs><path stroke="url(#arcUxFR)" d="M832.012 732.188C635.636 750.492 203.309 638.682 45.0117 45.0111"/></svg>
+  <svg class="arc l" viewBox="0 0 878 780" aria-hidden="true"><defs><linearGradient id="arcUxFL" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#18c6d6"/><stop offset="1" stop-color="#3340ff"/></linearGradient></defs><path stroke="url(#arcUxFL)" d="M832.004 45.0059C794.251 302.86 583.997 800.189 45.0039 726.672"/></svg>
+  <div class="wrap">
+    <img class="big-icon" src="img/icon_uiux.webp" alt="" data-reveal>
+    <h2 data-reveal data-k="fin-h">ابنِ فكرتك.</h2>
+    <p class="lede" data-reveal data-k="fin-p">UI/UX يجي مع إبداعي، بنفس التثبيت. يشتغل مع Claude أو أي موديل على جهازك.</p>
+    <div class="cta-row" data-reveal><a class="btn btn-primary magnetic" href="https://github.com/mowshcashy/ebdaai-releases/releases/latest" target="_blank" rel="noopener" data-k="navcta">حمّل إبداعي</a></div>
+  </div>
+</section>
+</main>
+
+<footer><div class="wrap"><span><span data-k="foot">© 2026 إبداعي · EBDAAI</span> · <span data-k="made">صُنع بواسطة</span> <a class="credit" href="https://www.linkedin.com/in/moathwsh/" target="_blank" rel="noopener">moathwsh<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C20.6 8.65 21 11.3 21 14.7V21h-4v-5.6c0-1.34-.02-3.06-1.86-3.06-1.87 0-2.15 1.46-2.15 2.96V21H9z"/></svg></a></span><span style="font-family:var(--mono)">v1.0.56</span></div></footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+// UI/UX — what's special here:
+//  · the opening: an idea is typed, breaks into the plan's cards, and the cards become twelve screens on a tilted
+//    table that colour in and get their ✓ one by one — the scroll drives it;
+//  · a booking app that really works on the page, with two roles;
+//  · the numbers from real builds, the checks as they run, and one screen in three identities.
+const L = () => (window.prog && prog.lang() === "en" ? "en" : "ar");
+const IDEA = { ar: "تطبيق حجوزات لصالوني: الزبونة تحجز وقت فاضي، والخبيرة تشوف مواعيدها، والمديرة تأكد الحجوزات.", en: "A booking app for my salon: clients book a free slot, stylists see their day, the manager confirms bookings." };
+// the twelve screens of the plan
+const SCREENS = [
+  { ar: "الرئيسية", en: "Home", k: "hero" }, { ar: "الخدمات", en: "Services", k: "cards" }, { ar: "احجزي", en: "Book", k: "slots" },
+  { ar: "مواعيدي", en: "My bookings", k: "list" }, { ar: "الخبيرات", en: "Stylists", k: "cards" }, { ar: "تسجيل الدخول", en: "Sign in", k: "form" },
+  { ar: "إنشاء حساب", en: "Sign up", k: "form" }, { ar: "لوحة المديرة", en: "Dashboard", k: "dash" }, { ar: "الطلبات", en: "Requests", k: "list" },
+  { ar: "جدول اليوم", en: "Today", k: "slots" }, { ar: "إضافة خدمة", en: "New service", k: "form" }, { ar: "حسابي", en: "Account", k: "list" },
+];
+const wf = (k) => ({
+  hero: '<i style="height:12px;width:60%"></i><i style="height:70px"></i><i style="height:8px;width:80%"></i><i style="height:16px;width:40%;background:#bbb"></i>',
+  cards: '<i style="height:10px;width:50%"></i><i style="height:44px"></i><i style="height:44px"></i><i style="height:44px"></i>',
+  slots: '<i style="height:10px;width:50%"></i><i style="height:30px"></i><i style="height:52px"></i><i style="height:16px;width:45%;background:#bbb"></i>',
+  list: '<i style="height:10px;width:55%"></i><i style="height:22px"></i><i style="height:22px"></i><i style="height:22px"></i><i style="height:22px"></i>',
+  form: '<i style="height:10px;width:50%"></i><i style="height:18px"></i><i style="height:18px"></i><i style="height:18px"></i><i style="height:18px;width:50%;background:#bbb"></i>',
+  dash: '<i style="height:10px;width:50%"></i><i style="height:40px"></i><i style="height:26px"></i><i style="height:26px"></i>',
+}[k]);
+const cl = (k, title) => {
+  const en = L() === "en";
+  const top = `<span class="top"><em>${en ? "My Salon" : "صالوني"}</em><span>${title}</span></span>`;
+  const card = (t, m) => `<span class="card"><i></i><b>${t}</b><small>${m}</small></span>`;
+  return top + ({
+    hero: `<span class="card" style="padding:10px"><b style="font-size:12px">${en ? "Book in a minute" : "احجزي بدقيقة"}</b><span class="line"></span><span class="line" style="width:70%"></span></span><span class="pill">${en ? "Book now" : "احجزي الآن"}</span>`,
+    cards: card(en ? "Cut" : "قص", en ? "45 min" : "٤٥ د") + card(en ? "Colour" : "صبغة", en ? "90 min" : "٩٠ د"),
+    slots: `<span class="slots"><span>9:00</span><span class="t">9:30</span><span>10:00</span><span class="s">10:30</span><span class="t">11:00</span><span>11:30</span></span><span class="pill">${en ? "Confirm" : "أكّدي"}</span>`,
+    list: `<span class="card"><b>${en ? "Cut · Sun 10:30" : "قص · الأحد ١٠:٣٠"}</b><small>${en ? "Confirmed" : "مؤكد"}</small></span><span class="card"><b>${en ? "Colour · Tue 4:00" : "صبغة · الثلاثاء ٤:٠٠"}</b><small>${en ? "Waiting" : "بانتظار"}</small></span>`,
+    form: `<span class="line"></span><span class="line"></span><span class="line" style="width:60%"></span><span class="pill">${en ? "Continue" : "كمّلي"}</span>`,
+    dash: `<span class="card"><b style="font-size:16px">12</b><small>${en ? "bookings today" : "حجز اليوم"}</small></span><span class="card"><b>${en ? "3 waiting" : "٣ بانتظار التأكيد"}</b></span>`,
+  }[k]);
+};
+// the screens are built once; a language change only repaints their words
+const paintScreens = () => {
+  const plane = document.getElementById("plane");
+  if (!plane.children.length) plane.innerHTML = SCREENS.map((s) => `<div class="scr"><div class="wf">${wf(s.k)}</div><div class="cl"></div><span class="ok">✓</span><span class="nm">/${s.en.toLowerCase().replace(/\s+/g, "-")}</span></div>`).join("");
+  [...plane.children].forEach((el, i) => (el.querySelector(".cl").innerHTML = cl(SCREENS[i].k, SCREENS[i][L()])));
+};
+
+// ── the little app that really works
+const T = {
+  ar: { svc: "الخدمة", day: "اليوم", time: "الوقت", book: "احجزي", pick: "اختاري الخدمة واليوم والوقت.", done: (s, d, t) => `انحجز: ${s} · ${d} · ${t}. يوصل للمديرة الحين.`, mine: "مواعيدي", none: "ما عندك مواعيد للحين.", req: "الطلبات", noReq: "ما فيه طلبات. احجزي كزبونة أول.", wait: "بانتظار التأكيد", ok: "مؤكد", confirm: "أكّدي", services: [["قص", "٤٥ د"], ["صبغة", "٩٠ د"], ["سشوار", "٣٠ د"]], days: ["الأحد", "الإثنين", "الثلاثاء", "الأربعاء"] },
+  en: { svc: "Service", day: "Day", time: "Time", book: "Book", pick: "Pick a service, a day and a time.", done: (s, d, t) => `Booked: ${s} · ${d} · ${t}. The manager sees it now.`, mine: "My bookings", none: "No bookings yet.", req: "Requests", noReq: "No requests. Book as a client first.", wait: "Waiting", ok: "Confirmed", confirm: "Confirm", services: [["Cut", "45 min"], ["Colour", "90 min"], ["Blow-dry", "30 min"]], days: ["Sun", "Mon", "Tue", "Wed"] },
+};
+const TIMES = ["9:00", "9:30", "10:00", "10:30", "11:00", "11:30", "4:00", "4:30"];
+const app = { role: "client", svc: null, day: null, time: null, toast: null, bookings: [], taken: new Set(["0|9:30", "0|11:00", "1|10:00", "2|4:00", "3|9:00"]) };
+const renderApp = () => {
+  const t = T[L()], body = document.getElementById("appBody");
+  const opt = (k, v, label, small, dis) => `<button type="button" data-${k}="${v}" aria-pressed="${app[k] === v}"${dis ? " disabled" : ""}>${label}${small ? `<small>${small}</small>` : ""}</button>`;
+  if (app.role === "client") {
+    const svc = t.services.map(([n, m], i) => opt("svc", i, n, m)).join("");
+    const day = t.days.map((d, i) => opt("day", i, d)).join("");
+    const time = app.day == null ? "" : TIMES.map((h) => opt("time", h, h, "", app.taken.has(`${app.day}|${h}`))).join("");
+    const mine = app.bookings.length ? `<div class="list">${app.bookings.map((b) => `<div class="it"><span>${t.services[b.svc][0]} <small>· ${t.days[b.day]} ${b.time}</small></span><span class="badge-s ${b.ok ? "ok" : ""}">${b.ok ? t.ok : t.wait}</span></div>`).join("")}</div>` : `<div class="empty">${t.none}</div>`;
+    body.innerHTML = `<div><div class="lbl">${t.svc}</div><div class="opts">${svc}</div></div><div><div class="lbl">${t.day}</div><div class="opts">${day}</div></div>${app.day == null ? "" : `<div><div class="lbl">${t.time}</div><div class="opts">${time}</div></div>`}
+      <button type="button" class="book" id="bookBtn"${app.svc == null || app.day == null || !app.time ? " disabled" : ""}>${t.book}</button>${app.toast ? `<div class="toast">${app.toast}</div>` : `<p class="note">${t.pick}</p>`}<div><div class="lbl">${t.mine}</div>${mine}</div>`;
+  } else {
+    const list = app.bookings.length ? `<div class="list">${app.bookings.map((b, i) => `<div class="it"><span>${t.services[b.svc][0]} <small>· ${t.days[b.day]} ${b.time}</small></span>${b.ok ? `<span class="badge-s ok">${t.ok}</span>` : `<button type="button" data-confirm="${i}">${t.confirm}</button>`}</div>`).join("")}</div>` : `<div class="empty">${t.noReq}</div>`;
+    body.innerHTML = `<h3>${t.req}</h3>${list}`;
+  }
+};
+document.addEventListener("click", (e) => {
+  const b = e.target.closest("#appBody button, .roles button");
+  if (!b) return;
+  const t = T[L()];
+  if (b.dataset.role) { app.role = b.dataset.role; app.toast = null; document.querySelectorAll(".roles button").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); }
+  else if (b.dataset.svc != null) app.svc = +b.dataset.svc;
+  else if (b.dataset.day != null) { app.day = +b.dataset.day; app.time = null; }
+  else if (b.dataset.time) app.time = b.dataset.time;
+  else if (b.id === "bookBtn") { app.taken.add(`${app.day}|${app.time}`); app.bookings.push({ svc: app.svc, day: app.day, time: app.time, ok: false }); app.toast = t.done(t.services[app.svc][0], t.days[app.day], app.time); app.time = null; }
+  else if (b.dataset.confirm != null) app.bookings[+b.dataset.confirm].ok = true;
+  renderApp();
+});
+
+// ── the checks, as they run
+const LOG = [
+  ["h", "▸ build · salon-app · 12 pages"], ["", "  page /services ........ types ✓  visit(member) ✓"], ["", "  page /book ............ types ✓  visit(member) ✓"], ["", "  page /bookings ........ types ✓  visit(member) ✓"],
+  ["fix", "  page /dashboard ....... visit(admin) 500 → fixing (1/2)"], ["", "  page /dashboard ....... types ✓  visit(admin) ✓"], ["h", "▸ npm run check ........ tsc ✓  next build ✓"],
+  ["h", "▸ every page, signed out and in"], ["ok", "  33/33 routes ✓"], ["h", "▸ flows · headless browser · check.db"], ["ok", "  ✓ client books a free slot"], ["ok", "  ✓ a taken slot can't be booked"],
+  ["ok", "  ✓ manager confirms a booking"], ["ok", "  ✓ client can't open the dashboard"], ["ok", "  ✓ 26/26 flows passed"], ["h", "▸ ready · http://localhost:4382"],
+];
+let logRun = 0;
+const runLog = () => {
+  const pre = document.getElementById("term"), run = ++logRun;
+  pre.innerHTML = "";
+  LOG.forEach(([c, line], i) => setTimeout(() => { if (run !== logRun) return; pre.insertAdjacentHTML("beforeend", `<span class="${c}">${line}</span>\n`); pre.scrollTop = pre.scrollHeight; if (i === LOG.length - 1) setTimeout(() => run === logRun && runLog(), 4000); }, i * 380));
+};
+
+// ── one screen, three identities (from the real builds)
+const SKINS = [
+  { css: { "--bg": "#fbf3ea", "--ink2": "#2e2a4f", "--card": "#fffaf4", "--accent": "#f2994a", "--on": "#3a1e05", "--r": "22px", "--f": '"Baloo Bhaijaan 2", var(--body)', "--sub": "#7d7896" }, ar: ["بسمة · عيادة أسنان أطفال", "موعد ولدك، بضغطة", ["فحص", "تنظيف", "حشوة"], "احجز موعد"], en: ["Basma · kids' dental clinic", "Your child's visit, in a tap", ["Check-up", "Clean", "Filling"], "Book a visit"], spec: "Baloo Bhaijaan 2 · Readex Pro · radius 20 · bottom tabs · the smile arc" },
+  { css: { "--bg": "#e4e1d9", "--ink2": "#1b1e21", "--card": "#f5f3ee", "--accent": "#f25c05", "--on": "#1b1e21", "--r": "2px", "--f": '"Changa", var(--kufi)', "--sub": "#6e6c65" }, ar: ["ورشتي · ورشة سيارات", "أوامر اليوم", ["بانتظار قطعة", "قيد العمل", "جاهزة"], "أمر إصلاح جديد"], en: ["My Garage · car workshop", "Today's work orders", ["Waiting for a part", "In progress", "Ready"], "New work order"], spec: "Changa · IBM Plex Sans Arabic · radius 2 · steel side bar · the hanging job card" },
+  { css: { "--bg": "#1d2a44", "--ink2": "#f5ecd8", "--card": "#26375a", "--accent": "#c9982a", "--on": "#1d2a44", "--r": "10px", "--f": "var(--display)", "--sub": "#b9ad92" }, ar: ["مكتبتي · مكتبة حي", "كتابك القادم على الرف", ["متاح", "معار", "متاح"], "اطلب الإعارة"], en: ["My Library · a neighbourhood library", "Your next book is on the shelf", ["Available", "On loan", "Available"], "Request a loan"], spec: "Dima Naskh · Reem Kufi · radius 10 · top shelf bar · the three-slot loan shelf" },
+];
+let skinI = 0, skinTimer;
+const paintSkin = (i) => {
+  skinI = i; const s = SKINS[i], w = s[L()], el = document.getElementById("skin");
+  Object.entries(s.css).forEach(([k, v]) => el.style.setProperty(k, v));
+  document.getElementById("skinSub").textContent = w[0]; document.getElementById("skinT").textContent = w[1];
+  ["a", "b", "c"].forEach((k, j) => (document.getElementById(`sk-${k}`).textContent = w[2][j]));
+  document.getElementById("skinGo").textContent = w[3]; document.getElementById("skinSpec").textContent = s.spec;
+  document.querySelectorAll("#skinTags button").forEach((b, j) => b.setAttribute("aria-pressed", String(j === i)));
+};
+document.querySelectorAll("#skinTags button").forEach((b, j) => b.addEventListener("click", () => { clearInterval(skinTimer); paintSkin(j); }));
+
+window.PROGRAM = {
+  en: {
+    intro: "EBDAAI UI/UX", eyebrow: "EBDAAI UI/UX · 04", h1a: "From an idea.", h1b: "To an app that works.",
+    lede: "Tell it your idea and your users, and it polishes them into a plan with you. It draws every screen, then builds a real app with a database, sign-in and roles. And it won't call it ready until it has pressed every button itself.",
+    cta1: "Download for Windows", cta2: "Try an app it built", m2: "Sign-in & roles", m3: "Web & phone", who: "You · the plan", tally: "pages · built and checked",
+    pc1: "IDEA", pc1d: "Book a salon visit without calling", pc2: "USERS", u1: "Client", u2: "Stylist", u3: "Manager", pc3: "FEATURES", ft1: "Booking", ft2: "Free slots", ft3: "Confirm", ft4: "Reminder", pc4: "PAGES", pg1: "Services", pg2: "Book", pg3: "My bookings", pg4: "Dashboard", pc5: "DATA", pc6: "DIRECTION", pc6d: "Calm and elegant, teal",
+    "why-e": "Why UI/UX?", w1: "Not pictures", w2: "to show off.", w3: "A real app", w4: "people use.",
+    "try-e": "Try it yourself", "try-h": "This isn't a mock-up. It works.", "try-p": "Like the apps it builds: book a visit as a client, then switch to the manager and confirm it. Taken slots are locked, and the booking reaches the dashboard straight away.",
+    pr1: "A taken slot can't be booked — not from the screen, not on the server", pr2: "Each role sees only what's theirs", pr3: "All of it checked by itself before it says ready", appname: "My Salon", r1: "Client", r2: "Manager",
+    "n-e": "From real builds", n1t: "pages in one plan", n1e: "4 roles · “nothing missed” audit", n2t: "to wireframe every page", n2e: "it was 28 minutes for 12", sec: "s", n3t: "for a 32-page app", n3e: "with every check · no fixes", min: "m", n4t: "button & form flows", n4e: "used the way a person does",
+    "c-e": "It won't say ready before it checks", "c-h": "Check. Fix. Again.", "c-p": "Each page is checked as soon as it's written, then the whole app: types, the build, every page as every role, every button and form. If something's wrong, it fixes it and checks again.",
+    bar1: "Each page on its own", bar2: "Every page, as every role", bar3: "Buttons and forms",
+    "l-e": "An identity for every app", "l-h": "No two apps look alike.", "l-p": "Before building, it makes a visual identity from your app's subject: colours, fonts, corners, navigation and one signature. One screen, in three identities from our test builds.", sk1: "Kids' clinic", sk2: "Car garage", sk3: "Library",
+    "f-e": "More than screens", "f-h": "It does what a team does.", "f-p": "A researcher, a designer, a developer and a tester, in one program on your PC.",
+    f1: "The plan, in a chat", f1d: "It sorts what you say into cards, challenges you kindly when something is extra or missing, and checks the plan against everything you said.",
+    f2: "Pictures & logo", f2d: "Add your logo and reference images; after the build it counts the places that need a picture and asks: make them, or upload them?",
+    f3: "Change it in words", f3d: "“Add a date filter.” It changes the code, the tables change through a migration that keeps the data, and every check runs again.",
+    f4: "Redesign an existing app", f4d: "From its link, screenshots or its code folder. It writes the plan of the app, with what to improve.",
+    f5: "A phone app", f5d: "Expo on the web app's own data. See it in the app, open it on your phone with Expo Go.",
+    f6: "Publish in one press", f6d: "On Vercel and Turso, on your own accounts, with an empty database and your admin account. Later versions keep the data.",
+    "o-e": "Same engine, other programs", o1: "EBDAAI Design", o1d: "Your app's logo, in vector", o2: "EBDAAI Effects", o2d: "The launch video, in words", o3: "EBDAAI", o3d: "Pictures, video, films, marketing",
+    "fin-h": "Build your idea.", "fin-p": "UI/UX comes with EBDAAI — one install. It works with Claude or any model on your PC.",
+  },
+  ticker: { ar: ["خطة", "وايرفريم", "قاعدة بيانات", "تسجيل دخول", "أدوار", "فحص", "نشر", "جوال"], en: ["Plan", "Wireframe", "Database", "Sign-in", "Roles", "Checks", "Publish", "Phone"] },
+  light: [["#top", "#3340ff", "#18c6d6", "#7a2bff"], ["#why", "#18c6d6", "#3340ff", "#ffb020"], ["#try", "#18c6d6", "#3340ff", "#34d399"], ["#checks", "#3340ff", "#18c6d6", "#ff2daa"], ["#looks", "#f2994a", "#18c6d6", "#c9982a"], ["#final", "#18c6d6", "#3340ff", "#bfe0ff"]],
+  motion({ wide }) {
+    if (!wide) return;
+    // the opening, driven by the scroll: the words step aside, the idea is said, it becomes the plan, the plan becomes screens
+    const cards = [...document.querySelectorAll(".pcard")], S = [...document.querySelectorAll(".scr")];
+    const spots = [[-36, -28], [0, -34], [36, -28], [-36, 24], [0, 30], [36, 24]];
+    cards.forEach((c) => gsap.set(c, { xPercent: -50, yPercent: -50, scale: .4 }));
+    gsap.set("#plane", { rotateX: 56, rotateZ: -10, y: 280, scale: .9 });
+    const tally = document.getElementById("tallyN"), done = { v: 0 };
+    const tl = gsap.timeline({ scrollTrigger: { trigger: "#top", start: "top top", end: () => "+=" + innerHeight * 3.4, pin: true, scrub: .8 } });
+    tl.to(".cine-copy", { x: () => (prog.isRTL() ? 140 : -140), opacity: 0, duration: .6 }, 0)
+      .to(".cue", { opacity: 0, duration: .3 }, 0)
+      .fromTo("#idea", { scale: .85, opacity: 0 }, { scale: 1, opacity: 1, duration: .5 }, .3)
+      .to("#idea", { scale: .6, opacity: 0, y: -40, duration: .5 }, 1.6);
+    cards.forEach((c, i) => tl.to(c, { opacity: 1, scale: 1, x: () => (spots[i][0] * innerWidth) / 100, y: () => (spots[i][1] * innerHeight) / 100, rotate: i % 2 ? 4 : -4, duration: .6, ease: "power2.out" }, 1.75 + i * .06));
+    cards.forEach((c, i) => tl.to(c, { opacity: 0, scale: .5, x: 0, y: 140, duration: .5, ease: "power2.in" }, 3.0 + i * .04));
+    tl.to("#plane", { y: 0, scale: 1, duration: .8, ease: "power2.out" }, 3.2);
+    S.forEach((s, i) => tl.to(s, { opacity: 1, duration: .25 }, 3.3 + i * .05));
+    S.forEach((s, i) => tl.to(s.querySelector(".cl"), { opacity: 1, duration: .25 }, 4.2 + i * .12).to(s.querySelector(".ok"), { opacity: 1, scale: 1, duration: .15, ease: "back.out(3)" }, 4.32 + i * .12));
+    tl.to(done, { v: 12, duration: 12 * .12, ease: "none", onUpdate: () => (tally.textContent = `${Math.round(done.v)}/12`) }, 4.32)
+      .to("#tally", { opacity: 1, duration: .3 }, 4.0)
+      .to("#plane", { rotateX: 0, rotateZ: 0, scale: 1.04, duration: 1, ease: "power2.inOut" }, 5.9)
+      .to("#tally", { opacity: 0, duration: .3 }, 6.6);
+  },
+  still() { document.querySelectorAll(".scr, .scr .cl, .scr .ok").forEach((el) => { el.style.opacity = 1; el.style.transform = "none"; }); },
+  ready() {
+    // the idea types itself
+    const say = document.getElementById("ideaSay");
+    let i = 0;
+    const type = () => { const s = IDEA[L()]; say.textContent = s.slice(0, ++i); if (i < s.length) setTimeout(type, 28); };
+    prog.onLang(() => { i = 0; type(); });
+    type();
+    // count up the numbers, run the log, fill the bars — as each arrives
+    const io = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      if (e.target.id === "term") { runLog(); return; }
+      if (e.target.id === "bars") { e.target.querySelectorAll("i").forEach((b) => b.style.setProperty("--w", b.style.getPropertyValue("--t"))); return; }
+      const n = +e.target.dataset.count;
+      if (typeof gsap === "undefined" || prog.reduce) { e.target.textContent = n; return; }
+      const o = { v: 0 }; gsap.to(o, { v: n, duration: 1.6, ease: "power2.out", onUpdate: () => (e.target.textContent = String(Math.round(o.v))) });
+    }), { threshold: .4 });
+    document.querySelectorAll("[data-count]").forEach((c) => io.observe(c)); io.observe(document.getElementById("term")); io.observe(document.getElementById("bars"));
+    // the identities take turns until someone picks one
+    if (!prog.reduce) skinTimer = setInterval(() => paintSkin((skinI + 1) % SKINS.length), 2800);
+  },
+};
+paintScreens(); renderApp(); paintSkin(0);
+</script>
+<script src="assets/program.js"></script>
+<script>prog.onLang(() => { paintScreens(); renderApp(); paintSkin(skinI); });</script>
+</body>
+</html>
